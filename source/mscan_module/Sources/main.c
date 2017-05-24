@@ -13,14 +13,24 @@ void delay(int milliseconds);
 
 void CANInit(void)
 {
-  SET_BITS(CANCTL0, 0x01); // enter initialization mode
+  //SET_BITS(CANCTL1, 0x80); // enable can module
+  CANCTL1 = 0x80;
+  CANCTL0 = 0x01;
+  //SET_BITS(CANCTL0, 0x01); // enter initialization mode
   while(!(CANCTL1&0x01)){}; // initilization acknowledgment
+  
+  //SET_BITS(CANCTL1, 0x20);  // loopback mode
+  SET_BITS(CANCTL1, 0x11);  // disable loopback mode 
+  
   SET_BITS(CANCTL1, 0x40); // enable bus clock 8MHz
+  //CANBTR0 = 0x07;
   SET_BITS(CANBTR0, 0x07); // set prescaler k = 8
   SET_BITS(CANBTR1, 0x23); // set N = 8, TEG1 = 4, TSEG2 = 3, TQ = 1
-  CANCTL0 = 0x00; // exit init mode
+  //CANBTR1= 0x23;
+  CLR_BITS(CANCTL0,0x01); // exit init mode
   while((CANCTL1&0x00) != 0) {}; // wait for normal mode
 }
+
 void main()
 {
   unsigned char errorflag = NO_ERR;
@@ -29,17 +39,19 @@ void main()
   CANInit();
   while(!(CANCTL0&0x10)); 
   
+  //SET_BITS(CANRFLG,0xC3);
+  //SET_BITS(CANRIER,0x01);
   CANRFLG = 0xC3;
   CANRIER = 0x01;
   
-  //EnableInterrupts;
+  EnableInterrupts;
   
   for(;;)
   {
     errorflag = CANSendFrame(ST_ID_100, 0x00, (sizeof(txbuff)-1), txbuff);
     
-    delay(20000);
-  }
+    //delay(2);
+  }          
 }
 
 unsigned char CANSendFrame(unsigned long id, unsigned char priority, unsigned char length, unsigned char *txdata)
