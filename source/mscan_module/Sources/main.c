@@ -28,13 +28,13 @@ void CANInit(void)
   SET_BITS(CANBTR1, 0x23); // set N = 8, TEG1 = 4, TSEG2 = 3, TQ = 1
   //CANBTR1= 0x23;
   CLR_BITS(CANCTL0,0x01); // exit init mode
-  while((CANCTL1&0x00) != 0) {}; // wait for normal mode
+  while((CANCTL1&0x00) != 0); // wait for normal mode
 }
 
 void main()
 {
   unsigned char errorflag = NO_ERR;
-  unsigned char txbuff[] = "ABCDEFGH";
+  unsigned char txbuff[] = "MIKEEFGH";
   
   CANInit();
   while(!(CANCTL0&0x10)); 
@@ -46,18 +46,18 @@ void main()
   
   EnableInterrupts;
   
+
   for(;;)
   {
-    errorflag = CANSendFrame(ST_ID_100, 0x00, (sizeof(txbuff)-1), txbuff);
-    
-    //delay(2);
+  errorflag = CANSendFrame(ST_ID_100, 0x00, (sizeof(txbuff)-1), txbuff);
+  delay(1000);
   }          
 }
 
 unsigned char CANSendFrame(unsigned long id, unsigned char priority, unsigned char length, unsigned char *txdata)
 { 
   unsigned char txbuffer;
-  int index=0;
+  unsigned char index;
    
   if (!CANTFLG)
   {
@@ -81,7 +81,8 @@ unsigned char CANSendFrame(unsigned long id, unsigned char priority, unsigned ch
   CANTFLG = txbuffer; // Start transmission 
   
   while ( (CANTFLG & txbuffer) != txbuffer); // Wait for Transmission completion
-
+  
+  return 0;
 }
 
 
@@ -96,7 +97,7 @@ void delay(int milliseconds)
         now = clock();
 }
 
-void interrupt CANRxISR(void)
+interrupt 39 void CANRxISR(void)
 {
   unsigned char length, index;
   unsigned char rxdata[8];
@@ -107,5 +108,6 @@ void interrupt CANRxISR(void)
     rxdata[index] = *(&CANRXDSR0 + index); // Get received data
   }
 
-  CANRFLG = 0x01; // Clear RXF
+  SET_BITS(CANRFLG,0x01); // Clear RXF, and check for new messages
+  
 }
