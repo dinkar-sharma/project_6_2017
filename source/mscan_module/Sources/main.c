@@ -13,28 +13,20 @@ void delay(int milliseconds);
 
 void CANInit(void)
 {
-  //SET_BITS(CANCTL1, 0x80); // enable can module
-  CANCTL1 = 0x80;
-  CANCTL0 = 0x01;
-  //SET_BITS(CANCTL0, 0x01); // enter initialization mode
-  while(!(CANCTL1&0x01)){}; // initilization acknowledgment
-  
-  //SET_BITS(CANCTL1, 0x20);  // loopback mode
-  SET_BITS(CANCTL1, 0x11);  // disable loopback mode 
-  
-  SET_BITS(CANCTL1, 0x40); // enable bus clock 8MHz
-  //CANBTR0 = 0x07;
-  SET_BITS(CANBTR0, 0x07); // set prescaler k = 8
-  SET_BITS(CANBTR1, 0x23); // set N = 8, TEG1 = 4, TSEG2 = 3, TQ = 1
-  //CANBTR1= 0x23;
-  CLR_BITS(CANCTL0,0x01); // exit init mode
-  while((CANCTL1&0x00) != 0); // wait for normal mode
+  CANCTL0 = 0x01; /* Enter Initialization Mode */
+  while (! (CANCTL1&0x01)) {}; /* Wait for Initialization Mode
+                                  acknowledge (INITRQ bit = 1) */
+  CANCTL1 = 0xC0;    // Enable CAN and 
+  CANBTR0 = 0x07;    // Set prescaler K= 8
+  CANBTR1 = 0x23;    // Set N= 8, TSEG1 = 4, TSEG2 = 3, TQ = 1
+  CANCTL0 = 0x00;    // Exit Init Mode
+  while(CANCTL1&0x01);  // Waiting for normal mode
 }
 
 void main()
 {
   unsigned char errorflag = NO_ERR;
-  unsigned char txbuff[] = "MIKEEFGH";
+  unsigned char txbuff[] = "ABCDEFGH";
   
   CANInit();
   while(!(CANCTL0&0x10)); 
@@ -42,22 +34,26 @@ void main()
   //SET_BITS(CANRFLG,0xC3);
   //SET_BITS(CANRIER,0x01);
   CANRFLG = 0xC3;
-  CANRIER = 0x01;
+  CANRIER = 0x03;
   
   EnableInterrupts;
   
 
+  errorflag = CANSendFrame(ST_ID_100, 0x00, (sizeof(txbuff)-1), txbuff);
+  delay(1000);  
   for(;;)
   {
-  errorflag = CANSendFrame(ST_ID_100, 0x00, (sizeof(txbuff)-1), txbuff);
-  delay(1000);
+   if(CANRFLG&0x01){
+    
+      SET_BITS(CANRFLG,0x01); // Clear RXF, and check for new messages
+   }
   }          
 }
 
 unsigned char CANSendFrame(unsigned long id, unsigned char priority, unsigned char length, unsigned char *txdata)
 { 
   unsigned char txbuffer;
-  unsigned char index;
+  int index = 0;
    
   if (!CANTFLG)
   {
@@ -86,7 +82,7 @@ unsigned char CANSendFrame(unsigned long id, unsigned char priority, unsigned ch
 }
 
 
-void delay(int milliseconds)
+void delay(int milliseconds)  // Delay function
 {
     long pause;
     clock_t now,then;
@@ -97,7 +93,7 @@ void delay(int milliseconds)
         now = clock();
 }
 
-interrupt 39 void CANRxISR(void)
+interrupt 38 void CANRxISR(void)
 {
   unsigned char length, index;
   unsigned char rxdata[8];
@@ -109,5 +105,5 @@ interrupt 39 void CANRxISR(void)
   }
 
   SET_BITS(CANRFLG,0x01); // Clear RXF, and check for new messages
-  
+  //CANRFLG =0x01;
 }
