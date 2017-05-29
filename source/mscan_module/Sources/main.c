@@ -19,9 +19,38 @@ void CANInit(void)
   CANCTL1 = 0xC0;    // Enable CAN and 
   CANBTR0 = 0x07;    // Set prescaler K= 8
   CANBTR1 = 0x23;    // Set N= 8, TSEG1 = 4, TSEG2 = 3, TQ = 1
+ 
+  
+  /* Acceptance Filters  */
+
+  CANIDAC = 0x10;                   // Set four 16-bit Filters
+  
+  CANIDAR0 = ACC_CODE_ID100_HIGH;   //|\    16-bit Filter 0
+  CANIDMR0 = MASK_CODE_ST_ID_HIGH;  //| \__ Accepts Standard Data Frame Msg
+  CANIDAR1 = ACC_CODE_ID100_LOW;    //| /   with ID 0x100
+  CANIDMR1 = MASK_CODE_ST_ID_LOW;   //|/
+
+  CANIDAR2 = 0x00;                  //|\    16-bit Filter 1
+  CANIDMR2 = MASK_CODE_ST_ID_HIGH;  //| \__ Accepts Standard Data Frame Msg
+  CANIDAR3 = 0x00;                  //| /   with ID 0x100
+  CANIDMR3 = MASK_CODE_ST_ID_LOW;   //|/
+
+  CANIDAR4 = 0x00;                  //|\    16-bit Filter 2
+  CANIDMR4 = MASK_CODE_ST_ID_HIGH;  //| \__ Accepts Standard Data Frame Msg
+  CANIDAR5 = 0x00;                  //| /   with ID 0x100
+  CANIDMR5 = MASK_CODE_ST_ID_LOW;   //|/
+  
+  
+  CANIDAR6 = 0x00;                  //|\    16-bit Filter 3
+  CANIDMR6 = MASK_CODE_ST_ID_HIGH;  //| \__ Accepts Standard Data Frame Msg
+  CANIDAR7 = 0x00;                  //| /   with ID 0x100
+  CANIDMR7 = MASK_CODE_ST_ID_LOW;   //|/    
+  
   CANCTL0 = 0x00;    // Exit Init Mode
   while(CANCTL1&0x01);  // Waiting for normal mode
 }
+
+
 
 void main()
 {
@@ -34,7 +63,7 @@ void main()
   //SET_BITS(CANRFLG,0xC3);
   //SET_BITS(CANRIER,0x01);
   CANRFLG = 0xC3;
-  CANRIER = 0x03;
+  CANRIER = 0x01; 
   
   EnableInterrupts;
   
