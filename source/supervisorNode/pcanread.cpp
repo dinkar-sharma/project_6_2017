@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
 			printf("Test2: %4x\n", (int)Message.ID);
 			
 			switch(Message.DATA[7]){
-				case  :
+				case 1 :
 					printf("Floor 1\n");
 					pcanWrite(0x05);
 					break;
