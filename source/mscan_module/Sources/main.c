@@ -1,15 +1,32 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include <hidef.h>      /* common defines and macros */
 #include "derivative.h"      /* derivative-specific definitions */
 #include "mc9s12c32.h"
+#include "bit_fiddling.h"
 #include "mscan.h"
 
 
-unsigned char CANSendFrame(unsigned long id, unsigned char priority, unsigned char length, unsigned char *txdata);
-void CANInit(void);
-void delay(int milliseconds);
+
+void 
+MSCAN_Init(void){
+  // assert CANE - MSCAN module turn on
+  SET_BITS(CANCTL1, CANCTL1_CANE_MASK);
+  // request for MSCAN init mode
+  SET_BITS(CANCTL0, CANCTL0_INITRQ_MASK);
+
+  // wait for MSCAN module to enter init mode, checking for acknowledgement flag
+  while((BIT_IS_CLR(CANCTL1, CANCTL1_INITAK_MASK)));
+
+  // successfully entered init mode
+  // configuring registers to control MSCAN operation
+
+  CANCTL1 = CANCTL1_INIT
+  CANBTR0 = CANBTR0_INIT
+  CANBTR1 = CANBTR1_INIT
+}
+
 
 void CANInit(void)
 {
