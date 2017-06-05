@@ -89,18 +89,18 @@ Init_Car_Controller()
   // configure floor request LEDs DDR to output
   SET_BITS(FLOOR_REQ_LEDS_DDR, DDRB_OUTPUT);
   // turn on red LEDs for 1 second
-  SET_BITS(FLOOR_REQ_LEDS_PORT, LEDS_ON);
+  SET_BITS(FLOOR_REQ_LEDS_PORT, FLOOR_REQ_LEDS_ON);
   Delay_ms(1000);
   // turn off red LEDs
-  CLR_BITS(FLOOR_REQ_LEDS_PORT, LEDS_OFF);
+  CLR_BITS(FLOOR_REQ_LEDS_PORT, FLOOR_REQ_LEDS_OFF);
   
   // configure floor status LED DDR to output
   SET_BITS(FLOOR_STATUS_LEDS_DDR, DDRA_OUTPUT);
   // turn on green LEDs for 1 second
-  SET_BITS(FLOOR_STATUS_LEDS_PORT, LEDS_ON);
+  SET_BITS(FLOOR_STATUS_LEDS_PORT, FLOOR_STATUS_LEDS_ON);
   Delay_ms(1000);
   // turn off green LEDs
-  CLR_BITS(FLOOR_STATUS_LEDS_PORT, LEDS_OFF);
+  CLR_BITS(FLOOR_STATUS_LEDS_PORT, FLOOR_STATUS_LEDS_OFF);
  
   SET_BITS(LED_PORT,LED_1_ON); 
 }
@@ -111,7 +111,6 @@ main()
   Init_Car_Controller();
   MSCAN_Init();
   MSCAN_ListenForMsg(EC_CAN_ID, 0);
-  txdata[0] |= 0;
   doorState = OPEN;
 
   for(;;)
@@ -145,7 +144,7 @@ main()
         CLR_BITS(FLOOR_REQ_LEDS_PORT,FLOOR_REQ_LED_2);  
       }
       // elevator is on the third floor
-      else if(currentFloor == 0x03)
+      else if(currentFloor == FLOOR_3)
       {
         SET_BITS(FLOOR_STATUS_LEDS_PORT, FLOOR_STATUS_LED_3);
         CLR_BITS(FLOOR_STATUS_LEDS_PORT,(FLOOR_STATUS_LED_1|FLOOR_STATUS_LED_2));
@@ -161,19 +160,19 @@ main()
     // poll for a valid floor selection
     switch(READ_CAR_FLOOR_REQ)
     {
-    case FLOOR_1:
+    case FLOOR_REQ_1:
       txdata[7] |= FLOOR_1;
       SET_BITS(FLOOR_REQ_LEDS_PORT, FLOOR_REQ_LED_1);   
       floorSelected = TRUE; 
       break;
 
-    case FLOOR_2:
+    case FLOOR_REQ_2:
       txdata[7] |= FLOOR_2;
       SET_BITS(FLOOR_REQ_LEDS_PORT, FLOOR_REQ_LED_2);
       floorSelected = TRUE;
       break;
 
-    case FLOOR_3:
+    case FLOOR_REQ_3:
       txdata[7] |= FLOOR_3;
       SET_BITS(FLOOR_REQ_LEDS_PORT, FLOOR_REQ_LED_3);
       floorSelected = TRUE;
@@ -181,22 +180,21 @@ main()
 
     default:
       txdata[7] |= FLOOR_NONE;
-      
       break;
     }
     
     // if floor requested, send CAN message 
     if(floorSelected)
     {
-      //Delay_ms(1000);
+   
       // LED 1 is on and LED 2 is off, door is open
       if(READ_DOOR_STATE == LED_1_ON)
       {
-        //while(BIT_IS_CLR(DOOR_STATE_PORT, DOOR_BUTTON_OPEN));
         // Checking for door close button (SW2)
         if(BIT_IS_CLR(DOOR_STATE_PORT, 0x80))
         {
           doorState = CLOSE;
+          SET_BITS(txdata[7], CLOSE_STATUS);
           CLR_BITS(LED_PORT, LED_1_ON);
           SET_BITS(LED_PORT, LED_2_ON); 
         }
@@ -205,17 +203,35 @@ main()
       {
          Delay_ms(1000);
          doorState = CLOSE;
+         SET_BITS(txdata[7], CLOSE_STATUS);
          CLR_BITS(LED_PORT, LED_1_ON);
          SET_BITS(LED_PORT, LED_2_ON);
       }
-      retCode = MSCAN_Putd(CC_CAN_ID, &(txdata[0]), 8, 0, 0);
-      currentFloor = 0;
-      txdata[7] = 0;
-      floorSelected = FALSE;
+      
+      // only send floor req when door is closed
+      if(doorState == CLOSE)
+      {
+        retCode = MSCAN_Putd(CC_CAN_ID, &(txdata[0]), 8, 0, 0);
+        currentFloor = 0;
+        txdata[7] = 0;
+        CLR_BITS(LED_PORT, LED_1_ON);
+        floorSelected = FALSE;    
+      } 
+      else
+      {
+        // door is still open. Do not send floor request only door status
+        CLR_BITS(txdata[7], OPEN_STATUS);
+        retCode = MSCAN_Putd(CC_CAN_ID, &(txdata[0]), 8, 0, 0);
+        currentFloor = 0;
+        txdata[7] = 0;
+        SET_BITS(LED_PORT, LED_1_ON);
+        floorSelected = FALSE;  
+      } 
+
     }
     Delay_ms(100);
    }
-}
+ }
 
 /*interrupt VectorNumber_Vcanrx void CAN_Receive(void)
 {

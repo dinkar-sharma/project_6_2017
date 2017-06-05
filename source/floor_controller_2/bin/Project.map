@@ -26,7 +26,7 @@ _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
   _Range   pZeroOut       0x900     32
-  _Copy    *toCopyDownBeg 0xC324
+  _Copy    *toCopyDownBeg 0xC31F
 } _startupData;
 
 *********************************************************************************************
@@ -35,8 +35,8 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                             49     R     0xC000     0xC030   ROM_C000
 .startData                        10     R     0xC031     0xC03A   ROM_C000
-.text                            711     R     0xC03B     0xC301   ROM_C000
-.copy                              7     R     0xC324     0xC32A   ROM_C000
+.text                            686     R     0xC03B     0xC2E8   ROM_C000
+.copy                              7     R     0xC31F     0xC325   ROM_C000
 .stack                           256   R/W      0x800      0x8FF   RAM
 .data                              2   R/W      0x900      0x901   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
@@ -262,11 +262,11 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_17e                   2   N/I      0x17E      0x17F   .absSeg220
 .bss                               5   R/W      0x902      0x906   RAM
 .common                           25   R/W      0x907      0x91F   RAM
-RUNTIME                           34     R     0xC302     0xC323   ROM_C000
+RUNTIME                           54     R     0xC2E9     0xC31E   ROM_C000
 .vectSeg221_vect                   2     R     0xFFFE     0xFFFF   .vectSeg221
 
 Summary of section sizes per section type:
-READ_ONLY (R):         32D (dec:      813)
+READ_ONLY (R):         328 (dec:      808)
 READ_WRITE (R/W):      120 (dec:      288)
 NO_INIT (N/I):         104 (dec:      260)
 
@@ -429,7 +429,7 @@ MODULE:                 -- mc9s12c32.c.o --
      _PERT                                      244       1       1       0   .abs_section_244
      _PPST                                      245       1       1       0   .abs_section_245
      _MODRR                                     247       1       1       0   .abs_section_247
-     _PTS                                       248       1       1       6   .abs_section_248
+     _PTS                                       248       1       1       3   .abs_section_248
      _PTIS                                      249       1       1       0   .abs_section_249
      _DDRS                                      24A       1       1       1   .abs_section_24a
      _RDRS                                      24B       1       1       0   .abs_section_24b
@@ -451,7 +451,7 @@ MODULE:                 -- mc9s12c32.c.o --
      _PPSP                                      25D       1       1       0   .abs_section_25d
      _PIEP                                      25E       1       1       0   .abs_section_25e
      _PIFP                                      25F       1       1       0   .abs_section_25f
-     _PTJ                                       268       1       1       1   .abs_section_268
+     _PTJ                                       268       1       1       0   .abs_section_268
      _PTIJ                                      269       1       1       0   .abs_section_269
      _DDRJ                                      26A       1       1       1   .abs_section_26a
      _RDRJ                                      26B       1       1       0   .abs_section_26b
@@ -465,7 +465,7 @@ MODULE:                 -- mc9s12c32.c.o --
      _RDRAD                                     273       1       1       0   .abs_section_273
      _PERAD                                     274       1       1       0   .abs_section_274
      _PPSAD                                     275       1       1       0   .abs_section_275
-     _PORTAB                                      0       2       2      14   .abs_section_0
+     _PORTAB                                      0       2       2      15   .abs_section_0
      _DDRAB                                       2       2       2       2   .abs_section_2
      _PARTID                                     1A       2       2       0   .abs_section_1a
      _DBGTB                                      22       2       2       0   .abs_section_22
@@ -506,16 +506,16 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANTXTSR                                  17E       2       2       0   .abs_section_17e
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     Delay_ms                                  C03B      35      53       5   .text       
+     Delay_ms                                  C03B      35      53       4   .text       
      Init_Floor_Controller                     C070      3C      60       1   .text       
-     main                                      C0AC      EB     235       3   .text       
+     main                                      C0AC      D2     210       3   .text       
 - VARIABLES:
      retCode                                    900       2       2       1   .data       
      floorSelected                              902       1       1       3   .bss        
      rxMsg                                      907       F      15       6   .common     
      currentFloor                               916       1       1       5   .common     
-     txdata                                     917       8       8       4   .common     
-     doorState                                  91F       1       1       2   .common     
+     txdata                                     917       8       8       5   .common     
+     doorState                                  91F       1       1       1   .common     
 MODULE:                 -- Start12.c.o --
 - PROCEDURES:
      Init                                      C000      29      41       1   .init       
@@ -526,16 +526,17 @@ MODULE:                 -- Start12.c.o --
      __SEG_END_SSTACK                           900       0       0       1               
 MODULE:                 -- rtshc12.c.o (ansisi.lib) --
 - PROCEDURES:
-     _LSHL                                     C302      11      17       4   RUNTIME     
-     _LSHRU                                    C313      11      17       1   RUNTIME     
+     _LSHL                                     C2E9      11      17       4   RUNTIME     
+     _LSHRU                                    C2FA      11      17       1   RUNTIME     
+     _CASE_CHECKED_BYTE                        C30B      14      20       1   RUNTIME     
 - VARIABLES:
 MODULE:                 -- mscan.c.o --
 - PROCEDURES:
-     MSCAN_Init                                C197      2A      42       1   .text       
-     MSCAN_ListenForMsg                        C1C1      6F     111       1   .text       
-     MSCAN_GotMsg                              C230       7       7       1   .text       
-     MSCAN_Getd                                C237      4A      74       1   .text       
-     MSCAN_Putd                                C281      81     129       1   .text       
+     MSCAN_Init                                C17E      2A      42       1   .text       
+     MSCAN_ListenForMsg                        C1A8      6F     111       1   .text       
+     MSCAN_GotMsg                              C217       7       7       1   .text       
+     MSCAN_Getd                                C21E      4A      74       1   .text       
+     MSCAN_Putd                                C268      81     129       1   .text       
 - VARIABLES:
      myIdBfr                                    903       4       4       3   .bss        
 
@@ -544,9 +545,9 @@ MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   mc9s12c32.c.o                              260      0      0
-  main.c.o                                    28    348      0
+  main.c.o                                    28    323      0
   Start12.c.o                                  0     49      0
-  rtshc12.c.o (ansisi.lib)                     0     34      0
+  rtshc12.c.o (ansisi.lib)                     0     54      0
   mscan.c.o                                    4    363      0
   other                                      256     12      7
 
@@ -1007,13 +1008,13 @@ SECTION: ".abs_section_17e"
 SECTION: ".common"
   rxMsg currentFloor txdata doorState 
 SECTION: "RUNTIME"
-  _LSHL _LSHRU 
+  _LSHL _LSHRU _CASE_CHECKED_BYTE 
 
 *********************************************************************************************
 OBJECT LIST SORTED BY ADDRESS
      Name                                      Addr   hSize   dSize     Ref    Section   RLIB
 ---------------------------------------------------------------------------------------------
-     _PORTAB                                      0       2       2      14   .abs_section_0
+     _PORTAB                                      0       2       2      15   .abs_section_0
      _DDRAB                                       2       2       2       2   .abs_section_2
      _PORTE                                       8       1       1       0   .abs_section_8
      _DDRE                                        9       1       1       0   .abs_section_9
@@ -1198,7 +1199,7 @@ OBJECT LIST SORTED BY ADDRESS
      _PERT                                      244       1       1       0   .abs_section_244
      _PPST                                      245       1       1       0   .abs_section_245
      _MODRR                                     247       1       1       0   .abs_section_247
-     _PTS                                       248       1       1       6   .abs_section_248
+     _PTS                                       248       1       1       3   .abs_section_248
      _PTIS                                      249       1       1       0   .abs_section_249
      _DDRS                                      24A       1       1       1   .abs_section_24a
      _RDRS                                      24B       1       1       0   .abs_section_24b
@@ -1220,7 +1221,7 @@ OBJECT LIST SORTED BY ADDRESS
      _PPSP                                      25D       1       1       0   .abs_section_25d
      _PIEP                                      25E       1       1       0   .abs_section_25e
      _PIFP                                      25F       1       1       0   .abs_section_25f
-     _PTJ                                       268       1       1       1   .abs_section_268
+     _PTJ                                       268       1       1       0   .abs_section_268
      _PTIJ                                      269       1       1       0   .abs_section_269
      _DDRJ                                      26A       1       1       1   .abs_section_26a
      _RDRJ                                      26B       1       1       0   .abs_section_26b
@@ -1239,20 +1240,21 @@ OBJECT LIST SORTED BY ADDRESS
      myIdBfr                                    903       4       4       3   .bss        
      rxMsg                                      907       F      15       6   .common     
      currentFloor                               916       1       1       5   .common     
-     txdata                                     917       8       8       4   .common     
-     doorState                                  91F       1       1       2   .common     
+     txdata                                     917       8       8       5   .common     
+     doorState                                  91F       1       1       1   .common     
      Init                                      C000      29      41       1   .init       
      _Startup                                  C029       8       8       0   .init       
-     Delay_ms                                  C03B      35      53       5   .text       
+     Delay_ms                                  C03B      35      53       4   .text       
      Init_Floor_Controller                     C070      3C      60       1   .text       
-     main                                      C0AC      EB     235       3   .text       
-     MSCAN_Init                                C197      2A      42       1   .text       
-     MSCAN_ListenForMsg                        C1C1      6F     111       1   .text       
-     MSCAN_GotMsg                              C230       7       7       1   .text       
-     MSCAN_Getd                                C237      4A      74       1   .text       
-     MSCAN_Putd                                C281      81     129       1   .text       
-     _LSHL                                     C302      11      17       4   RUNTIME     
-     _LSHRU                                    C313      11      17       1   RUNTIME     
+     main                                      C0AC      D2     210       3   .text       
+     MSCAN_Init                                C17E      2A      42       1   .text       
+     MSCAN_ListenForMsg                        C1A8      6F     111       1   .text       
+     MSCAN_GotMsg                              C217       7       7       1   .text       
+     MSCAN_Getd                                C21E      4A      74       1   .text       
+     MSCAN_Putd                                C268      81     129       1   .text       
+     _LSHL                                     C2E9      11      17       4   RUNTIME     
+     _LSHRU                                    C2FA      11      17       1   RUNTIME     
+     _CASE_CHECKED_BYTE                        C30B      14      20       1   RUNTIME     
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
@@ -1262,9 +1264,8 @@ rtshc12.c.o (ansisi.lib):
   _BSHL _BSHRS _BSHRU _BDIVMODU _BDIVMODS _ISHL _ISHRU _ISHRS _LSHRS _LADD 
   _LSUB _LAND _LOR _LXOR _LCMP _LCMP_P _LCMP_PP _LNEG _LCOM _LINC _LDEC _LMUL 
   _LMULU16x32 _LMULS16x32 _lDivMod _LDIVU _NEG_P _LDIVS _LMODU _LMODS _ILSEXT 
-  _COPY _CASE_DIRECT _CASE_DIRECT_BYTE _CASE_CHECKED _CASE_CHECKED_BYTE 
-  _CASE_SEARCH _CASE_SEARCH_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE _FCALL 
-  _FPCMP 
+  _COPY _CASE_DIRECT _CASE_DIRECT_BYTE _CASE_CHECKED _CASE_SEARCH 
+  _CASE_SEARCH_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE _FCALL _FPCMP 
 NOT USED VARIABLES
 rtshc12.c.o (ansisi.lib):
   _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 errno 
@@ -1272,13 +1273,13 @@ rtshc12.c.o (ansisi.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC324 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xC31F ---- SIZE       4 ---
 Filling bytes inserted
  00010901
-------- ROM-ADDRESS: 0xC328 ---- RAM-ADDRESS: 0x901 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xC323 ---- RAM-ADDRESS: 0x901 ---- SIZE       1 ---
 Name of initialized Object : retCode:1
  01
-------- ROM-ADDRESS: 0xC329 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC324 ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1292,8 +1293,8 @@ Init_Floor_Controller     USES _ATDDIEN _DDRAD _DDRJ _DDRS _PTS Delay_ms
                                 _DDRAB _PORTAB 
 main                      USES Init_Floor_Controller MSCAN_Init 
                                 MSCAN_ListenForMsg doorState main MSCAN_GotMsg rxMsg MSCAN_Getd 
-                                currentFloor _PORTAB _PTAD txdata floorSelected _PTS _PTJ 
-                                Delay_ms MSCAN_Putd retCode 
+                                currentFloor _PORTAB _PTAD _CASE_CHECKED_BYTE txdata 
+                                floorSelected MSCAN_Putd retCode Delay_ms 
 MSCAN_Init                USES _CANCTL1 _CANCTL0 _CANBTR0 _CANBTR1 
 MSCAN_ListenForMsg        USES _CANCTL0 _CANCTL1 _CANIDAC _LSHL myIdBfr 
                                 _CANIDAR0 
@@ -1325,12 +1326,14 @@ DEPENDENCY TREE
  |  |  | 
  |  |  +- _LSHRU              
  |  |       
- |  +- Delay_ms             (see above)
- |  |  
+ |  +- _CASE_CHECKED_BYTE  
+ |  |    
  |  +- MSCAN_Putd          
- |     | 
- |     +- _LSHL                (see above)
- |        
+ |  |  | 
+ |  |  +- _LSHL                (see above)
+ |  |     
+ |  +- Delay_ms             (see above)
+ |     
  +- _Startup            
     | 
     +- Init                
@@ -1344,5 +1347,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 6
-Total size of all blocks to be downloaded: 813
+Total size of all blocks to be downloaded: 808
 
