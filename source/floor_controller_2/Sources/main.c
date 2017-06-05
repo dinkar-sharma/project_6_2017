@@ -184,21 +184,23 @@ main()
     {
     case FLOOR_UP:
       txdata[7] |= FLOOR_2;
+      SET_BITS(txdata[7], 0x04);
       SET_BITS(FLOOR_REQ_LEDS_PORT, FLOOR_REQ_LED_UP);   
       floorSelected = TRUE; 
       break;
 
     case FLOOR_DOWN:
       txdata[7] |= FLOOR_2;
+      SET_BITS(txdata[7], 0x04);
       SET_BITS(FLOOR_REQ_LEDS_PORT, FLOOR_REQ_LED_DOWN);
       floorSelected = TRUE;
       break;
 
-    /*case FLOOR_3:
+    case FLOOR_3:
       txdata[7] |= FLOOR_3;
       SET_BITS(FLOOR_REQ_LEDS_PORT, FLOOR_REQ_LED_3);
       floorSelected = TRUE;
-      break;  */
+      break;  
 
     default:
       txdata[7] |= FLOOR_NONE;
@@ -211,7 +213,7 @@ main()
     {
       //Delay_ms(1000);
       // LED 1 is on and LED 2 is off, door is open
-      if(READ_DOOR_STATE == LED_1_ON)
+      /*if(READ_DOOR_STATE == LED_1_ON)
       {
         //while(BIT_IS_CLR(DOOR_STATE_PORT, DOOR_BUTTON_OPEN));
         // Checking for door close button (SW2)
@@ -228,7 +230,7 @@ main()
          doorState = CLOSE;
          CLR_BITS(LED_PORT, LED_1_ON);
          SET_BITS(LED_PORT, LED_2_ON);
-      }
+      }  */
       retCode = MSCAN_Putd(FC_CAN_ID_2, &(txdata[0]), 8, 0, 0);
       currentFloor = 0;
       txdata[7] = 0;
