@@ -10,8 +10,9 @@
 
 int retCode = 1;
 unsigned char floorSelected = FALSE;
+unsigned char destinationFloor = FLOOR_NONE;
 CANmsg_t rxMsg;
-volatile unsigned char currentFloor;
+volatile unsigned char currentFloor = FLOOR_NONE;
 unsigned char txdata[8];
 //volatile unsigned char data[8];
 volatile unsigned char doorState;
@@ -129,50 +130,57 @@ main()
       // copy data to local variable
       currentFloor = (rxMsg.rxdata[0] & 0x03);
 
-      // elevator is on the first floor
-      if(currentFloor == FLOOR_1)
+      switch(currentFloor)
       {
-        SET_BITS(FLOOR_STATUS_LEDS_PORT, FLOOR_STATUS_LED_1);
-        CLR_BITS(FLOOR_STATUS_LEDS_PORT,(FLOOR_STATUS_LED_2|FLOOR_STATUS_LED_3));
-        CLR_BITS(FLOOR_REQ_LEDS_PORT,FLOOR_REQ_LED_1);   
-      } 
-      // elevator is on the second floor
-      else if(currentFloor == FLOOR_2)
-      {
-        SET_BITS(FLOOR_STATUS_LEDS_PORT, FLOOR_STATUS_LED_2);
-        CLR_BITS(FLOOR_STATUS_LEDS_PORT,(FLOOR_STATUS_LED_1|FLOOR_STATUS_LED_3));
-        CLR_BITS(FLOOR_REQ_LEDS_PORT,FLOOR_REQ_LED_2);  
+        case FLOOR_1:
+          SET_BITS(FLOOR_STATUS_LEDS_PORT, FLOOR_STATUS_LED_1);
+          CLR_BITS(FLOOR_STATUS_LEDS_PORT,(FLOOR_STATUS_LED_2|FLOOR_STATUS_LED_3));
+          CLR_BITS(FLOOR_REQ_LEDS_PORT,FLOOR_REQ_LED_1); 
+          break;
+        
+        case FLOOR_2:
+          SET_BITS(FLOOR_STATUS_LEDS_PORT, FLOOR_STATUS_LED_2);
+          CLR_BITS(FLOOR_STATUS_LEDS_PORT,(FLOOR_STATUS_LED_1|FLOOR_STATUS_LED_3));
+          CLR_BITS(FLOOR_REQ_LEDS_PORT,FLOOR_REQ_LED_2);
+          break;
+          
+        case FLOOR_3:
+         SET_BITS(FLOOR_STATUS_LEDS_PORT, FLOOR_STATUS_LED_3);
+         CLR_BITS(FLOOR_STATUS_LEDS_PORT,(FLOOR_STATUS_LED_1|FLOOR_STATUS_LED_2));
+         CLR_BITS(FLOOR_REQ_LEDS_PORT,FLOOR_REQ_LED_3);
+         break;
+         
+        default:
+          break; 
       }
-      // elevator is on the third floor
-      else if(currentFloor == FLOOR_3)
+      
+      if(destinationFloor == currentFloor)
       {
-        SET_BITS(FLOOR_STATUS_LEDS_PORT, FLOOR_STATUS_LED_3);
-        CLR_BITS(FLOOR_STATUS_LEDS_PORT,(FLOOR_STATUS_LED_1|FLOOR_STATUS_LED_2));
-        CLR_BITS(FLOOR_REQ_LEDS_PORT,FLOOR_REQ_LED_3);    
+       CLR_BITS(LED_PORT, LED_2_ON);
+       Delay_ms(400);
+       SET_BITS(LED_PORT, LED_1_ON);
       }
-      else
-      {
-       // elevator is moving
-       continue;
-      }
-    }
+   }
 
-    // poll for a valid floor selection
+    // read for a valid floor selection
     switch(READ_CAR_FLOOR_REQ)
     {
     case FLOOR_REQ_1:
+      destinationFloor = FLOOR_1;
       txdata[7] |= FLOOR_1;
       SET_BITS(FLOOR_REQ_LEDS_PORT, FLOOR_REQ_LED_1);   
       floorSelected = TRUE; 
       break;
 
     case FLOOR_REQ_2:
+      destinationFloor = FLOOR_2;
       txdata[7] |= FLOOR_2;
       SET_BITS(FLOOR_REQ_LEDS_PORT, FLOOR_REQ_LED_2);
       floorSelected = TRUE;
       break;
 
     case FLOOR_REQ_3:
+      destinationFloor = FLOOR_3;
       txdata[7] |= FLOOR_3;
       SET_BITS(FLOOR_REQ_LEDS_PORT, FLOOR_REQ_LED_3);
       floorSelected = TRUE;
@@ -186,9 +194,14 @@ main()
     // if floor requested, send CAN message 
     if(floorSelected)
     {
+      while(READ_DOOR_CLOSE_BUTTON); 
+      doorState = CLOSE;
+      SET_BITS(txdata[7], CLOSE_STATUS);
+      CLR_BITS(LED_PORT, LED_1_ON);
+      SET_BITS(LED_PORT, LED_2_ON);     
    
       // LED 1 is on and LED 2 is off, door is open
-      if(READ_DOOR_STATE == LED_1_ON)
+      /*if(READ_DOOR_STATE == LED_1_ON)
       {
         // Checking for door close button (SW2)
         if(BIT_IS_CLR(DOOR_STATE_PORT, 0x80))
@@ -206,7 +219,7 @@ main()
          SET_BITS(txdata[7], CLOSE_STATUS);
          CLR_BITS(LED_PORT, LED_1_ON);
          SET_BITS(LED_PORT, LED_2_ON);
-      }
+      }*/
       
       // only send floor req when door is closed
       if(doorState == CLOSE)

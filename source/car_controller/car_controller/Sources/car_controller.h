@@ -45,6 +45,7 @@
 #define DOOR_STATE_DDR  DDRJ
 #define DOOR_STATE_PORT PTJ
 #define DDRJ_INIT       0xC0
+#define READ_DOOR_CLOSE_BUTTON  (PTJ & 0x80)
 #define OPEN            0x00
 #define CLOSE           0x01
 #define OPEN_STATUS            0x04
