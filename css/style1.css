@@ -1,11 +1,83 @@
-body { font-family: arial;}
+html{ background-color: rgb(153, 217, 234) 
+}
+body { font-family: calibri;}
 
-h1{color:black;
-   font-family: Verdana;
-   font-size: 300%;
+title{
+	color:black;
+	font-family: calibri;
+	font-size: 300%;}
+h1{
+	text-align: center;
+	color:black;
+	font-family: calibri;
+	font-size: 300%;
    }
 
-h2{color: black;
-	font-family: Verdana;
+h2{
+	color: black;
+	font-family: calibri;
 	font-size: 150%;
 	}
+ol{
+	color: black;
+	font-family: calibri;
+	font-size: 150%;}
+
+a:hover.menu{
+	font-weight: bold;
+	background-color: gray;
+}
+a:active.menu{
+	font-weight: bold;
+	color: orange
+}
+
+div.text{
+	font-family: calibri;
+	font-size: 20;
+	text-align: center;
+}
+img.team-logo{
+	display: block;
+	margin: 0 auto;
+}
+iframe{ 
+		border-width: 1px 1px 1px 1px;
+		border-style: solide dotted dashed hidden;
+		border-color: red rgb(10, 10, 10) #00AADD blue;
+		border: 20px solid green;
+		border: 1px ridge black;
+		margin: 10px 10px 10px 10px;
+		padding: 1px 2px 1px 2px;
+		margin: 1px auto 1px auto;
+		border-radius: 10px;
+		box-shadow: 10px 10px 5px #888888; 
+}
+img.images{
+		display: block;
+		margin: 0 auto;
+		border-width: 1px 1px 1px 1px;
+		border-style: solide dotted dashed hidden;
+		border-color: red rgb(10, 10, 10) #00AADD blue;
+		border: 10px solid green;
+		border: 10px ridge black;
+		margin: 10px 10px 10px 10px;
+		padding: 10px 20px 10px 20px;
+		margin: 10px auto 10px auto;
+		border-radius: 10px;
+		box-shadow: 10px 10px 5px #888888;		
+}
+
+tbody{
+		border-width: 1px 1px 1px 1px;
+		border-style: solide dotted dashed hidden;
+		border-color: red rgb(10, 10, 10) #00AADD blue;
+		border: 2px solid green;
+		border: 1px ridge black;
+		margin: 1px 1px 1px 1px;
+		padding: 1px 2px 1px 2px;
+		margin: 1px auto 1px auto;
+		border-radius: 10px;
+		box-shadow: 10px 10px 5px #888888; 
+		
+}
