@@ -1,0 +1,36 @@
+#title{
+    color: black;
+    font-family: calibri;
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+}
+
+.button {
+  display: block;
+  margin: 50px auto;
+  width: 250px;
+  padding: 15px 30px;
+  font-size: 100px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#copy-right{
+    text-align: center;
+}
