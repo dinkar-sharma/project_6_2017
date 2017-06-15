@@ -25,7 +25,7 @@ Entry point: 0xC029 (_Startup)
 _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     0
-  _Copy    *toCopyDownBeg 0xC19B
+  _Copy    *toCopyDownBeg 0xC1D1
 } _startupData;
 
 *********************************************************************************************
@@ -34,8 +34,8 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                             49     R     0xC000     0xC030   ROM_C000
 .startData                        10     R     0xC031     0xC03A   ROM_C000
-.text                            331     R     0xC03B     0xC185   ROM_C000
-.copy                              2     R     0xC19B     0xC19C   ROM_C000
+.text                            385     R     0xC03B     0xC1BB   ROM_C000
+.copy                              2     R     0xC1D1     0xC1D2   ROM_C000
 .stack                           256   R/W      0x800      0x8FF   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
@@ -259,11 +259,11 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_16e                   2   N/I      0x16E      0x16F   .absSeg219
 .abs_section_17e                   2   N/I      0x17E      0x17F   .absSeg220
 .abs_section_ffb2                  2     R     0xFFB2     0xFFB3   .absSeg221
-RUNTIME                           21     R     0xC186     0xC19A   ROM_C000
+RUNTIME                           21     R     0xC1BC     0xC1D0   ROM_C000
 .vectSeg222_vect                   2     R     0xFFFE     0xFFFF   .vectSeg222
 
 Summary of section sizes per section type:
-READ_ONLY (R):         1A1 (dec:      417)
+READ_ONLY (R):         1D7 (dec:      471)
 READ_WRITE (R/W):      100 (dec:      256)
 NO_INIT (N/I):         104 (dec:      260)
 
@@ -373,25 +373,25 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANTARQ                                   148       1       1       0   .abs_section_148
      _CANTAAK                                   149       1       1       0   .abs_section_149
      _CANTBSEL                                  14A       1       1       2   .abs_section_14a
-     _CANIDAC                                   14B       1       1       0   .abs_section_14b
+     _CANIDAC                                   14B       1       1       1   .abs_section_14b
      _CANRXERR                                  14E       1       1       0   .abs_section_14e
      _CANTXERR                                  14F       1       1       0   .abs_section_14f
-     _CANIDAR0                                  150       1       1       0   .abs_section_150
-     _CANIDAR1                                  151       1       1       0   .abs_section_151
-     _CANIDAR2                                  152       1       1       0   .abs_section_152
-     _CANIDAR3                                  153       1       1       0   .abs_section_153
-     _CANIDMR0                                  154       1       1       0   .abs_section_154
-     _CANIDMR1                                  155       1       1       0   .abs_section_155
-     _CANIDMR2                                  156       1       1       0   .abs_section_156
-     _CANIDMR3                                  157       1       1       0   .abs_section_157
-     _CANIDAR4                                  158       1       1       0   .abs_section_158
-     _CANIDAR5                                  159       1       1       0   .abs_section_159
-     _CANIDAR6                                  15A       1       1       0   .abs_section_15a
-     _CANIDAR7                                  15B       1       1       0   .abs_section_15b
-     _CANIDMR4                                  15C       1       1       0   .abs_section_15c
-     _CANIDMR5                                  15D       1       1       0   .abs_section_15d
-     _CANIDMR6                                  15E       1       1       0   .abs_section_15e
-     _CANIDMR7                                  15F       1       1       0   .abs_section_15f
+     _CANIDAR0                                  150       1       1       1   .abs_section_150
+     _CANIDAR1                                  151       1       1       1   .abs_section_151
+     _CANIDAR2                                  152       1       1       1   .abs_section_152
+     _CANIDAR3                                  153       1       1       1   .abs_section_153
+     _CANIDMR0                                  154       1       1       1   .abs_section_154
+     _CANIDMR1                                  155       1       1       1   .abs_section_155
+     _CANIDMR2                                  156       1       1       1   .abs_section_156
+     _CANIDMR3                                  157       1       1       1   .abs_section_157
+     _CANIDAR4                                  158       1       1       1   .abs_section_158
+     _CANIDAR5                                  159       1       1       1   .abs_section_159
+     _CANIDAR6                                  15A       1       1       1   .abs_section_15a
+     _CANIDAR7                                  15B       1       1       1   .abs_section_15b
+     _CANIDMR4                                  15C       1       1       1   .abs_section_15c
+     _CANIDMR5                                  15D       1       1       1   .abs_section_15d
+     _CANIDMR6                                  15E       1       1       1   .abs_section_15e
+     _CANIDMR7                                  15F       1       1       1   .abs_section_15f
      _CANRXIDR0                                 160       1       1       0   .abs_section_160
      _CANRXIDR1                                 161       1       1       0   .abs_section_161
      _CANRXIDR2                                 162       1       1       0   .abs_section_162
@@ -503,11 +503,11 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANTXTSR                                  17E       2       2       0   .abs_section_17e
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     CANInit                                   C03B      21      33       1   .text       
-     main                                      C05C      59      89       1   .text       
-     CANSendFrame                              C0B5      5C      92       1   .text       
-     delay                                     C111      3A      58       1   .text       
-     CANRxISR                                  C14B      2C      44       1   .text       
+     CANInit                                   C03B      57      87       1   .text       
+     main                                      C092      59      89       1   .text       
+     CANSendFrame                              C0EB      5C      92       1   .text       
+     delay                                     C147      3A      58       1   .text       
+     CANRxISR                                  C181      2C      44       1   .text       
 - VARIABLES:
      _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
 MODULE:                 -- Start12.c.o --
@@ -520,11 +520,11 @@ MODULE:                 -- Start12.c.o --
      __SEG_END_SSTACK                           900       0       0       1               
 MODULE:                 -- EMBEDDED.C.o (ansisi.lib) --
 - PROCEDURES:
-     clock                                     C177       F      15       2   .text       
+     clock                                     C1AD       F      15       2   .text       
 - VARIABLES:
 MODULE:                 -- rtshc12.c.o (ansisi.lib) --
 - PROCEDURES:
-     _LCMP_P                                   C186      15      21       1   RUNTIME     
+     _LCMP_P                                   C1BC      15      21       1   RUNTIME     
 - VARIABLES:
 
 *********************************************************************************************
@@ -532,7 +532,7 @@ MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   mc9s12c32.c.o                              260      0      0
-  main.c.o                                     0    316      2
+  main.c.o                                     0    370      2
   Start12.c.o                                  0     49      0
   EMBEDDED.C.o (ansisi.lib)                    0     15      0
   rtshc12.c.o (ansisi.lib)                     0     21      0
@@ -1126,25 +1126,25 @@ OBJECT LIST SORTED BY ADDRESS
      _CANTARQ                                   148       1       1       0   .abs_section_148
      _CANTAAK                                   149       1       1       0   .abs_section_149
      _CANTBSEL                                  14A       1       1       2   .abs_section_14a
-     _CANIDAC                                   14B       1       1       0   .abs_section_14b
+     _CANIDAC                                   14B       1       1       1   .abs_section_14b
      _CANRXERR                                  14E       1       1       0   .abs_section_14e
      _CANTXERR                                  14F       1       1       0   .abs_section_14f
-     _CANIDAR0                                  150       1       1       0   .abs_section_150
-     _CANIDAR1                                  151       1       1       0   .abs_section_151
-     _CANIDAR2                                  152       1       1       0   .abs_section_152
-     _CANIDAR3                                  153       1       1       0   .abs_section_153
-     _CANIDMR0                                  154       1       1       0   .abs_section_154
-     _CANIDMR1                                  155       1       1       0   .abs_section_155
-     _CANIDMR2                                  156       1       1       0   .abs_section_156
-     _CANIDMR3                                  157       1       1       0   .abs_section_157
-     _CANIDAR4                                  158       1       1       0   .abs_section_158
-     _CANIDAR5                                  159       1       1       0   .abs_section_159
-     _CANIDAR6                                  15A       1       1       0   .abs_section_15a
-     _CANIDAR7                                  15B       1       1       0   .abs_section_15b
-     _CANIDMR4                                  15C       1       1       0   .abs_section_15c
-     _CANIDMR5                                  15D       1       1       0   .abs_section_15d
-     _CANIDMR6                                  15E       1       1       0   .abs_section_15e
-     _CANIDMR7                                  15F       1       1       0   .abs_section_15f
+     _CANIDAR0                                  150       1       1       1   .abs_section_150
+     _CANIDAR1                                  151       1       1       1   .abs_section_151
+     _CANIDAR2                                  152       1       1       1   .abs_section_152
+     _CANIDAR3                                  153       1       1       1   .abs_section_153
+     _CANIDMR0                                  154       1       1       1   .abs_section_154
+     _CANIDMR1                                  155       1       1       1   .abs_section_155
+     _CANIDMR2                                  156       1       1       1   .abs_section_156
+     _CANIDMR3                                  157       1       1       1   .abs_section_157
+     _CANIDAR4                                  158       1       1       1   .abs_section_158
+     _CANIDAR5                                  159       1       1       1   .abs_section_159
+     _CANIDAR6                                  15A       1       1       1   .abs_section_15a
+     _CANIDAR7                                  15B       1       1       1   .abs_section_15b
+     _CANIDMR4                                  15C       1       1       1   .abs_section_15c
+     _CANIDMR5                                  15D       1       1       1   .abs_section_15d
+     _CANIDMR6                                  15E       1       1       1   .abs_section_15e
+     _CANIDMR7                                  15F       1       1       1   .abs_section_15f
      _CANRXIDR0                                 160       1       1       0   .abs_section_160
      _CANRXIDR1                                 161       1       1       0   .abs_section_161
      _CANRXIDR2                                 162       1       1       0   .abs_section_162
@@ -1219,13 +1219,13 @@ OBJECT LIST SORTED BY ADDRESS
      _PPSAD                                     275       1       1       0   .abs_section_275
      Init                                      C000      29      41       1   .init       
      _Startup                                  C029       8       8       0   .init       
-     CANInit                                   C03B      21      33       1   .text       
-     main                                      C05C      59      89       1   .text       
-     CANSendFrame                              C0B5      5C      92       1   .text       
-     delay                                     C111      3A      58       1   .text       
-     CANRxISR                                  C14B      2C      44       1   .text       
-     clock                                     C177       F      15       2   .text       
-     _LCMP_P                                   C186      15      21       1   RUNTIME     
+     CANInit                                   C03B      57      87       1   .text       
+     main                                      C092      59      89       1   .text       
+     CANSendFrame                              C0EB      5C      92       1   .text       
+     delay                                     C147      3A      58       1   .text       
+     CANRxISR                                  C181      2C      44       1   .text       
+     clock                                     C1AD       F      15       2   .text       
+     _LCMP_P                                   C1BC      15      21       1   RUNTIME     
      _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
 
 *********************************************************************************************
@@ -1251,7 +1251,7 @@ rtshc12.c.o (ansisi.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC19B ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC1D1 ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1260,7 +1260,11 @@ OBJECT-DEPENDENCIES SECTION
 ---------------------------------------------------------------------------------------------
 Init                      USES _startupData 
 _Startup                  USES __SEG_END_SSTACK Init main 
-CANInit                   USES _CANCTL0 _CANCTL1 _CANBTR0 _CANBTR1 
+CANInit                   USES _CANCTL0 _CANCTL1 _CANBTR0 _CANBTR1 _CANIDAC 
+                                _CANIDAR0 _CANIDMR0 _CANIDAR1 _CANIDMR1 _CANIDAR2 
+                                _CANIDMR2 _CANIDAR3 _CANIDMR3 _CANIDAR4 _CANIDMR4 
+                                _CANIDAR5 _CANIDMR5 _CANIDAR6 _CANIDMR6 _CANIDAR7 
+                                _CANIDMR7 
 main                      USES CANInit _CANCTL0 _CANRFLG _CANRIER CANSendFrame 
                                 delay 
 CANSendFrame              USES _CANTFLG _CANTBSEL _CANTXIDR0 _CANTXDSR0 
@@ -1303,5 +1307,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 7
-Total size of all blocks to be downloaded: 417
+Total size of all blocks to be downloaded: 471
 

@@ -1,0 +1,16 @@
+body { font-family: arial;
+	 }
+
+h1 	{ color:black;
+	font-family: Verdana;
+	font-size: 300%;
+	}
+
+li.h_menu { display: inline;
+	}
+
+a:visited.menu { color: red;
+	}
+	
+a:hover.menu { font-weight: bold;
+			 }
