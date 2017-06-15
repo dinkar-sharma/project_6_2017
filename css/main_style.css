@@ -6,6 +6,7 @@
     text-align: center;
 }
 
+/*car floor request buttons*/
 .button {
   display: block;
   margin: 50px auto;
@@ -30,6 +31,42 @@
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+/*end car floor request buttons*/
+
+/*horizontal navigation bar*/
+body {margin:0;}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+/*end horizontal navigation bar*/
 
 #copy-right{
     text-align: center;
