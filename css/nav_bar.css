@@ -10,7 +10,7 @@ ul.nav_bar{
     background-color: #333;
 }
 
-li.h_menue{
+.h_menue li{
     font-style: Lucida;
     float: left;
 }
