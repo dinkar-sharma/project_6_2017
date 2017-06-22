@@ -1,0 +1,42 @@
+body { font-family: Georgia, serif;
+}
+
+fieldset{
+	width: 950px;
+}
+
+legend {
+	background-color: black; 
+	color: white;
+}
+
+/* form { 
+	color: #000000;  
+	margin: 50 auto;
+} */
+/*p{
+	margin: 0px 0px 15px 0px;
+    
+}*/
+input{
+	
+}
+input {
+	float: ;
+	width: 100px; 
+}
+
+textarea {
+	width: 50%;
+	height: 150px;
+	background-image: url('maxresdefault.png');
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-attachment: relative;
+	background-color: #FFFFFF;
+	resize: none;
+}
+
+input[type=submit]:hover 
+			{background-color: #45a049;
+			}

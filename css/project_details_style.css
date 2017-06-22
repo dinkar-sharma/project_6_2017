@@ -1,5 +1,12 @@
-body { font-family: Georgia;}
+body { font-family: Georgia, serif;
+}
 
+#container{
+    width: 950px;
+    border: 2px solid black;
+    padding: 10px;
+    margin: auto;
+}
 h1{color:black;
    font-family: Georgia;
    font-size: 160%;
@@ -17,7 +24,26 @@ p{
     text-align: justify;
     text-indent: 15px;
 }
+span.mkunderlined{
+	color: purple;
+	text-decoration: underline;
+}
 
+span.mkbold{
+	color: purple;
+	font-weight: bold;
+}	
+
+#can{
+	font-weight: bold;
+	color: green;
+}
+
+#hcs12{
+	font-weight: bold;
+	color: green;
+}
+	
 li{
   font-size: 100%;
 }
@@ -28,8 +54,19 @@ figcaption{
   text-align: center;
 }
 
+figure{
+	width: 800px;
+    border: 2px solid green;
+	border-radius: 25px 25px 25px 25px;
+}
+
 img{
-  height: 300px;
+	border: 2px solid blue;
+	box-shadow: -10px 10px 5px grey;
+	height: 300px;
+    display: block;
+    margin: 0 auto;
+	
 }
 
 

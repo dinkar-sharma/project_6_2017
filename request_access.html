@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Request Access</title>
+	<link href="css/request_access.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/nav_bar.css">
 </head>
 <body>
     <header>
@@ -27,18 +29,23 @@
                 <div class="dropdown-content">
                     <a href="logbook/dinkar-logbook.html">Dinkar</a> 
                     <a href="logbook/anas-logbook.html">Anas</a>
+					<a href="logbook/Mike-Logbook/mike-logbook.html">Mike</a>
                 </div>
             </li>
         </div>
         </ul>
     </header>
 	<h1>Request Access</h1>
+	<fieldset>
+	<legend> Contact Details </legend>
 	<form action="php/request_access.php" method="post">
 		<p>First Name: <input type="text" name="firstname"/></p>
 		<p>Last Name: <input type="text" name="lastname"/></p>
+		<p>Email: <input type="text" name="email"/></p>
 		<h2>Tell us why!!!</h2>
-		<textarea>Continue...</textarea><br/>
+		<textarea placeholder="Continue..."></textarea><br/>
 		<input type="submit" value="Submit Request">
 	</form>
+	</fieldset>
 </body>
 </html>
