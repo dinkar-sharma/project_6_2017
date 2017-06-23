@@ -7,6 +7,7 @@
     <meta http-equiv="author" content="Group DAM">
     <meta http-equiv="pragma" content="no-cache">
     <link rel="stylesheet" type="text/css" href="css/nav_bar.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
     <header>
@@ -39,14 +40,21 @@
         </ul>
     </header>
     <form action="php/login.php" method="post" id="access">
-        <p>Username: <input type="text" name="username"/></p>
-        <p>Password: <input type="password" name="password" required></p>
-        <input type="submit" value="Log in">
-        <p><a href="request_access.html">Request Access</p>
+    <div class="form">
+	<label for="username" class="text_label"> Username: </label>
+	<input id="username" type="text" class="text_input" name="username"/>
+	</div>
+    <div class="form">
+	<label for="password" class="text_label">  Password: </label> 
+    <input id="password" type="password" class="text_input" name="password" required />
+	</div>
+	<input type="submit" value="Log in">
+    <p><a href="request_access.html">Request Access</a></p>
     </form>
-    <hr>
-    <footer>
-        <p>Copyright &copy Group DAM</p>
+	<hr>
+	</body>
+	<footer>
+        Copyright &copy Group DAM
     </footer>
-</body>
+
 </html>

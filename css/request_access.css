@@ -10,20 +10,19 @@ legend {
 	color: white;
 }
 
-/* form { 
-	color: #000000;  
-	margin: 50 auto;
-} */
-/*p{
-	margin: 0px 0px 15px 0px;
-    
-}*/
-input{
-	
+.text_label {
+	float: left;
+	width: 100px;
+	text-align: right;
+	padding: 0px 10px 0px 0px;
 }
-input {
-	float: ;
-	width: 100px; 
+.text_input{
+	width: 150px;
+	text-align: left;
+	padding: 0px 0px 0px 10px;
+}
+div.form {padding: 10px 0px 10px 0px;
+	 width: 274px;
 }
 
 textarea {
