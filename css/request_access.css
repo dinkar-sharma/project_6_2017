@@ -1,0 +1,41 @@
+body { font-family: Georgia, serif;
+}
+
+fieldset{
+	width: 950px;
+}
+
+legend {
+	background-color: black; 
+	color: white;
+}
+
+.text_label {
+	float: left;
+	width: 100px;
+	text-align: right;
+	padding: 0px 10px 0px 0px;
+}
+.text_input{
+	width: 150px;
+	text-align: left;
+	padding: 0px 0px 0px 10px;
+}
+div.form {padding: 10px 0px 10px 0px;
+	 width: 274px;
+}
+
+textarea {
+	width: 50%;
+	height: 150px;
+	background-image: url('maxresdefault.png');
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-attachment: relative;
+	background-color: #FFFFFF;
+	resize: none;
+}
+
+input[type=submit]:hover 
+			{background-color: #45a049;
+			}
