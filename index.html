@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Home - Elevator DAM</title>
     <meta charset="utf-8">
@@ -14,98 +15,99 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/modal.css">
+    <link rel="stylesheet" type="text/css" href="css/home_page.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                        
-              </button>
-              <a class="navbar-brand" href="index.html">DAM Elevator</a>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">DAM Elevator</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="project_details.html">Project Details</a></li>
+                        <li><a href="project_plan.html">Project Plan</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">LogBooks<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Dinkar</a></li>
+                                <li><a href="#">Anas</a></li>
+                                <li><a href="#">Mike</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="document.getElementById('id01').style.display='block'">
+                                <span class="glyphicon glyphicon-log-in"></span> Login</a>
+                            <!-- The Modal -->
+                            <div id="id01" class="modal" role="dialog">
+                                <span onclick="document.getElementById('id01').style.display='none'"></span>
+                                <!-- Modal Content -->
+                                <div class="container">
+                                    <div class="card card-container">
+                                        <img class="profile-img-card" src="images/team_logo.png" alt="" />
+                                        <p id="profile-name" class="profile-name-card"></p>
+                                        <form class="form-signin" action="php/login.php">
+                                            <span id="reauth-username" class="reauth-username"></span>
+                                            <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                            <div id="remember" class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="remember-me"> Remember me
+                                                </label>
+                                            </div>
+                                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-lg btn-primary btn-block btn-signin">Cancel</button>
+                                        </form>
+                                        <!-- /form -->
+                                        <a href="#" class="forgot-password">Forgot the password?</a>
+                                    </div>
+                                    <!-- /card-container -->
+                                </div>
+                                <!-- /container -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-              <ul class="nav navbar-nav">
-                <li><a href="about.html">About</a></li>
-                <li><a href="project_details.html">Project Details</a></li>
-                <li><a href="project_plan.html">Project Plan</a></li>
-                <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">LogBooks<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Dinkar</a></li>
-                    <li><a href="#">Anas</a></li>
-                    <li><a href="#">Mike</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                </li>
-                <li>
-                    <a href="#" onclick="document.getElementById('id01').style.display='block'">
-                    <span class="glyphicon glyphicon-log-in"></span> Login</a>
-                    <!-- The Modal -->
-                    <div id="id01" class="modal" role="dialog">
-                      <span onclick="document.getElementById('id01').style.display='none'" 
-                    class="close" title="Close Modal">&times;</span>
-                      <!-- Modal Content -->
-                      <form class="modal-content animate" action="/php/login.php">
-                        <div class="imgcontainer">
-                          <img src="img_avatar2.png" alt="Avatar" class="avatar">
-                        </div>
-
-                        <div class="container">
-                          <label><b>Username</b></label>
-                          </br>
-                          <input type="text" placeholder="Enter Username" name="uname" required>
-                          </br>
-                          <label><b>Password</b></label>
-                          </br>
-                          <input type="password" placeholder="Enter Password" name="psw" required>
-                          </br>
-                          <button type="submit">Login</button>
-                          </br>
-                          <input type="checkbox" checked="checked"> Remember me
-                        </div>
-                        <div class="container" style="background-color:#f1f1f1">
-                          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                          <span class="psw">Forgot <a href="request_access.html">password?</a></span>
-                        </div>
-                      </form>
-                    </div>
-                </li>
-              </ul>
-            </div>
-          </div>
         </nav>
     </header>
-<!--     <div class="container-fluid">
-        <video id="stock" playsinline autoplay muted loop>
+    <div class="fullscreen-bg">
+        <video loop muted autoplay poster="images/FootageElevator.jpg" class="fullscreen-bg__video">
+            <source src="images/FootageElevator.webm" type="video/webm">
             <source src="images/FootageElevator.mp4" type="video/mp4">
-        </video>    
-    </div> -->
-	<div class="picture">
+            <source src="images/FootageElevator.ogv" type="video/ogg">
+        </video>
+    </div>
+    <div class="picture">
         <figure>
-            <img src="images/team_picture.jpg" class="img-responsive" alt="Team Picture" width="500" height="300"> 
-        <figcaption>
-            <b>Group DAM</b> From left to right: Dinkar Sharma, Anas Yassin, and Mike Akl.
-        </figcaption>
-    </figure>
+            <img src="images/team_picture.jpg" class="img-responsive" alt="Team Picture" width="500" height="300">
+            <figcaption>
+                <b>Group DAM</b> From left to right: Dinkar Sharma, Anas Yassin, and Mike Akl.
+            </figcaption>
+        </figure>
     </div>
 
     <div>
         <h2>Location</h2>
-        <iframe allowfullscreen frameborder="0" height="300" src=
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19506.063282391646!2d-80.40849278057941!3d43.38551980683053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882c75885d21f7a7%3A0xc775233807ea449f!2sConestoga+College+Cambridge+Campus!5e0!3m2!1sen!2sca!4v1496333958217"
-        width="450">
+        <iframe allowfullscreen frameborder="0" height="300" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19506.063282391646!2d-80.40849278057941!3d43.38551980683053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882c75885d21f7a7%3A0xc775233807ea449f!2sConestoga+College+Cambridge+Campus!5e0!3m2!1sen!2sca!4v1496333958217" width="450">
         </iframe>
     </div>
     <footer>
         <p id="copy-right">Copyright &copy; Group DAM</p>
     </footer>
 </body>
+
 </html>
