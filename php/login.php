@@ -4,7 +4,7 @@ session_start();
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-if($username&&$password){
+
 	//$_SESSION['username']=$username;
 	$db = new PDO(
 		'mysql:host=127.0.0.1;dbname=elevator',
@@ -26,6 +26,6 @@ if($username&&$password){
 	else{
 		echo"<p>Please enter a username and password</p>";
 	}
-}
+
 
 ?>
