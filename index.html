@@ -6,62 +6,116 @@
     <meta content="" name="decription">
     <meta content="Group DAM" http-equiv="author">
     <meta content="no-cache" http-equiv="pragma">
-    <link href="css/nav_bar.css" rel="stylesheet" type="text/css">
-	<link href="css/home_page.css" rel="stylesheet" type="text/css">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel=
+    "stylesheet"><!-- jQuery library -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script><!-- Latest compiled JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+    <link href="css/modal.css" rel="stylesheet" type="text/css">
+    <link href="css/home_page.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <header>
-        <ul class="nav_bar">
-        <div class="h_menue">
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li>
-                <a href="about.html">About</a>
-            </li>
-            <li>
-                <a href="project_details.html">Project Details</a>
-            </li>
-            <li>
-                <a href="project_plan.html">Project Plan</a>
-            </li>
-            <li style="float:right">
-                <a href="login.html">Login</a>
-            </li>
-            <li class="dropdown">
-                <a class="dropbtn" href="javascript:void(0)">DAM Logbook</a>
-                <div class="dropdown-content">
-                    <a href="logbook/dinkar-logbook.html">Dinkar</a> 
-                    <a href="logbook/anas-logbook.html">Anas</a>
-					<a href="logbook/Mike-Logbook/mike-logbook.html">Mike</a>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type=
+                    "button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class=
+                    "icon-bar"></span></button> <a class="navbar-brand" href="index.html">DAM Elevator</a>
                 </div>
-            </li>
-        </div>
-        </ul>
-    </header>
-    <h1>Welcome To The DAM Elevator</h1>
-    </header>
-	<video id="stock" playsinline autoplay muted loop>
-	<source src="images/FootageElevator.mp4" type="video/mp4">
-	</video>
-	
-	<div class="picture">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="about.html">About</a>
+                        </li>
+                        <li>
+                            <a href="project_details.html">Project Details</a>
+                        </li>
+                        <li>
+                            <a href="project_plan.html">Project Plan</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">LogBooks<span class=
+                            "caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="logbook/dinkar-logbook.html">Dinkar</a>
+                                </li>
+                                <li>
+                                    <a href="logbook/anas-logbook.html">Anas</a>
+                                </li>
+                                <li>
+                                    <a href="#">Mike</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="request_access.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="document.getElementById('id01').style.display='block'"><span class=
+                            "glyphicon glyphicon-log-in"></span> Login</a> <!-- The Modal -->
+                            <div class="modal" id="id01" role="dialog">
+                                <span onclick="document.getElementById('id01').style.display='none'"></span> 
+                                <!-- Modal Content -->
+                                <div class="container animate">
+                                    <div class="card card-container">
+                                        <img alt="" class="profile-img-card" src="images/logo_sm.png">
+                                        <p class="profile-name-card" id="profile-name"></p>
+                                        <form action="php/login.php" class="form-signin" method="post">
+                                            <span class="reauth-username" id="reauth-username"></span> <input autofocus="" class=
+                                            "form-control" id="inputUsername" name="username" placeholder="Username" required=""
+                                            type="username"> <input class="form-control" id="inputPassword" name="password"
+                                            placeholder="Password" required="" type="password">
+                                            <div class="checkbox" id="remember">
+                                                <label><input type="checkbox" value="remember-me"> Remember me</label>
+                                            </div><button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign
+                                            in</button> <button class="btn btn-lg btn-primary btn-block btn-signin" onclick=
+                                            "document.getElementById('id01').style.display='none'" type="button">Cancel</button>
+                                        </form><!-- /form -->
+                                        <a class="forgot-password" href="#">Forgot the password?</a>
+                                    </div><!-- /card-container -->
+                                </div><!-- /container -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header><!--     <div class="fullscreen-bg">
+        <video loop muted autoplay poster="images/FootageElevator.jpg" class="fullscreen-bg__video">
+            <source src="images/FootageElevator.webm" type="video/webm">
+            <source src="images/FootageElevator.mp4" type="video/mp4">
+            <source src="images/FootageElevator.ogv" type="video/ogg">
+        </video>
+    </div> -->
+    <div class="container-fluid">
         <figure>
-            <img alt="Image of team" class="images" src="images/IMG_20170605_1537224.jpg" title="Group Photo"
-            width="500">
+            <img alt="Team Picture" class="img-responsive" height="300" src="images/team_picture.jpg" width=
+            "500">
             <figcaption>
                 <b>Group DAM</b> From left to right: Dinkar Sharma, Anas Yassin, and Mike Akl.
             </figcaption>
-    </figure>
-    </div>
-
-    <div>
-        <h2>Location</h2>
-        <iframe allowfullscreen frameborder="0" height="300" src=
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19506.063282391646!2d-80.40849278057941!3d43.38551980683053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882c75885d21f7a7%3A0xc775233807ea449f!2sConestoga+College+Cambridge+Campus!5e0!3m2!1sen!2sca!4v1496333958217"
-        width="450">
-        </iframe>
-    </div>
+        </figure>
+        <!-- Add Google Maps -->
+        <div id="googleMap" style="height:400px;width:100%;"></div>
+            <script>
+                function myMap() {
+                var myCenter = new google.maps.LatLng(41.878114, -87.629798);
+                var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+                var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                var marker = new google.maps.Marker({position:myCenter});
+                marker.setMap(map);
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
     <footer>
         <p id="copy-right">Copyright &copy; Group DAM</p>
     </footer>

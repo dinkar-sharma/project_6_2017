@@ -3,59 +3,87 @@
 <head>
 <title>Elevator Control</title>
     <meta charset="utf-8">
-    <meta name="decription" content="">
-    <meta http-equiv="author" content="DAM Group">
-    <meta http-equiv="pragma" content="no-cache">
-    <link rel="stylesheet" type="text/css" href="css/nav_bar.css">
-    <link rel="stylesheet" type="text/css" href="css/control_gui.css">
-</head>
+    <meta content="" name="decription">
+    <meta content="Group DAM" http-equiv="author">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/modal.css"></head>
 <body>
     <header>
-        <ul class="nav_bar">
-        <div class="h_menue">
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li>
-                <a href="about.html">About</a>
-            </li>
-            <li>
-                <a href="project_details.html">Project Details</a>
-            </li>
-            <li>
-                <a href="project_plan.html">Project Plan</a>
-            </li>
-            <li style="float:right">
-                <a href="php/logout.php">Logout</a>
-            </li>
-            <li class="dropdown">
-                <a class="dropbtn" href="javascript:void(0)">DAM Logbook</a>
-                <div class="dropdown-content">
-                    <a href="logbook/dinkar-logbook.html">Dinkar</a> 
-                    <a href="logbook/anas-logbook.html">Anas</a>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">DAM Elevator</a>
                 </div>
-            </li>
-        </div>
-        </ul>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="project_details.html">Project Details</a></li>
+                        <li><a href="project_plan.html">Project Plan</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">LogBooks<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="logbook/dinkar-logbook.html">Dinkar</a></li>
+                                <li><a href="logbook/anas-logbook.html">Anas</a></li>
+                                <li><a href="#">Mike</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="request_access.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="document.getElementById('id01').style.display='block'">
+                                <span class="glyphicon glyphicon-log-in"></span> Login</a>
+                            <!-- The Modal -->
+                            <div id="id01" class="modal" role="dialog">
+                                <span onclick="document.getElementById('id01').style.display='none'"></span>
+                                <!-- Modal Content -->
+                                <div class="container animate">
+                                    <div class="card card-container">
+                                        <img class="profile-img-card" src="images/logo_sm.png" alt="" />
+                                        <p id="profile-name" class="profile-name-card"></p>
+                                        <form class="form-signin" action="php/login.php" method="post">
+                                            <span id="reauth-username" class="reauth-username"></span>
+                                            <input type="username" id="inputUsername" class="form-control" placeholder="Username" name="username" required autofocus>
+                                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+                                            <div id="remember" class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="remember-me"> Remember me
+                                                </label>
+                                            </div>
+                                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-lg btn-primary btn-block btn-signin">Cancel</button>
+                                        </form>
+                                        <!-- /form -->
+                                        <a href="#" class="forgot-password">Forgot the password?</a>
+                                    </div>
+                                    <!-- /card-container -->
+                                </div>
+                                <!-- /container -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-    <button class="button">3</button>
-    <button class="button">2</button>
-    <button class="button">1</button>
-        <button class="button">3</button>
-    <button class="button">2</button>
-    <button class="button">1</button>
-        <button class="button">3</button>
-    <button class="button">2</button>
-    <button class="button">1</button>
-        <button class="button">3</button>
-    <button class="button">2</button>
-    <button class="button">1</button>
-        <button class="button">3</button>
-    <button class="button">2</button>
-    <button class="button">1</button>
-        <button class="button">3</button>
-    <button class="button">2</button>
-    <button class="button">1</button>
+    <div class="container" style="margin-top: 50px">
+        <button>1</button>
+        
+    </div>
     <p id="copy-right">Copyright &copy Group DAM</p>
 </body>
 </html>

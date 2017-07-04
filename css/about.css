@@ -1,0 +1,17 @@
+.jumbotron{
+	background-color: white;
+    padding: 100px 25px;
+}
+
+video {
+	width: 640;
+	height: 360;
+}
+
+.bg-grey {
+    background-color: #f6f6f6;
+}
+
+.container{
+	padding: 40px 40px;
+}

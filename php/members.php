@@ -1,15 +1,31 @@
 <?php
 
-session_start();
-//$username = $_POST['username'];
-//$password = $_POST['password'];
-if(isset($_SESSION['username'])) {
-	echo"<p>Welcome to members page,</p>" . $_SESSION['username'] . "!<br />";
-	echo"<p>Members only content - for your eyes only</p>";
-	echo "Click to <a href='logout.php'>Logout</a>";
-
-} else {
-	echo "<p>You must be logged in!</p>";
+function updateUsers(int $user_ID, string $user_name, string $pass_word): void{
+		$db = new PDO(
+		'mysql:host=127.0.0.1;dbname=elevator',
+		'root',
+		'');
+		$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+		$query = 'UPDATE users SET userName = :user, password = :pass where userID = ID';
+		$statement = $db->prepare($query);
+		$statement->bindValue('user', $user_name);
+		$statement->bindValue('pass', $pass_word);
+		$statement->bindValue('ID', $user_ID);
+		$statement->ececute();
 }
+
+$db = new PDO(
+		'mysql:host=127.0.0.1;dbname=elevator',
+		'root',
+		'');
+	$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+	$query2 = 'SELECT * FROM users';
+	$rows = $db->query($query2);
+	foreach ($rows as $row) {
+		var_dump($row);
+		echo"<br /><br />";
+		# code...
+	}
+
 
 ?>
