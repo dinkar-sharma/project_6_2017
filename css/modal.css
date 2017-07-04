@@ -22,11 +22,11 @@ body, html {
  * Card component
  */
 .card {
-    background-color: #F7F7F7;
+    background-color: #E4F9BF;
     /* just in case there no content*/
     padding: 20px 25px 30px;
     margin: 0 auto 25px;
-    margin-top: 50px;
+    margin-top: 100px;
     /* shadows and rounded borders */
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -37,13 +37,13 @@ body, html {
 }
 
 .profile-img-card {
-    width: 96px;
-    height: 96px;
+    width: 100px;
+    height: 100px;
     margin: 0 auto 10px;
     display: block;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 /*

@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html>
-<title>Dinkar - LogBook</title>
-<meta charset="utf-8">
-<meta content="" name="decription">
-<meta content="Group DAM" http-equiv="author">
-<meta content="no-cache" http-equiv="pragma">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/modal.css">
-</head>
+<head>
+    <title>Dinkar - LogBook</title>
+    <meta charset="utf-8">
+    <meta content="" name="decription">
+    <meta content="Group DAM" http-equiv="author">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel=
+    "stylesheet"><!-- jQuery library -->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script><!-- Latest compiled JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+    <link href="../css/modal.css" rel="stylesheet" type="text/css">
+</head>
 <body>
     <header>
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">DAM Elevator</a>
+                    <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type=
+                    "button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class=
+                    "icon-bar"></span></button> <a class="navbar-brand" href="../index.html">DAM Elevator</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="../about.html">About</a>
+                        <li>
+                            <a href="../about.html">About</a>
                         </li>
-                        <li><a href="../project_details.html">Project Details</a>
+                        <li>
+                            <a href="../project_details.html">Project Details</a>
                         </li>
-                        <li><a href="../project_plan.html">Project Plan</a>
+                        <li>
+                            <a href="../project_plan.html">Project Plan</a>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">LogBooks<span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">LogBooks<span class=
+                            "caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="dinkar-logbook.html">Dinkar</a>
+                                <li>
+                                    <a href="dinkar-logbook.html">Dinkar</a>
                                 </li>
-                                <li><a href="anas-logbook.html">Anas</a>
+                                <li>
+                                    <a href="anas-logbook.html">Anas</a>
                                 </li>
-                                <li><a href="#">Mike</a>
+                                <li>
+                                    <a href="#">Mike</a>
                                 </li>
                             </ul>
                         </li>
@@ -52,34 +59,29 @@
                             <a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
                         </li>
                         <li>
-                            <a href="#" onclick="document.getElementById('id01').style.display='block'">
-                                <span class="glyphicon glyphicon-log-in"></span> Login</a>
-                            <!-- The Modal -->
-                            <div id="id01" class="modal" role="dialog">
-                                <span onclick="document.getElementById('id01').style.display='none'"></span>
+                            <a href="#" onclick="document.getElementById('id01').style.display='block'"><span class=
+                            "glyphicon glyphicon-log-in"></span> Login</a> <!-- The Modal -->
+                            <div class="modal" id="id01" role="dialog">
+                                <span onclick="document.getElementById('id01').style.display='none'"></span> 
                                 <!-- Modal Content -->
                                 <div class="container animate">
                                     <div class="card card-container">
-                                        <img class="profile-img-card" src="images/team_logo.png" alt="" />
-                                        <p id="profile-name" class="profile-name-card"></p>
-                                        <form class="form-signin" action="php/login.php">
-                                            <span id="reauth-username" class="reauth-username"></span>
-                                            <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-                                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                                            <div id="remember" class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="remember-me"> Remember me
-                                                </label>
-                                            </div>
-                                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-                                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-lg btn-primary btn-block btn-signin">Cancel</button>
-                                        </form>
-                                        <!-- /form -->
-                                        <a href="#" class="forgot-password">Forgot the password?</a>
-                                    </div>
-                                    <!-- /card-container -->
-                                </div>
-                                <!-- /container -->
+                                        <img alt="" class="profile-img-card" src="../images/logo_m.png">
+                                        <p class="profile-name-card" id="profile-name"></p>
+                                        <form action="../php/login.php" class="form-signin">
+                                            <span class="reauth-username" id="reauth-username"></span> <input autofocus="" class=
+                                            "form-control" id="inputUsername" placeholder="Username" required="" type="username">
+                                            <input class="form-control" id="inputPassword" placeholder="Password" required="" type=
+                                            "password">
+                                            <div class="checkbox" id="remember">
+                                                <label><input type="checkbox" value="remember-me"> Remember me</label>
+                                            </div><button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign
+                                            in</button> <button class="btn btn-lg btn-primary btn-block btn-signin" onclick=
+                                            "document.getElementById('id01').style.display='none'" type="button">Cancel</button>
+                                        </form><!-- /form -->
+                                        <a class="forgot-password" href="../request_access.html">Forgot the password?</a>
+                                    </div><!-- /card-container -->
+                                </div><!-- /container -->
                             </div>
                         </li>
                     </ul>
@@ -87,37 +89,34 @@
             </div>
         </nav>
     </header>
-
-    <content>
-        <div class="container" style="margin-top: 40px">
-            <h1>Dinkar's Logbook</h1>
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#week">Week 1</a>
-						</h4>
-                    </div>
-                    <div id="week" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <ul>
-                                <li>Created group for project on 365 Microsoft</li>
-                                <li>Named group – Project_6_2017</li>
-                                <li>Started project plan</li>
-                                <li>Downloaded necessary documents for debrief</li>
-                            </ul>
-                        </div>
+    <div class="container" style="margin-top: 50px">
+        <h1>Dinkar's Logbook</h1>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" href="#week">Week
+                    1</a></h4>
+                </div>
+                <div class="panel-collapse collapse in" id="week">
+                    <div class="panel-body">
+                        <ul>
+                            <li>Created group for project on 365 Microsoft</li>
+                            <li>Named group – Project_6_2017</li>
+                            <li>Started project plan</li>
+                            <li>Downloaded necessary documents for debrief</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-          				<a data-toggle="collapse" data-parent="#accordion" href="#week2">Week 2</a>
-        			</h4>
-                </div>
-                <div id="week2" class="panel-collapse collapse">
-                    <div class="panel-body">
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" href="#week2">Week
+                2</a></h4>
+            </div>
+            <div class="panel-collapse collapse" id="week2">
+                <div class="panel-body">
+                    <ul>
                         <li>Continued project plan</li>
                         <li>Distributed tasks for each phase</li>
                         <li>Looked at the rubric</li>
@@ -127,17 +126,18 @@
                         <li>Installed pidgin using IRC protocol for messagin</li>
                         <li>Created GitHub repository named project_6_2017</li>
                         <li>Installed pidgin using IRC protocol for messagin</li>
-                    </div>
+                    </ul>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-          				<a data-toggle="collapse" data-parent="#accordion" href="#week3">Week 3</a>
-        			</h4>
-                </div>
-                <div id="week3" class="panel-collapse collapse">
-                    <div class="panel-body">
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" href="#week3">Week
+                3</a></h4>
+            </div>
+            <div class="panel-collapse collapse" id="week3">
+                <div class="panel-body">
+                    <ul>
                         <li>Setup git group repository: https://github.com/dinkar-sharma/project_6_2017.git</li>
                         <li>Tested CAN bus with multiple nodes</li>
                         <li>Installed VM ubuntu for Mike</li>
@@ -145,17 +145,18 @@
                         <li>Tested CAN bus with multiple nodes</li>
                         <li>Implementing MSCAN module for the HSC12 dev board – should push to git repository</li>
                         <li>Sorted physical documents in a group binder</li>
-                    </div>
+                    </ul>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-          				<a data-toggle="collapse" data-parent="#accordion" href="#week4">Week 4</a>
-        			</h4>
-                </div>
-                <div id="week4" class="panel-collapse collapse">
-                    <div class="panel-body">
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" href="#week4">Week
+                4</a></h4>
+            </div>
+            <div class="panel-collapse collapse" id="week4">
+                <div class="panel-body">
+                    <ul>
                         <li>Created three different branches: dinkar, anas, mike</li>
                         <li>Created individual logbook html files</li>
                         <li>Created about .html file for website</li>
@@ -164,263 +165,93 @@
                         <li>URL: https://github.com/dinkar-sharma/project_6_2017.git</li>
                         <li>Added project plan , MSCAN source code, and reference material to master branch</li>
                         <li>Updated project plan</li>
-                    </div>
+                    </ul>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-          				<a data-toggle="collapse" data-parent="#accordion" href="#week5">Week 5</a>
-        			</h4>
-                </div>
-                <div id="week5" class="panel-collapse collapse">
-                    <div class="panel-body">
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" href="#week5">Week
+                5</a></h4>
+            </div>
+            <div class="panel-collapse collapse" id="week5">
+                <div class="panel-body">
+                    <ul>
                         <li>Continued working on MSCAN module</li>
                         <li>Anas updated his logbook</li>
                         <li>Installed pidgin using IRC protocol for messagin</li>
                         <li>Created GitHub repository named project_6_2017</li>
                         <li>Installed pidgin using IRC protocol for messagin</li>
-                        <li>URL: <a href="https://github.com/dinkar-sharma/project_6_2017.git" target="_blank">project_6_2017 Github</a>
+                        <li>URL: <a href="https://github.com/dinkar-sharma/project_6_2017.git" target=
+                        "_blank">project_6_2017 Github</a>
                         </li>
                         <li>Learned work flow in Git</li>
                         <li>Group will use Git for software development version control</li>
-                    </div>
+                    </ul>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-          				<a data-toggle="collapse" data-parent="#accordion" href="#week6">Week 6</a>
-        			</h4>
-                </div>
-                <div id="week6" class="panel-collapse collapse">
-                    <div class="panel-body">
-				        <li>Setup git group repository: https://github.com/dinkar-sharma/project_6_2017.git</li>
-				        <li>Tested CAN bus with multiple nodes</li>
-				        <li>Installed VM ubuntu for Mike</li>
-				        <li>Created a local XAMPP server</li>
-				        <li>Tested CAN bus with multiple nodes</li>
-				        <li>Implementing MSCAN module for the HSC12 dev board – should push to git repository</li>
-				        <li>Sorted physical documents in a group binde</li>
-                    </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" href="#week6">Week
+                6</a></h4>
+            </div>
+            <div class="panel-collapse collapse" id="week6">
+                <div class="panel-body">
+                    <ul>
+                        <li>Setup git group repository: https://github.com/dinkar-sharma/project_6_2017.git</li>
+                        <li>Tested CAN bus with multiple nodes</li>
+                        <li>Installed VM ubuntu for Mike</li>
+                        <li>Created a local XAMPP server</li>
+                        <li>Tested CAN bus with multiple nodes</li>
+                        <li>Implementing MSCAN module for the HSC12 dev board – should push to git repository</li>
+                        <li>Sorted physical documents in a group binde</li>
+                    </ul>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-          				<a data-toggle="collapse" data-parent="#accordion" href="#week7">Week 7</a>
-        			</h4>
-                </div>
-                <div id="week7" class="panel-collapse collapse">
-                    <div class="panel-body">
-				        <li>Created high level design diagram</li>
-				        <li>Created connected elevator test plan</li>
-				        <li>Studied for math quiz</li>
-				        <li>Studied for thermodynamic quiz</li>
-				        <li>Updated project plan</li>
-				        <li>Created login page for website</li>
-				        <li>Created request access page for website</li>
-				        <li>Downloaded necessary documents for debrief</li>
-                    </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" href="#week7">Week
+                7</a></h4>
+            </div>
+            <div class="panel-collapse collapse" id="week7">
+                <div class="panel-body">
+                    <ul>
+                        <li>Created high level design diagram</li>
+                        <li>Created connected elevator test plan</li>
+                        <li>Studied for math quiz</li>
+                        <li>Studied for thermodynamic quiz</li>
+                        <li>Updated project plan</li>
+                        <li>Created login page for website</li>
+                        <li>Created request access page for website</li>
+                        <li>Downloaded necessary documents for debrief</li>
+                    </ul>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-          				<a data-toggle="collapse" data-parent="#accordion" href="#week8">Week 8</a>
-        			</h4>
-                </div>
-                <div id="week8" class="panel-collapse collapse">
-                    <div class="panel-body">
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" href="#week8">Week
+                8</a></h4>
+            </div>
+            <div class="panel-collapse collapse" id="week8">
+                <div class="panel-body">
+                    <ul>
                         <li>Fixed navigation bar</li>
                         <li>Helped with creating database</li>
                         <li>Helped anas fix members php page</li>
                         <li>Having issues with request access page</li>
                         <li>The url was wrong to the request access page</li>
                         <li>Tried to make logbook nicer</li>
-                    </div>
+                    </ul>
                 </div>
             </div>
         </div>
-    </content>
-
-<!--     <h2 id="week1">Week 1</h2>
-
-    <h3>May 8, 2017</h3>
-    <ul>
-        <li>Created group for project on 365 Microsoft</li>
-        <li>Named group – Project_6_2017</li>
-        <li>Started project plan</li>
-        <li>Downloaded necessary documents for debrief</li>
-    </ul>
-    <h3>May 9, 2017</h3>
-    <ul>
-        <li>Continued project plan</li>
-        <li>Distributed tasks for each phase</li>
-        <li>Looked at the rubric</li>
-        <li>Updated project plan</li>
-    </ul>
-    <h3>May 10, 2017</h3>
-    <ul>
-        <li>Installed virtualbox on Dinkar and Anas computer</li>
-        <li>Downloaded Ubuntu 16.04 image</li>
-        <li>Installed pidgin using IRC protocol for messagin</li>
-        <li>Created GitHub repository named project_6_2017</li>
-        <li>Installed pidgin using IRC protocol for messagin</li>
-        <li>URL: <a href="https://github.com/dinkar-sharma/project_6_2017.git" target="_blank">project_6_2017 Github</a>
-        </li>
-        <li>Learned work flow in Git</li>
-        <li>Group will use Git for software development version control</li>
-    </ul>
-    <h3>May 11, 2017</h3>
-    <ul>
-        <li>Setup git group repository: https://github.com/dinkar-sharma/project_6_2017.git</li>
-        <li>Tested CAN bus with multiple nodes</li>
-        <li>Installed VM ubuntu for Mike</li>
-        <li>Created a local XAMPP server</li>
-        <li>Tested CAN bus with multiple nodes</li>
-        <li>Implementing MSCAN module for the HSC12 dev board – should push to git repository</li>
-        <li>Sorted physical documents in a group binde</li>
-    </ul>
-    <h2 id="week2">Week 2</h2>
-    <h3>May 14, 2017</h3>
-    <ul>
-        <li>Created three different branches: dinkar, anas, mike</li>
-        <li>Created individual logbook html files</li>
-        <li>Created about .html file for website</li>
-        <li>Filled out status report</li>
-    </ul>
-    <h3>May 15, 2017</h3>
-    <ul>
-        <li>Created new clean project repository</li>
-        <li>URL: https://github.com/dinkar-sharma/project_6_2017.git</li>
-        <li>Added project plan , MSCAN source code, and reference material to master branch</li>
-        <li>Updated project plan</li>
-    </ul>
-    <h3>May 16, 2017</h3>
-    <ul>
-        <li>Continued working on MSCAN module</li>
-        <li>Anas updated his logbook</li>
-        <li>Installed pidgin using IRC protocol for messagin</li>
-        <li>Created GitHub repository named project_6_2017</li>
-        <li>Installed pidgin using IRC protocol for messagin</li>
-        <li>URL: <a href="https://github.com/dinkar-sharma/project_6_2017.git" target="_blank">project_6_2017 Github</a>
-        </li>
-        <li>Learned work flow in Git</li>
-        <li>Group will use Git for software development version control</li>
-    </ul>
-    <h3>May 17, 2017</h3>
-    <ul>
-        <li>Setup git group repository: https://github.com/dinkar-sharma/project_6_2017.git</li>
-        <li>Tested CAN bus with multiple nodes</li>
-        <li>Installed VM ubuntu for Mike</li>
-        <li>Created a local XAMPP server</li>
-        <li>Tested CAN bus with multiple nodes</li>
-        <li>Implementing MSCAN module for the HSC12 dev board – should push to git repository</li>
-        <li>Sorted physical documents in a group binde</li>
-    </ul>
-    <h3>May 18, 2017</h3>
-    <ul>
-        <li>Created high level design diagram</li>
-        <li>Created connected elevator test plan</li>
-        <li>Studied for math quiz</li>
-        <li>Studied for thermodynamic quiz</li>
-    </ul>
-    <h2 id="week3">Week 3</h2>
-    <h3>May 21, 2017</h3>
-    <ul>
-        <li>Updated project plan</li>
-        <li>Created login page for website</li>
-        <li>Created request access page for website</li>
-        <li>Downloaded necessary documents for debrief</li>
-    </ul>
-    <h3>May 22, 2017</h3>
-    <ul>
-        <li>Continued project plan</li>
-        <li>Distributed tasks for each phase</li>
-        <li>Looked at the rubric</li>
-    </ul>
-    <h3>May 23, 2017</h3>
-    <ul>
-        <li>Configured MSCAN module to send and recieve CAN messages</li>
-        <li>Updated high level diagram</li>
-        <li>Finished natural science lab</li>
-        <li>Studied for CAN quiz</li>
-    </ul>
-    <h3>May 24, 2017</h3>
-    <ul>
-        <li>Updated about page</li>
-        <li>Started on the shared CAN protocol</li>
-        <li>Added images to html pages</li>
-        <li>Started math assignment 5</li>
-    </ul>
-    <h3>May 25, 2017</h3>
-    <ul>
-        <li>Completed project status page</li>
-        <li>Started math assignment 6</li>
-        <li>Added team picture to about project page</li>
-    </ul>
-    <h2 id="week4">Week 4</h2>
-    <h3>May 29, 2017</h3>
-    <ul>
-        <li>Studied Green's Theorem for Math class</li>
-        <li></li>
-    </ul>
-    <h3>May 31, 2017</h3>
-    <ul>
-        <li>Start car controller code</li>
-        <li>Using Bill's CAN Code</li>
-    </ul>
-    <h3>June 1, 2017</h3>
-    <ul>
-        <li>Having issue where code is written to the wrong spot in memory</li>
-        <li>Bought buttons for elevator</li>
-    </ul>
-    <h3>June 2, 2017</h3>
-    <ul>
-        <li>Issue from yesterday seemed to be from board itself, used different board and it works</li>
-        <li>Have to still implement door status</li>
-    </ul>
-    <h3>June 3, 2017</h3>
-    <ul>
-        <li>Everything (basic logic) has been implemented for car controller</li>
-        <li>Tested on elevator and it is working with some trouble</li>
-    </ul>
-    <h3>June 5, 2017</h3>
-    <ul>
-        <li>Finished Floor control as well</li>
-    </ul>
-    <h2>Week 6</h2>
-    <ul>
-        <li>Created a navigation bar for website</li>
-        <li>Updated project plan</li>
-        <li>Applied CSS onto webpages</li>
-        <li>Created a PHP page to link to GUI</li>
-        <li>Added sessions to php code</li>
-        <li>Created GUI page for the control PC</li>
-    </ul>
-    <h2>Week 7</h2>
-    <ul>
-        <li>Worked on navigation bar</li>
-        <li>Integrating bootstrap with html code</li>
-        <li>Applied CSS onto webpages</li>
-        <li>Worked on GUI page</li>
-        <li>Added sessions to php code</li>
-        <li>Created GUI page for the control PC</li>
-    </ul>
-    <h2>Week 8</h2>
-    <ul>
-        <li>Fixed navigation bar</li>
-        <li>Helped with creating database</li>
-        <li>Helped anas fix members php page</li>
-        <li>Having issues with request access page</li>
-        <li>The url was wrong to the request access page</li>
-        <li>Tried to make logbook nicer</li>
-    </ul> -->
+    </div>
     <footer>
         <a href="#top">Top of page</a>
         <p id="copy-right">Copyright &copy; Group DAM</p>
     </footer>
 </body>
-
 </html>
