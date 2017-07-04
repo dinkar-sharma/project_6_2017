@@ -1,0 +1,15 @@
+.bg-1{
+	margin-top: 40px;
+	background-color: #474e5d; /* Dark Blue */
+	color: white;
+}
+
+.bg-2{
+	background-color: #474e5d; /* Dark Blue */
+	color: black;
+}
+
+#title{
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
