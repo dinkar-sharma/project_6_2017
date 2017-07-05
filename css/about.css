@@ -35,3 +35,9 @@ video {
 	padding: 100px 25px;
 	font-size: 20;
 }
+
+#foot{
+	padding: 50px 0 50px 0;
+	background-color: black;
+	color: white;
+}
