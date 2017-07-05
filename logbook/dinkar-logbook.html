@@ -2,44 +2,150 @@
 <html>
 <head>
 	<title>Dinkar-Logbook</title>
-	<meta charset="utf-8">
-	<meta content="Dinkar's LogBook" name="decription">
+	<meta content="This is about page of our project" name="description">
 	<meta content="Group DAM" http-equiv="author">
-	<meta content="no-cache" http-equiv="pragma">
-	<link href="../css/nav_bar.css" rel="stylesheet" type="text/css">
+	<meta content="no-cache" http-equiv="pragma"><!-- Latest compiled and minified CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel=
+	"stylesheet"><!-- jQuery library -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script><!-- Latest compiled JavaScript -->
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+	</script>
+	<link href="../css/modal.css" rel="stylesheet" type="text/css">
+	<link href="../css/logbook.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<header>
-		<ul class="nav_bar">
-		<div class="h_menue">
-			<li>
-				<a href="../index.html">Home</a>
-			</li>
-			<li>
-				<a href="../about.html">About</a>
-			</li>
-			<li>
-				<a href="../project_details.html">Project Details</a>
-			</li>
-			<li>
-				<a href="../project_plan.html">Project Plan</a>
-			</li>
-			<li style="float:right">
-				<a href="../login.html">Login</a>
-			</li>
-			<li class="dropdown">
-				<a class="dropbtn" href="javascript:void(0)">DAM Logbook</a>
-				<div class="dropdown-content">
-					<a href="dinkar-logbook.html">Dinkar</a> 
-					<a href="anas-logbook.html">Anas</a>
-					<a href="logbook/Mike-Logbook/mike-logbook.html">Mike</a>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type=
+					"button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class=
+					"icon-bar"></span></button> <a class="navbar-brand" href="../index.html">DAM Elevator</a>
 				</div>
-			</li>
-		</div>
-		</ul>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="../about.html">About</a>
+						</li>
+						<li>
+							<a href="../project_details.html">Project Details</a>
+						</li>
+						<li>
+							<a href="../project_plan.html">Project Plan</a>
+						</li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">LogBooks<span class=
+							"caret"></span></a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="dinkar-logbook.html">Dinkar</a>
+								</li>
+								<li>
+									<a href="anas-logbook.html">Anas</a>
+								</li>
+								<li>
+									<a href="#">Mike</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="request_access.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+						</li>
+						<li>
+							<a href="#" onclick="document.getElementById('id01').style.display='block'"><span class=
+							"glyphicon glyphicon-log-in"></span> Login</a> <!-- The Modal -->
+							<div class="modal" id="id01" role="dialog">
+								<span onclick="document.getElementById('id01').style.display='none'"></span> 
+								<!-- Modal Content -->
+								<div class="container animate">
+									<div class="card card-container">
+										<img alt="" class="profile-img-card" src="../images/logo_sm.png">
+										<p class="profile-name-card" id="profile-name"></p>
+										<form action="php/login.php" class="form-signin" method="post">
+											<span class="reauth-username" id="reauth-username"></span> <input autofocus="" class=
+											"form-control" id="inputUsername" name="username" placeholder="Username" required=""
+											type="username"> <input class="form-control" id="inputPassword" name="password"
+											placeholder="Password" required="" type="password">
+											<div class="checkbox" id="remember">
+												<label><input type="checkbox" value="remember-me"> Remember me</label>
+											</div><button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign
+											in</button> <button class="btn btn-lg btn-primary btn-block btn-signin" onclick=
+											"document.getElementById('id01').style.display='none'" type="button">Cancel</button>
+										</form><!-- /form -->
+										<a class="forgot-password" href="#">Forgot the password?</a>
+									</div><!-- /card-container -->
+								</div><!-- /container -->
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 	</header>
-	<h1>LogBook - Dinkar Sharma</h1>
-	<img src="../images/dinkar.jpg" width="20%">
+	<div class="container-fluid text-center bg-1" id="title">
+	<h1>Dinkar's Log-Book</h1><img class="img-responsive img-circle" src="../images/dinkar.jpg"></div>
+	<div class="container-fluid bg-2">
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" href="#week1">Week
+					1</a></h4>
+				</div>
+				<div class="panel-collapse collapse in" id="week1">
+					<div class="panel-body">
+						<ul>
+							<li>Created group for project on 365 Microsoft</li>
+							<li>Named group – Project_6_2017</li>
+							<li>Started project plan</li>
+							<li>Downloaded necessary documents for debrief</li>
+							<li>Continued project plan</li>
+							<li>Distributed tasks for each phase</li>
+							<li>Looked at the rubric</li>
+							<li>Updated project plan</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" href="#week2">Week
+					2</a></h4>
+				</div>
+				<div class="panel-collapse collapse in" id="week2">
+					<div class="panel-body">
+						<ul>
+							<li>Installed virtualbox on Dinkar and Anas computer</li>
+							<li>Downloaded Ubuntu 16.04 image</li>
+							<li>Installed pidgin using IRC protocol for messagin</li>
+							<li>Created GitHub repository named project_6_2017</li>
+							<li>Installed pidgin using IRC protocol for messagin</li>
+							<li>URL: <a href="https://github.com/dinkar-sharma/project_6_2017.git" target=
+							"_blank">project_6_2017 Github</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" href=
+					"#collapse3">Collapsible Group 3</a></h4>
+				</div>
+				<div class="panel-collapse collapse" id="collapse3">
+					<div class="panel-body">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+						laboris nisi ut aliquip ex ea commodo consequat.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<h2 id="week1">Week 1</h2>
 	<h3>May 8, 2017</h3>
 	<ul>
@@ -186,7 +292,7 @@
 	<h3>June 5, 2017</h3>
 	<ul>
 		<li>Finished Floor control as well</li>
-		</ul>
+	</ul>
 	<h2>Week 6</h2>
 	<ul>
 		<li>Created a navigation bar for website</li>
@@ -205,7 +311,7 @@
 	</ul>
 	<footer>
 		<a href="#top">Top of page</a>
-		<p id="copy-right">Copyright &copy; Group DAM</p>		
+		<p id="copy-right">Copyright &copy; Group DAM</p>
 	</footer>
 </body>
 </html>

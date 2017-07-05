@@ -1,17 +1,37 @@
 .jumbotron{
-	background-color: white;
-    padding: 100px 25px;
+	margin: 51px 0px 0px;
+	padding: 80px 0 80px 0;
 }
 
 video {
 	width: 640;
-	height: 360;
+	height: 300;
 }
 
-.bg-grey {
-    background-color: #f6f6f6;
+.bg-grey-light {
+    background-color: rgb(184, 184, 205);
+    color: white;
+}
+
+.bg-grey-dark{
+	background-color: #474e5d;
+	color: white;
 }
 
 .container{
 	padding: 40px 40px;
+}
+
+#logo{
+	padding: 40px 0 20px 0px;
+}
+
+.img-responsive{
+	margin: 0 auto 10px;
+}
+
+.container-fluid h1{
+	margin-top: 40px;
+	padding: 100px 25px;
+	font-size: 20;
 }

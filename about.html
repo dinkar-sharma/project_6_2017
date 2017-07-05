@@ -87,32 +87,40 @@
             </div>
         </nav>
     </header>
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center bg-grey-dark">
         <h1>About DAM Elevator</h1>
-        <p>Welcome to the <i>about</i> about page for <b>Project VI.</b> This is where we will provide an
-        overview of our project. In this project we will design an elevator network connected using CAN
-        network.</p>
+        <p>
+            Welcome to the <i>about</i> about page for <b>Project VI.</b> This is where we will provide an
+            overview of our project. In this project we will design an elevator network connected using CAN
+            network.
+        </p>
     </div>
-    <section class="bg-grey" id="intro-vid">
+    <section id="logo" class="bg-grey-light">
+        <div class="container-fluid text-center">
+            <img src="images/logo_lg.png" class="media-object img-rounded img-responsive">
+            <h2><i>Go Up and Down in Style.</i></h2>
+        </div>        
+    </section>
+    <section id="intro-vid" class="bg-grey-dark">
         <div class="container">
-            <h1>Meet the DAM Team</h1>
+            <h2>Meet the DAM Team</h2>
             <div align="center" class="embed-responsive embed-responsive-16by9">
                 <video class="embed-responsive-item" controls="" loop=""><source src="images/introVideo.mp4"
                 type="video/mp4"></video>
             </div>
         </div>
     </section>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-8">
-                <h2>About Company Page</h2>
-                <h4>Lorem ipsum..</h4>
-                <p>Lorem ipsum..</p><button class="btn btn-default btn-lg">Get in Touch</button>
-            </div>
-            <div class="col-sm-4">
-                <span class="glyphicon glyphicon-signal logo"></span>
-            </div>
+    <section id="hld" class="bg-grey-light">
+        <div class="container bg-grey">
+            <h2>Overview of the CAN System</h2>
+            <img src="images/High_Level_diagram.png" class="media-object img-rounded img-responsive" alt="hld">
         </div>
-    </div>
+    </section>
+    <section id="protocol" class="bg-grey-dark">
+        <div class="container">
+            <h2>The Common CAN Protocol</h2>
+            <img src="images/shared_can_protocol.png" class="media-object img-rounded img-responsive" alt="protocol">     
+        </div>
+    </section>
 </body>
 </html>

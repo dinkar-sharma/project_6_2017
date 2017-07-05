@@ -16,4 +16,6 @@
 
 .img-responsive{
 	margin: 0 auto 10px;
+	width: 300px;
+	height: 300px;
 }
