@@ -1,15 +1,13 @@
 video { 
-    position: fixed;
-    top: 488px;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-    transform: translateX(-50%) translateY(-57%);
-    background-size: cover;
-    transition: 1s opacity;
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-1%) translateY(-27%);
+  background-size: cover;
+  transition: 1s opacity;
 }
 
 .stopfade { 
@@ -30,7 +28,7 @@ video {
   font-size: 8rem;
   text-transform: uppercase;
   margin-top: 10;
-  letter-spacing: .5rem;
+  letter-spacing: 0.4rem;
 }
 
 #polina button { 
