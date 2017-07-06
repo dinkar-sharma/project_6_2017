@@ -1,13 +1,12 @@
 video { 
   position: absolute;
-  min-width: 100%;
+  right: 0; 
+  bottom: 9rem;
+  min-width: 100%; 
   min-height: 100%;
-  width: auto;
+  width: auto; 
   height: auto;
   z-index: -100;
-  transform: translateX(-1%) translateY(-27%);
-  background-size: cover;
-  transition: 1s opacity;
 }
 
 .stopfade { 
@@ -20,7 +19,7 @@ video {
   color: white;
   padding: 9rem;
   width: auto;
-  margin: 14rem 0 14rem 0;
+  margin: 14rem 0 16.2rem 0;
   font-size: 1.2rem;
 }
 

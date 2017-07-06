@@ -91,26 +91,19 @@
         </nav>
     </header>
     <div class="container-fluid">
-        <video playsinline autoplay muted loop>
+        <video id="bg-video" playsinline autoplay muted loop>
         <source src="images/FootageElevator.mp4" type="video/mp4">
         </video>
+        <script type="js/index.js"></script>
     </div>
     <div class="jumbotron" id="title">
         <h1>DAM Elevator</h1>
         <p><i>Travel in Styletto.</i></p>
     </div>
         <!-- Add Google Maps -->
-            <div class="container">
+    <div class="container">
         <div id="googleMap" style="height:400px;width:100%;"></div>
-        <script>
-                       function myMap() {
-                       var myCenter = new google.maps.LatLng(43.385262, -80.397721);
-                       var mapProp = {center:myCenter, zoom:15, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
-                       var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                       var marker = new google.maps.Marker({position:myCenter});
-                       marker.setMap(map);
-                       }
-        </script> 
+        <script src="js/google_maps.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9F_6LTFAVUHjP3QXjHssalvymyLfuUNY&callback=myMap">
         </script>
     </div>
