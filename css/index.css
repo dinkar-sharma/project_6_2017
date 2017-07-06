@@ -9,22 +9,18 @@ video {
   z-index: -100;
 }
 
-.stopfade { 
-   opacity: .5;
-}
-
 #title {
   font-weight:100; 
   background: rgba(0,0,0,0.3);
   color: white;
-  padding: 9rem;
+  padding: 5rem;
   width: auto;
-  margin: 14rem 0 16.2rem 0;
+  margin: 200px 0 216px 0;
   font-size: 1.2rem;
 }
 
 #title h1 {
-  font-size: 8rem;
+  font-size: 5rem;
   text-transform: uppercase;
   margin-top: 10;
   letter-spacing: 0.4rem;
@@ -46,10 +42,4 @@ video {
 
 #polina button:hover { 
    background: rgba(0,0,0,0.5);
-}
-
-#foot{
-  padding: 25px 10px 20px 10px;
-  background-color: #222;
-  color: white;
 }

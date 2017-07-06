@@ -4,6 +4,12 @@ body, html {
    /* background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
 }
 
+#foot{
+    padding: 25px 10px 20px 10px;
+    background-color: #222;
+    color: white;
+}
+
 .navbar-inverse{
     padding: 10px 15px 10px 15px;
 }
