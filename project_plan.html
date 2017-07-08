@@ -14,6 +14,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/modal.css"></head>
+    <link rel="stylesheet" type="text/css" href="css/project_plan.css">
 <body>
     <header>
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -81,200 +82,128 @@
             </div>
         </div>
     </header>
-    <h1 id="title">Gantt Chart</h1>
-
-    <table>
-        <tr>
-            <th></th>
-            <th>Week 1</th>
-            <th>Week 2</th>
-            <th>Week 3</th>
-            <th>Week 4</th>
-            <th>Week 5</th>
-            <th>Week 6</th>
-            <th>Week 7</th>
-            <th>Week 8</th>
-            <th>Week 9</th>
-            <th>Week 10</th>
-            <th>Week 11</th>
-            <th>Week 12</th>
-        </tr>
-        <tbody>
-            <tr>
-                <th>Complete Project Plan</th>
-                <td>DS, AY</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Design CAN message protocol</th>
-                <td></td>
-                <td>ALL</td>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Implement CAN message protocol</th>
-                <td></td>
-                <td>ALL</td>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Create node configuration plan</th>
-                <td></td>
-                <td></td>
-                <td>AY</td>
-            </tr>
-            <tr>
-                <th>Implement controller CAN node</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>ALL</td>
-            </tr>
-            <tr>
-                <th>Create CAN network test plan</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>DS</td>
-            </tr>
-            <tr>
-                <th>Test CAN network</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>ALL</td>
-            </tr>
-            <tr>
-                <th>Create Data Repository</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>DS</td>
-            </tr>
-            <tr>
-                <th>Design UI</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>MA</td>
-            </tr>
-            <tr>
-                <th>Implement Logger</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>MA</td>
-            </tr>
-            <tr>
-                <th>Develop Server Program</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>AY</td>
-            </tr>
-            <tr>
-                <th>Implement Server Program</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>AY</td>
-            </tr>
-            <tr>
-                <th>Create Remote Access System Test Plan</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>DS</td>
-            </tr>
-            <tr>
-                <th>Create a Client Program to access Server</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>DS</td>
-            </tr>
-            <tr>
-                <th>Investigate Techniques for data network and Internet</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>ALL</td>
-            </tr>
-            <tr>
-                <th>Create Oral Presentaion</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>ALL</td>
-            </tr>
-            <tr>
-                <th>Write a Project Report</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>ALL</td>
-            </tr>
-            <tr>
-                <th>Integrate CAN Diagnostic System</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>ALL</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th colspan="5">DS = Dinkar Sharma, AY = Anas Yaseen, MA = Mike
-                Akl</th>
-            </tr>
-        </tfoot>
-    </table>
-
-    <p id="copy-right">Copyright &copy; Group DAM</p>
+    <div class="container">
+        <h2>Project Plan - Gnatt Chart</h2>
+        <div class="table-responsive">
+            <h3>Phase 1</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th class="activity-th">Activity</th>
+                        <th>Resource</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Week 1</td>
+                        <td>Complete project plan</td>
+                        <td>Dinkar, Anas, Mike</td>
+                    </tr>
+                    <tr>
+                        <td>Week 2</td>
+                        <td>
+                            <ul>
+                                <li>Design CAN message protocol</li>
+                                <li>Implement CAN message protocol</li>
+                            </ul>
+                        </td>
+                        <td>Name</td>
+                    </tr>
+                    <tr>
+                        <td>Week 3</td>
+                        <td>
+                            <ul>
+                                <li>Create node configuration plan</li>
+                                <li>Implement CAN message protocol</li>
+                                <li>Test CAN network</li>
+                            </ul>
+                        </td>
+                        <td>Name</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <div class="table-responsive">
+            <h3>Phase 2</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th class="activity-th">Activity</th>
+                        <th>Resource</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Week 4</td>
+                        <td>Create data repository</td>
+                        <td>Dinkar, Anas, Mike</td>
+                    </tr>
+                    <tr>
+                        <td>Week 5</td>
+                        <td>Design UI</td>
+                        <td>Name</td>
+                    </tr>
+                    <tr>
+                        <td>Week 6</td>
+                        <td>Implement logger</td>
+                        <td>Name</td>
+                    </tr>
+                    <tr>
+                        <td>Week 7</td>
+                        <td>Develop Server Program</td>
+                        <td>Name</td>
+                    </tr>
+                    <tr>
+                        <td>Week 8</td>
+                        <td>Create Remote Access System Test Plan</td>
+                        <td>Name</td>
+                    </tr>
+                    <tr>
+                        <td>Week 9</td>
+                        <td>Create a Client Program to access Server</td>
+                        <td>Name</td>
+                    </tr>
+                    <tr>
+                        <td>Week 10</td>
+                        <td>Integrate CAN with LAN</td>
+                        <td>Name</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <div class="table-responsive">
+            <h3>Phase 3</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th class="activity-th">Activity</th>
+                        <th>Resource</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Week 11</td>
+                        <td>Investigate Techniques for data network and Internet</td>
+                        <td>Name</td>
+                    </tr>
+                    <tr>
+                        <td>Week 12</td>
+                        <td>Create Oral Presentaion</td>
+                        <td>Name</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer id="foot" class="container-fluid text-center">
+        <script src="js/common.js"></script>
+    </footer>
 </body>
 </html>
