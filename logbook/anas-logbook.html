@@ -2,46 +2,93 @@
 <html lang="en">
 <head>
 	<title>Anas-LogBook</title>
-	<meta charset="utf-8">
-	<meta content="" name="decription">
-	<meta content="Group DAM" http-equiv="author">
-	<meta content="no-cache" http-equiv="pragma">
-	<link rel="stylesheet" type="text/css" href="../css/nav_bar.css">
+    <meta content="Group DAM" http-equiv="author">
+    <meta content="no-cache" http-equiv="pragma"><!-- Latest compiled and minified CSS -->
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel=
+    "stylesheet"><!-- jQuery library -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script><!-- Latest compiled JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+    <link href="../css/modal.css" rel="stylesheet" type="text/css">
+    <link href="../css/logbook.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
-	<header>
-	
-		<ul class="nav_bar">
-		<div class="h_menue">
-			<li>
-				<a href="../index.html">Home</a>
-			</li>
-			<li>
-				<a href="../about.html">About</a>
-			</li>
-			<li>
-				<a href="../project_details.html">Project Details</a>
-			</li>
-			<li>
-				<a href="../project_plan.html">Project Plan</a>
-			</li>
-			<li style="float:right">
-				<a href="../login.html">Login</a>
-			</li>
-			<li class="dropdown">
-				<a class="dropbtn" href="javascript:void(0)">DAM Logbook</a>
-				<div class="dropdown-content">
-					<a href="../dinkar-logbook.html">Dinkar</a> 
-					<a href="../anas-logbook.html">Anas</a>
-					<a href="Mike-Logbook/mike-logbook.html">Mike</a>
-				</div>
-			</li>
-		</div>
-		</ul>
-	</header>
-	<img alt="hld" class="images" src="../images/Anas.jpg" title="hl" >
-	<h1>LogBook - Anas Yassin</h1>
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type=
+                    "button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class=
+                    "icon-bar"></span></button> <a class="navbar-brand" href="../index.html">DAM Elevator</a>
+                </div>
+                <div id="myNavbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../project_details.html">Project Details</a></li>
+                        <li><a href="../project_plan.html">Project Plan</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">LogBooks<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="dinkar-logbook.html">Dinkar</a></li>
+                                <li class="divider"></li>
+                                <li><a href="anas-logbook.html">Anas</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Mike</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="../request_access.html"><span class="glyphicon glyphicon-user"></span> Sign-Up</a></li>
+                        <li>
+                            <a data-target="#myModal" data-toggle="modal" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header"><button class="close" data-dismiss="modal" type=
+                    "button">&times;</button>
+                    <h4 class="modal-title">Login</h4><img alt="" class="profile-img-card" src=
+                    "../images/logo_sm.png"></div>
+                    <div class="modal-body">
+                        <form id="form-validate" action="../php/login.php" method="post">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input class="form-control" id="username" name="username" placeholder="Enter Username"
+                                type="text">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input class="form-control" id="password" name="password" placeholder="Enter Password"
+                                type="password">
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label><input type="checkbox"> Remember me</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" type="submit">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="title" class="container-fluid text-center bg-1">
+        <h1>Anas's Log-Book</h1>
+        <img class="img-responsive img-circle" src="../images/anas.jpg">
+        <p id="age"></p>
+        <script src="../js/logbook.js"></script>
+    </div>
 	<h2>Week1</h2>
 	<ul>
 		<li>Started math assignment 1 and 2</li>

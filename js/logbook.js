@@ -1,8 +1,8 @@
 var today = new Date();
 var	hourNow = today.getFullYear();
-var birthdate = new Date("Aug 4, 1996 12:00:00");
+var dinkarBirthdate = new Date("Aug 4, 1996 12:00:00");
 
-var age = today.getTime() - birthdate.getTime();
+var age = today.getTime() - dinkarBirthdate.getTime();
 
 age = Math.floor(age/31556900000);
 

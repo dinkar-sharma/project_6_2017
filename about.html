@@ -20,73 +20,69 @@
 <body>
     <header>
         <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div id="navbar-size" class="container-fluid">
+            <div class="container-fluid">
                 <div class="navbar-header">
                     <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type=
                     "button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class=
                     "icon-bar"></span></button> <a class="navbar-brand" href="index.html">DAM Elevator</a>
                 </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
+                <div id="myNavbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li>
-                            <a href="about.html">About</a>
-                        </li>
-                        <li>
-                            <a href="project_details.html">Project Details</a>
-                        </li>
-                        <li>
-                            <a href="project_plan.html">Project Plan</a>
-                        </li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="project_details.html">Project Details</a></li>
+                        <li><a href="project_plan.html">Project Plan</a></li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">LogBooks<span class=
-                            "caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">LogBooks<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a href="logbook/dinkar-logbook.html">Dinkar</a>
-                                </li>
-                                <li>
-                                    <a href="logbook/anas-logbook.html">Anas</a>
-                                </li>
-                                <li>
-                                    <a href="#">Mike</a>
-                                </li>
+                                <li><a href="logbook/dinkar-logbook.html">Dinkar</a></li>
+                                <li class="divider"></li>
+                                <li><a href="logbook/anas-logbook.html">Anas</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Mike</a></li>
                             </ul>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="request_access.html"><span class="glyphicon glyphicon-user"></span> Sign-Up</a></li>
                         <li>
-                            <a href="request_access.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                        </li>
-                        <li>
-                            <a href="#" onclick="document.getElementById('id01').style.display='block'"><span class=
-                            "glyphicon glyphicon-log-in"></span> Login</a> <!-- The Modal -->
-                            <div class="modal" id="id01" role="dialog">
-                                <span onclick="document.getElementById('id01').style.display='none'"></span> 
-                                <!-- Modal Content -->
-                                <div class="container animate">
-                                    <div class="card card-container">
-                                        <img alt="" class="profile-img-card" src="images/logo_sm.png">
-                                        <p class="profile-name-card" id="profile-name"></p>
-                                        <form action="php/login.php" class="form-signin" method="post">
-                                            <span class="reauth-username" id="reauth-username"></span> <input autofocus="" class=
-                                            "form-control" id="inputUsername" name="username" placeholder="Username" required=""
-                                            type="username"> <input class="form-control" id="inputPassword" name="password"
-                                            placeholder="Password" required="" type="password">
-                                            <div class="checkbox" id="remember">
-                                                <label><input type="checkbox" value="remember-me"> Remember me</label>
-                                            </div><button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign
-                                            in</button> <button class="btn btn-lg btn-primary btn-block btn-signin" onclick=
-                                            "document.getElementById('id01').style.display='none'" type="button">Cancel</button>
-                                        </form><!-- /form -->
-                                        <a class="forgot-password" href="#">Forgot the password?</a>
-                                    </div><!-- /card-container -->
-                                </div><!-- /container -->
-                            </div>
+                            <a data-target="#myModal" data-toggle="modal" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header"><button class="close" data-dismiss="modal" type=
+                    "button">&times;</button>
+                    <h4 class="modal-title">Login</h4><img alt="" class="profile-img-card" src=
+                    "images/logo_sm.png"></div>
+                    <div class="modal-body">
+                        <form id="form-validate" action="php/login.php" method="post">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input class="form-control" id="username" name="username" placeholder="Enter Username"
+                                type="text">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input class="form-control" id="password" name="password" placeholder="Enter Password"
+                                type="password">
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label><input type="checkbox"> Remember me</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" type="submit">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
     <div class="jumbotron text-center bg-grey-dark">
         <h1>About DAM Elevator</h1>
