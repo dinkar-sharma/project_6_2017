@@ -1,26 +1,23 @@
-#container
+#myStyle
 {
-  width: 950px;
   border: 2px solid black;
-  padding: 10px;
-  margin: auto;
 }
 
-#container h1
+#myStyle h1
 { 
   color:black;
   font-family: Georgia;
   font-size: 160%;
 }
 
-#container h2
+#myStyle h2
 {
   color: black;
   font-family: Georgia;
   font-size: 125%;
 }
 
-#container p
+#myStyle p
 {
   font-family: Georgia;
   font-size: 100%;
@@ -28,13 +25,13 @@
   text-align: justify;
   text-indent: 15px;
   }
-#container span.mkunderlined
+#myStyle span.mkunderlined
 {
 	color: purple;
 	text-decoration: underline;
 }
 
-#container span.mkbold
+#myStyle span.mkbold
 {
 	color: purple;
 	font-weight: bold;
@@ -52,26 +49,26 @@
 	color: green;
 }
 	
-#container li
+#myStyle li
 {
   font-size: 100%;
 }
 
-#container figcaption
+#myStyle figcaption
 {
   font-style: italic;
   font-size: 90%;
   text-align: center;
 }
 
-#container figure
+#myStyle figure
 {
 	width: 800px;
   border: 2px solid green;
   border-radius: 25px 25px 25px 25px;
 }
 
-#container img
+#myStyle img
 {
   border: 2px solid blue;
   box-shadow: -10px 10px 5px grey;
