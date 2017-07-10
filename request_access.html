@@ -16,11 +16,12 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
     </script>
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <link href="css/modal.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-inverse navbar-fixed-top nav-content">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type=
@@ -87,16 +88,16 @@
             </div>
         </div>
     </header>
-    <h1>Request Access</h1>
-    <form id="form-validate" action="php/request_access.php" method="post">
-        <div class="input-group">
+    <form id="form-validate" class="container form-group-lg" action="php/request_access.php" method="post">
+        <h1>Request Access</h1>
+        <div class="input-group ">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input class="form-control" id="username" name="username" placeholder="Enter Username"
+            <input class="form-control" id="username" name="username" placeholder="Choose a Username"
             type="text">
         </div>
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input class="form-control" id="password" name="password" placeholder="Enter Password"
+            <input class="form-control" id="password" name="password" placeholder="Choose a Password"
             type="password">
         </div>
         <div class="input-group">
@@ -112,8 +113,8 @@
             <button class="btn btn-default" type="submit">Add me</button>
         </div>
     </form>
-    <footer id="foot" class="container-fluid text-center">
+<!--     <footer id="foot" class="container-fluid text-center">
         <script src="js/common.js"></script>
-    </footer>
+    </footer> -->
 </body>
 </html>
