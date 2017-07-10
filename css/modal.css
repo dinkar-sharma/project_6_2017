@@ -15,6 +15,10 @@
     border-radius: 10%;
 }
 
+#addBut
+{
+    padding-top: 10px;
+}
 .modal
 {
     padding-left: 17px;
