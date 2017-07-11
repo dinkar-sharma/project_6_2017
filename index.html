@@ -89,17 +89,16 @@
             </div>
         </div>
     </header>
-    <div class="container-fluid">
-        <video id="bg-video" playsinline autoplay muted loop>
-        <source src="images/FootageElevator.mp4" type="video/mp4">
+    <div class="bg-video">
+        <video playsinline autoplay muted loop>
+            <source src="images/FootageElevator.mp4" type="video/mp4">
         </video>
-        <script type="js/index.js"></script>
+        <div id="title" class="jumbotron text-center">
+                <h1>DAM Elevator</h1>
+                <p><i>Travel in Styletto.</i></p>
+        </div>
     </div>
-    <div class="jumbotron" id="title">
-        <h1>DAM Elevator</h1>
-        <p><i>Travel in Styletto.</i></p>
-    </div>
-        <!-- Add Google Maps -->
+    <!-- Add Google Maps -->
     <div class="container">
         <div id="googleMap" style="height:400px;width:100%;"></div>
         <script src="js/google_maps.js"></script>
