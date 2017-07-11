@@ -1,24 +1,28 @@
-.bg-1{
-	background-color: #474e5d; /* Dark Blue */
-	color: white;
-}
-
-.bg-2{
-	background-color: #474e5d; /* Dark Blue */
-	color: black;
-}
-
-.img-responsive{
+.img-responsive
+{
 	margin: 0 auto 10px;
 	width: 300px;
 	height: 300px;
 }
 
-#title{
+.panel-group
+{
+	margin-bottom: 0;
+}
+
+.logbook-content
+{
+	padding: 40px 15px 40px 15px;
+	color: black;
+}
+
+#title
+{
 	padding-top: 70px;
 	padding-bottom: 70px;
 }
 
-#age{
+#age
+{
 	font-size: 20px;
 }
