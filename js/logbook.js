@@ -39,7 +39,7 @@ $(document).ready(function(){
     $(".test").html('<span class="glyphicon glyphicon-collapse-down"></span> Week 1');
   });
   $("#week1").on("show.bs.collapse", function(){
-    $(".test").html('<span class="glyphicon glyphicon-collapse-up"></span> Week 2');
+    $(".test").html('<span class="glyphicon glyphicon-collapse-up"></span> Week 1');
   });
 });
 
