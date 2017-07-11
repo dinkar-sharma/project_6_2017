@@ -37,6 +37,12 @@ video
   letter-spacing: 0.4rem;
 }
 
+#googleMap
+{
+  height: 500px;
+  width: 100%;
+  margin-bottom: 40px;
+}
 /*#polina button 
 { 
   display: block;
