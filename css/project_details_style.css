@@ -1,6 +1,7 @@
 #myStyle
 {
   border: 2px solid black;
+  border-radius: 15px;
 }
 
 #myStyle h1
@@ -24,13 +25,13 @@
   }
 #myStyle span.mkunderlined
 {
-	color: purple;
+	color: yellow;
 	text-decoration: underline;
 }
 
 #myStyle span.mkbold
 {
-	color: purple;
+	color: yellow;
 	font-weight: bold;
 }	
 
@@ -70,4 +71,9 @@
   margin: 0 auto 10px;
   width: 300px;
   height: 300px;
+}
+
+section
+{
+  padding: 40px 0 40px 0;
 }
