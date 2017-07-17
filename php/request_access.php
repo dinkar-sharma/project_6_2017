@@ -1,5 +1,7 @@
-<?php  
-		
+<?php
+	$usernameSubmit = $_POST['username'] ?? '';
+	$passwordSubmit = $_POST['password'];
+
 	$db = new PDO(
 	'mysql:host=127.0.0.1;dbname=elevator',
 	'root',
@@ -9,7 +11,7 @@
 			  VALUES (:userName, :password) ';
 	$statement = $db->prepare($query);
 	$params = [
-			'userName' => $_POST['userName'],
+			'userName' => $_POST['username'],
 			'password' => $_POST['password']
 			];
 
