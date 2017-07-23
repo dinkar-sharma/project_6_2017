@@ -1,31 +1,39 @@
 <?php
 
-session_start();
-$username = $_POST['username'];
-$password = $_POST['password'];
+	session_start();
+	$authenticated = FALSE;
+	$usernameSubmit = $_POST['username'] ?? '';
+	$passwordSubmit = $_POST['password'];
 
-
-	//$_SESSION['username']=$username;
-	$db = new PDO(
-		'mysql:host=127.0.0.1;dbname=elevator',
+	try 
+	{
+		$db = new PDO(
+		'mysql:host=127.0.0.1;dbname=elevator_project_2017',
 		'root',
 		'');
-	$authenticated = FALSE;
-	$rows = $db->query('SELECT * FROM users ORDER BY userID');
-	foreach ($rows as $row){
-		if ($username == $row[1] && $password == $row[2]){
-			$authenticated = TRUE;
+	} 
+	catch (Exception $e) 
+	{
+		echo "Error connecting to database: " .$e->getMessage();
+	}
 
+	$rows = $db->query('SELECT * FROM authorized_users');
+	foreach ($rows as $row)
+	{
+		if ($usernameSubmit == $row[1] && $passwordSubmit == $row[2])
+		{
+			$authenticated = TRUE;
+			break;
 		}
 	}
-	if ($authenticated == TRUE){
-		$_SESSION['username']=$username;
-	
-	header("Location: ../elevator_control.html");
+	if ($authenticated == TRUE)
+	{
+		$_SESSION['username']=$usernameSubmit;
+		header("Location: ../elevator_control.html");
 	}
-	else{
+	else
+	{
 		echo"<p>Please enter a username and password</p>";
 	}
-
-
+	
 ?>

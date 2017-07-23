@@ -43,6 +43,32 @@ LOCK TABLES `CAN_network` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `authorized_users`
+--
+
+DROP TABLE IF EXISTS `authorized_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `authorized_users` (
+  `userID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  PRIMARY KEY (`userID`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `authorized_users`
+--
+
+LOCK TABLES `authorized_users` WRITE;
+/*!40000 ALTER TABLE `authorized_users` DISABLE KEYS */;
+INSERT INTO `authorized_users` VALUES (1,'dinkar','sharma'),(3,'anas','yassin');
+/*!40000 ALTER TABLE `authorized_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `elevator_network`
 --
 
@@ -78,4 +104,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-22 19:33:37
+-- Dump completed on 2017-07-23 15:23:23
