@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    $q = $_POST['']
 
     if(!isset($_SESSION['username']))
     {
@@ -7,9 +8,7 @@
         header("Location: ../index.html"); 
         die();
     }
-?>
 
-<?php
     try 
     {
         $db = new PDO(
