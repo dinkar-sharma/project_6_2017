@@ -78,13 +78,13 @@
                     </div>
                 </div>
             </div>
-            <div class="floor-req-light">
+<!--             <div class="floor-req-light">
                 <span id="floor-3-light" class="floor-light"></span>
                 <span id="floor-2-light" class="floor-light"></span>
                 <span id="floor-1-light" class="floor-light"></span>
                 <span id="door-open-light" class="floor-light"></span>
                 <span id="door-close-light" class="floor-light"></span>
-            </div>  
+            </div>   -->
         </div>
         <div id="car-controller" class="col-sm-6 bg-grey-light text-center">
             <h2>Floor Controller</h2>

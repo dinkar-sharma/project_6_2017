@@ -3,6 +3,11 @@ h2
 	margin-top: 0px;
 }
 
+fieldset
+{
+	border-radius: 20px;
+}
+
 #car-controller
 {
 	padding-top: 40px;
@@ -67,12 +72,12 @@ h2
 
 	.floor-light
 	{
-		display: block;
+		display: inline;
 	}
 
-	#elevator_controller
+	#elevator-controller
 	{
-		height: 100vh;
+		height: 70vh;
 	}
 }
 
