@@ -67,7 +67,12 @@ h2
 
 	.floor-light
 	{
-		display: inline;
+		display: block;
+	}
+
+	#elevator_controller
+	{
+		height: 100vh;
 	}
 }
 

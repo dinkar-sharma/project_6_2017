@@ -33,7 +33,7 @@
 	}
 	else
 	{
-		echo"<p>Please enter a username and password</p>";
+		echo"<p>Invalid username or password</p>";
 	}
 	
 ?>

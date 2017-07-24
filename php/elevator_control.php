@@ -55,7 +55,7 @@
                             <a><span id="welcome" class="glyphicon glyphicon-user"></span></a>
                         </li>
                         <li>
-                            <a> <span class="glyphicon glyphicon-log-out"></span> Log out</a>
+                            <a href="logout.php"> <span class="glyphicon glyphicon-log-out"></span> Log out</a>
                         </li>
                     </ul>
                 </div>
@@ -78,13 +78,13 @@
                     </div>
                 </div>
             </div>
-<!--             <div class="floor-req-light">
+            <div class="floor-req-light">
                 <span id="floor-3-light" class="floor-light"></span>
                 <span id="floor-2-light" class="floor-light"></span>
                 <span id="floor-1-light" class="floor-light"></span>
-                <span id="floor-1-light" class="floor-light"></span>
-                <span id="floor-1-light" class="floor-light"></span>
-            </div>   -->
+                <span id="door-open-light" class="floor-light"></span>
+                <span id="door-close-light" class="floor-light"></span>
+            </div>  
         </div>
         <div id="car-controller" class="col-sm-6 bg-grey-light text-center">
             <h2>Floor Controller</h2>
@@ -114,35 +114,18 @@
                         <th>Floor Request</th>
                         <th>Controller Type</th>
                         <th>Door State</th>
-                        <th>Requested Floor</th>
+                        <th>Current Floor</th>
                         <th>Date</th>
                         <th>Time</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-
-                        function CAN_network_display($dbConn)
-                        {
-                            $query = 'SELECT * FROM 
-                                    (SELECT * FROM elevator_network ORDER BY nodeID DESC LIMIT 10)
-                                    sub ORDER BY nodeID ASC';
-                            $rows = $dbConn->query($query);
-                            foreach ($rows as $row) 
-                            {
-                                echo "<tr>";
-                                for ($i=0; $i < sizeof($row)/2 ; $i++) 
-                                { 
-                                    echo "<td>".$row[$i]."</td>";
-                                }
-                                echo "</tr>";
-                            }  
-                        }
                         function elevator_network_display($dbConn)
                         {
                             $query = 'SELECT * FROM 
-                                    (SELECT * FROM elevator_network ORDER BY nodeID DESC LIMIT 10)
-                                    sub ORDER BY nodeID ASC';
+                                    (SELECT * FROM elevator_network ORDER BY timeID DESC LIMIT 10)
+                                    sub ORDER BY timeID ASC';
                             $rows = $dbConn->query($query);
                             foreach ($rows as $row) 
                             {
@@ -158,8 +141,7 @@
                         function elevator_network_write($dbConn, $requestFloor, $doorState, $controllerType)
                         {
 
-                            $query = 'INSERT INTO elevator_network(requestedFloor, controllerType,  doorState, currentFloor, dateID, timeID)
-                                    VALUES (:requestFloor, :controllerType, :doorState, :currentFloor, :dateID, :timeID)';
+                            $query = 'INSERT INTO elevator_network(nodeID, requestedFloor, controllerType, doorState, currentFloor, dateID, timeID) VALUES (100, :requestedFloor, :controllerType, :doorState, :currentFloor, :dateID, :timeID)';
 
                             $statement = $dbConn->prepare($query);
                             $curr_date_query = $dbConn->query('SELECT CURRENT_DATE()');
@@ -169,12 +151,12 @@
                             $currentFloor = $_POST['currentFloor'] ?? '';
 
                             $params = [
-                            'requestFloor' => $requestFloor,
-                            'controllerType' => $controllerType,
-                            'doorState' => $doorState,
-                            'currentFloor' => $currentFloor,
-                            'dateID' => $curr_date['CURRENT_DATE()'],
-                            'timeID' => $curr_time['CURRENT_TIME()']
+                                'requestedFloor' => $requestFloor,
+                                'controllerType' => $controllerType,
+                                'doorState' => $doorState,
+                                'currentFloor' => $currentFloor,
+                                'dateID' => $curr_date['CURRENT_DATE()'],
+                                'timeID' => $curr_time['CURRENT_TIME()']
                             ];
 
                             $result = $statement->execute($params);
@@ -184,6 +166,9 @@
                                 echo "Error executing statement";
                             }
                         }
+                        $doorState = "";
+                        $requestFloor = "";
+                        $controllerType = '';
 
                         if (isset($_POST["floor-1-req"])) 
                         {
@@ -216,12 +201,8 @@
                             $requestFloor = 3;
                             $controllerType = "EC";
                         }
-                        else
-                        {
-                            $requestFloor = 'none';
-                        }
 
-                        if (isset($_POST["door-open"])) 
+                        else if (isset($_POST["door-open"])) 
                         {
                             $doorState = "open";
                         }
@@ -232,6 +213,8 @@
                         else
                         {
                             $doorState = "na";
+                            $requestFloor = "none";
+                            $controllerType = 'na';
                         }
 
                         try 
@@ -246,20 +229,65 @@
                             echo "Error connecting to database: " .$e->getMessage();
                         }
 
-                        if ($requestFloor != 'none') 
+                        if($requestFloor != 'none')
                         {
-                            elevator_network_write($db, $requestFloor, $doorState, $controllerType);
+                           elevator_network_write($db, $requestFloor, $doorState, $controllerType);
                         }
-                            elevator_network_display($db);
+                        elevator_network_display($db);
                     ?>
                </tbody>
             </table>
-            </div>
-            <ul class="pagination">
+            <div class="table-responsive">
+            <h2>Members</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        function authorized_users_display($dbConn)
+                        {
+                            $query = 'SELECT * FROM 
+                                    (SELECT * FROM authorized_users ORDER BY userID DESC LIMIT 10)
+                                    sub ORDER BY userID ASC';
+                            $rows = $dbConn->query($query);
+                            foreach ($rows as $row) 
+                            {
+                                echo "<tr>";
+                                for ($i=0; $i < sizeof($row)/2 ; $i++) 
+                                { 
+                                    echo "<td>".$row[$i]."</td>";
+                                }
+                                echo "</tr>";
+                            }  
+                        }
+                        try 
+                        {
+                            $db = new PDO(
+                            'mysql:host=127.0.0.1;dbname=elevator_project_2017',
+                            'root',
+                            '');
+                        } 
+                        catch (Exception $e) 
+                        {
+                            echo "Error connecting to database: " .$e->getMessage();
+                        }
+
+                        authorized_users_display($db);
+
+                     ?>
+                </tbody>
+            </table>
+
+<!--             <ul class="pagination">
                 <li><a href="">1</a></li>
                 <li><a href="">2</a></li>
                 <li><a href="">3</a></li>
-            </ul>
+            </ul> -->
         </div>
     </section>
     <footer id="foot" class="col-sm-12 text-center"><script src="../js/common.js"></script></footer>
