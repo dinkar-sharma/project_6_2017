@@ -1,3 +1,11 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['username']))
+    {
+        header("Location: ../index.html"); 
+        die();
+    }
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,9 +66,9 @@
         <div id="elevator-controller" class="col-sm-6 bg-grey-light text-center">
             <h2>Elevator Controller</h2>
             <div id="controller-btn" class="btn-group-vertical">
-                <button name="floor-3-req" class="btn btn-primary btn-lg" type="submit">3</button>
-                <button name="floor-2-req" class="btn btn-primary btn-lg" type="submit">2</button>
-                <button name="floor-1-req" class="btn btn-primary btn-lg" type="submit">1</button>
+                <button name="car-3-req" class="btn btn-primary btn-lg" type="submit">3</button>
+                <button name="car-2-req" class="btn btn-primary btn-lg" type="submit">2</button>
+                <button name="car-1-req" class="btn btn-primary btn-lg" type="submit">1</button>
                 <div id="door-state-btn" class="btn-group btn-group-justified">
                     <div class="btn-group">
                         <button name="door-open" type="submit" class="btn btn-primary">Open</button>
@@ -78,14 +86,12 @@
                 <span id="floor-1-light" class="floor-light"></span>
             </div>   -->
         </div>
-        <script src="../js/elevator_control.js"></script>
-    
         <div id="car-controller" class="col-sm-6 bg-grey-light text-center">
             <h2>Floor Controller</h2>
             <div id="controller-btn" class="btn-group-vertical">
-                <button id="floor-3-req" class="btn btn-primary btn-lg" type="button">3</button>
-                <button id="floor-2-req" class="btn btn-primary btn-lg" type="button">2</button>
-                <button id="floor-1-req" class="btn btn-primary btn-lg" type="button">1</button>
+                <button name="floor-3-req" class="btn btn-primary btn-lg" type="submit">3</button>
+                <button name="floor-2-req" class="btn btn-primary btn-lg" type="submit">2</button>
+                <button name="floor-1-req" class="btn btn-primary btn-lg" type="submit">1</button>
             </div>
 <!--             <div class="floor-req-light">
                 <span id="floor-3-light" class="floor-light"></span>
@@ -95,37 +101,49 @@
                 <span id="floor-1-light" class="floor-light"></span>
             </div> -->
         </div>
+        <script src="../js/elevator_control.js"></script>
     </form>
     <section class="bg-grey-dark">
         <div id="debug-content" class="col-sm-12 bg-grey-dark text-center">
             <h2>Debug-Panel</h2>
-            <?php
-            // session_start();
-            // if(!isset($_SESSION['username']))
-            // {
-            //     echo "HELLOOOOO";
-            //     header("Location: ../index.html"); 
-            //     die();
-            // }
-            function elevator_network_display($dbConn)
-            {
-                $query = 'SELECT * FROM 
-                        (SELECT * FROM elevator_network ORDER BY nodeID DESC LIMIT 10)
-                        sub ORDER BY nodeID ASC';
-                $rows = $dbConn->query($query);
-                echo "<div class=table-responsive>";
-                    echo "<table class=table>";
-                        echo "<thead>";
-                            echo "<tr>";
-                                echo "<th>Node ID</th>";
-                                echo "<th>Floor Request</th>";
-                                echo "<th>Door State</th>";
-                                echo "<th>Requested Floor</th>";
-                                echo "<th>Date</th>";
-                                echo "<th>Time</th>";
-                            echo "</tr>";
-                        echo "</thead>";
-                        echo "<tbody>";
+            <div class=table-responsive>
+                <table class=table>
+                <thead>
+                    <tr>
+                        <th>Node ID</th>
+                        <th>Floor Request</th>
+                        <th>Controller Type</th>
+                        <th>Door State</th>
+                        <th>Requested Floor</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                        function CAN_network_display($dbConn)
+                        {
+                            $query = 'SELECT * FROM 
+                                    (SELECT * FROM elevator_network ORDER BY nodeID DESC LIMIT 10)
+                                    sub ORDER BY nodeID ASC';
+                            $rows = $dbConn->query($query);
+                            foreach ($rows as $row) 
+                            {
+                                echo "<tr>";
+                                for ($i=0; $i < sizeof($row)/2 ; $i++) 
+                                { 
+                                    echo "<td>".$row[$i]."</td>";
+                                }
+                                echo "</tr>";
+                            }  
+                        }
+                        function elevator_network_display($dbConn)
+                        {
+                            $query = 'SELECT * FROM 
+                                    (SELECT * FROM elevator_network ORDER BY nodeID DESC LIMIT 10)
+                                    sub ORDER BY nodeID ASC';
+                            $rows = $dbConn->query($query);
                             foreach ($rows as $row) 
                             {
                                 echo "<tr>";
@@ -135,88 +153,113 @@
                                 }
                                 echo "</tr>";
                             }
-                        echo "</tbody>";
-                    echo "</table>";
-                echo "</div>";
-            }
+                        }
 
-            function elevator_network_write($dbConn, $requestFloor, $doorState)
-            {
+                        function elevator_network_write($dbConn, $requestFloor, $doorState, $controllerType)
+                        {
 
-                $query = 'INSERT INTO elevator_network(requestedFloor, doorState, currentFloor, dateID, timeID)
-                        VALUES (:requestFloor, :doorState, :currentFloor, :dateID, :timeID)';
+                            $query = 'INSERT INTO elevator_network(requestedFloor, controllerType,  doorState, currentFloor, dateID, timeID)
+                                    VALUES (:requestFloor, :controllerType, :doorState, :currentFloor, :dateID, :timeID)';
 
-                $statement = $dbConn->prepare($query);
-                $curr_date_query = $dbConn->query('SELECT CURRENT_DATE()');
-                $curr_date = $curr_date_query->fetch(PDO::FETCH_ASSOC);
-                $curr_time_query = $dbConn->query('SELECT CURRENT_TIME()');
-                $curr_time = $curr_time_query->fetch(PDO::FETCH_ASSOC);
-                $currentFloor = $_POST['currentFloor'] ?? '';
+                            $statement = $dbConn->prepare($query);
+                            $curr_date_query = $dbConn->query('SELECT CURRENT_DATE()');
+                            $curr_date = $curr_date_query->fetch(PDO::FETCH_ASSOC);
+                            $curr_time_query = $dbConn->query('SELECT CURRENT_TIME()');
+                            $curr_time = $curr_time_query->fetch(PDO::FETCH_ASSOC);
+                            $currentFloor = $_POST['currentFloor'] ?? '';
 
-                $params = [
-                'requestFloor' => $requestFloor,
-                'doorState' => $doorState,
-                'currentFloor' => $currentFloor,
-                'dateID' => $curr_date['CURRENT_DATE()'],
-                'timeID' => $curr_time['CURRENT_TIME()']
-                ];
+                            $params = [
+                            'requestFloor' => $requestFloor,
+                            'controllerType' => $controllerType,
+                            'doorState' => $doorState,
+                            'currentFloor' => $currentFloor,
+                            'dateID' => $curr_date['CURRENT_DATE()'],
+                            'timeID' => $curr_time['CURRENT_TIME()']
+                            ];
 
-                $result = $statement->execute($params);
+                            $result = $statement->execute($params);
 
-                if(!$result)
-                {
-                    echo "Error executing statement";
-                }
-            }
+                            if(!$result)
+                            {
+                                echo "Error executing statement";
+                            }
+                        }
 
-            if (isset($_POST["floor-1-req"])) 
-            {
-                $requestFloor = 1;
-            }
-            else if (isset($_POST["floor-2-req"])) 
-            {
-                $requestFloor = 2;
-            }
-            else if (isset($_POST["floor-3-req"])) 
-            {
-                $requestFloor = 3;
-            }
-            else
-            {
-                $requestFloor = false;
-            }
+                        if (isset($_POST["floor-1-req"])) 
+                        {
+                            $requestFloor = 1;
+                            $controllerType = "FC";
+                        }
+                        else if (isset($_POST["floor-2-req"])) 
+                        {
+                            $requestFloor = 2;
+                            $controllerType = "FC";
+                        }
+                        else if (isset($_POST["floor-3-req"])) 
+                        {
+                            $requestFloor = 3;
+                            $controllerType = "FC";
+                        }
 
-            if (isset($_POST["door-open"])) 
-            {
-                $doorState = "open";
-            }
-            else if (isset($_POST["door-close"])) 
-            {
-                $doorState = "close";
-            }
-            else
-            {
-                $doorState = "na";
-            }
+                        else if (isset($_POST["car-1-req"])) 
+                        {
+                            $requestFloor = 1;
+                            $controllerType = "EC";
+                        }
+                        else if (isset($_POST["car-2-req"])) 
+                        {
+                            $requestFloor = 2;
+                            $controllerType = "EC";
+                        }
+                        else if (isset($_POST["car-3-req"])) 
+                        {
+                            $requestFloor = 3;
+                            $controllerType = "EC";
+                        }
+                        else
+                        {
+                            $requestFloor = 'none';
+                        }
 
-            try 
-            {
-                $db = new PDO(
-                'mysql:host=127.0.0.1;dbname=elevator_project_2017',
-                'root',
-                '');
-            } 
-            catch (Exception $e) 
-            {
-                echo "Error connecting to database: " .$e->getMessage();
-            }
+                        if (isset($_POST["door-open"])) 
+                        {
+                            $doorState = "open";
+                        }
+                        else if (isset($_POST["door-close"])) 
+                        {
+                            $doorState = "close";
+                        }
+                        else
+                        {
+                            $doorState = "na";
+                        }
 
-            if (!$requestFloor) 
-            {
-                elevator_network_write($db, $requestFloor, $doorState);
-            }
-                elevator_network_display($db);
-            ?>
+                        try 
+                        {
+                            $db = new PDO(
+                            'mysql:host=127.0.0.1;dbname=elevator_project_2017',
+                            'root',
+                            '');
+                        } 
+                        catch (Exception $e) 
+                        {
+                            echo "Error connecting to database: " .$e->getMessage();
+                        }
+
+                        if ($requestFloor != 'none') 
+                        {
+                            elevator_network_write($db, $requestFloor, $doorState, $controllerType);
+                        }
+                            elevator_network_display($db);
+                    ?>
+               </tbody>
+            </table>
+            </div>
+            <ul class="pagination">
+                <li><a href="">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+            </ul>
         </div>
     </section>
     <footer id="foot" class="col-sm-12 text-center"><script src="../js/common.js"></script></footer>
