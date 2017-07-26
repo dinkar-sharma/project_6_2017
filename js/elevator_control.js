@@ -1,6 +1,7 @@
 
 function displayTime()
 {
+	var today = new Date();
 	var timeNow = today.getTime();
 	document.getElementById('displayTime').innerHTML = timeNow;
 }
