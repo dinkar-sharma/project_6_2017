@@ -1,3 +1,9 @@
+var	hourNow = today.getFullYear();
+
+function displayTime()
+{
+	var timeNow = today.getTime()
+}
 function displayElevatorNetwork()
 {
 	document.getElementById('members-table').style.display = 'none';
