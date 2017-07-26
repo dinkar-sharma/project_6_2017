@@ -7,7 +7,7 @@
     }
  ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Elevator Control</title>
     <meta charset="utf-8">
