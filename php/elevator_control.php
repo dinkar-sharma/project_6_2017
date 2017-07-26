@@ -50,6 +50,7 @@
                                 <li><a href="../logbook/mike-logbook.html">Mike</a></li>
                             </ul>
                         </li>
+                        <li><a href="elevator_control.php">Elevator Control</a></li>
 						<li><a id="displayTime"></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -126,9 +127,7 @@
                     <?php
                         function elevator_network_display($dbConn)
                         {
-                            $query = 'SELECT * FROM 
-                                    (SELECT * FROM elevator_network ORDER BY timeID DESC LIMIT 10)
-                                    sub ORDER BY timeID ASC';
+                            $query = 'SELECT * FROM (SELECT * FROM elevator_network ORDER BY timeID DESC LIMIT 10) sub ORDER BY timeID ASC';
                             $rows = $dbConn->query($query);
                             foreach ($rows as $row) 
                             {
