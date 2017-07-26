@@ -1,9 +1,10 @@
-var	hourNow = today.getFullYear();
 
 function displayTime()
 {
-	var timeNow = today.getTime()
+	var timeNow = today.getTime();
+	document.getElementById('displayTime').innerHTML = timeNow;
 }
+
 function displayElevatorNetwork()
 {
 	document.getElementById('members-table').style.display = 'none';
@@ -18,3 +19,5 @@ function displayMembers()
 
 $('#elevator-network').click(function(){displayElevatorNetwork(); return false;});
 $('#members').click(function(){displayMembers(); return false;});
+
+displayTime();

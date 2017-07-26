@@ -50,6 +50,7 @@
                                 <li><a href="../logbook/mike-logbook.html">Mike</a></li>
                             </ul>
                         </li>
+						<li><a id="displayTime"></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
