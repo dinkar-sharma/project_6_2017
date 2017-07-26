@@ -1,10 +1,24 @@
-
-function displayTime()
-{
-	var today = new Date();
-	var timeNow = today.getTime();
-	document.getElementById('displayTime').innerHTML = timeNow;
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
 }
+
+function displayTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  // add a zero in front of numbers<10
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('displaytime').innerHTML = h + ":" + m + ":" + s;
+  t = setTimeout(function() {
+    displayTime()
+  }, 500);
+}
+
 
 function displayElevatorNetwork()
 {
