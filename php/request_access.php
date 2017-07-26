@@ -15,7 +15,6 @@
 		echo "Error connecting to database: " .$e->getMessage();
 	}
 
-	// $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 	$query = 'INSERT INTO authorized_users (username, password)
 			  VALUES (:username, :password) ';
 	$statement = $db->prepare($query);

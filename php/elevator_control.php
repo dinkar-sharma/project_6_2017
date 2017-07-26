@@ -22,6 +22,7 @@
     </script><!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
     </script>
+    <script src="../js/elevator_control.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
     <link rel="stylesheet" type="text/css" href="../css/elevator_control.css">
 </head>
@@ -52,7 +53,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a><span id="welcome" class="glyphicon glyphicon-user"></span></a>
+                            <a><span id="welcome" class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username']; ?></a>
                         </li>
                         <li>
                             <a href="logout.php"> <span class="glyphicon glyphicon-log-out"></span> Log out</a>
@@ -105,10 +106,11 @@
     </form>
     <section class="bg-grey-dark">
         <div id="debug-content" class="col-sm-12 bg-grey-dark text-center">
-            <h2>Debug-Panel</h2>
+          <!--   <h2>Debug-Panel</h2> -->
             <div class=table-responsive>
-                <table class=table>
+                <table id="elevator-network-table" class=table>
                 <thead>
+                <h2>Debug-Panel</h2>
                     <tr>
                         <th>Node ID</th>
                         <th>Floor Request</th>
@@ -238,57 +240,55 @@
                </tbody>
             </table>
             <div class="table-responsive">
-            <h2>Members</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        function authorized_users_display($dbConn)
-                        {
-                            $query = 'SELECT * FROM 
-                                    (SELECT * FROM authorized_users ORDER BY userID DESC LIMIT 10)
-                                    sub ORDER BY userID ASC';
-                            $rows = $dbConn->query($query);
-                            foreach ($rows as $row) 
+                <table id="members-table" class="table">
+                    <thead>
+                        <!-- <h2>Members</h2> -->
+                        <tr>
+                            <th>User ID</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            function authorized_users_display($dbConn)
                             {
-                                echo "<tr>";
-                                for ($i=0; $i < sizeof($row)/2 ; $i++) 
-                                { 
-                                    echo "<td>".$row[$i]."</td>";
-                                }
-                                echo "</tr>";
-                            }  
-                        }
-                        try 
-                        {
-                            $db = new PDO(
-                            'mysql:host=127.0.0.1;dbname=elevator_project_2017',
-                            'root',
-                            '');
-                        } 
-                        catch (Exception $e) 
-                        {
-                            echo "Error connecting to database: " .$e->getMessage();
-                        }
+                                $query = 'SELECT * FROM 
+                                        (SELECT * FROM authorized_users ORDER BY userID DESC LIMIT 10)
+                                        sub ORDER BY userID ASC';
+                                $rows = $dbConn->query($query);
+                                foreach ($rows as $row) 
+                                {
+                                    echo "<tr>";
+                                    for ($i=0; $i < sizeof($row)/2 ; $i++) 
+                                    { 
+                                        echo "<td>".$row[$i]."</td>";
+                                    }
+                                    echo "</tr>";
+                                }  
+                            }
+                            try 
+                            {
+                                $db = new PDO(
+                                'mysql:host=127.0.0.1;dbname=elevator_project_2017',
+                                'root',
+                                '');
+                            } 
+                            catch (Exception $e) 
+                            {
+                                echo "Error connecting to database: " .$e->getMessage();
+                            }
 
-                        authorized_users_display($db);
-
-                     ?>
-                </tbody>
-            </table>
-
-<!--             <ul class="pagination">
-                <li><a href="">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-            </ul> -->
+                            authorized_users_display($db);
+                         ?>
+                    </tbody>
+                </table>
         </div>
+        <ul class="pagination">
+            <li><a id="elevator-network" href="#" onclick="displayElevatorNetwork(); return false;">1</a></li>
+            <li><a id="members" href="#" onclick="displayMembers(); return false;">2</a></li>
+            <li><a href="#">3</a></li>
+        </ul>
     </section>
     <footer id="foot" class="col-sm-12 text-center"><script src="../js/common.js"></script></footer>
 </body>

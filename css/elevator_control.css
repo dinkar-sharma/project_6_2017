@@ -1,11 +1,17 @@
 h2
 {
 	margin-top: 0px;
+	margin-bottom: 30px;
 }
 
 fieldset
 {
 	border-radius: 20px;
+}
+
+th
+{
+	text-align: center;
 }
 
 #car-controller
@@ -59,6 +65,11 @@ fieldset
     border: 5px solid gray;
     -webkit-animation: mymove 5s infinite; /* Chrome, Safari, Opera */
     animation: mymove 5s infinite;
+}
+
+#members-table
+{
+	display: none;
 }
 
 @media only screen and (max-width: 767px)
