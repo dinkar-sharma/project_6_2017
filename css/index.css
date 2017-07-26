@@ -37,6 +37,11 @@ video
   letter-spacing: 0.4rem;
 }
 
+.img-rounded
+{
+  padding-bottom: 40px;
+}
+
 #googleMap
 {
   height: 500px;
