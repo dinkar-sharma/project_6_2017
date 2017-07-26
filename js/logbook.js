@@ -5,9 +5,7 @@ var dinkarBirthdate = new Date("Aug 4, 1996 12:00:00");
 var anasBirthdate = new Date("Feb 21, 1994 12:00:00");
 var mikeBirthdate = new Date("July 7, 1989 12:00:00");
 
-var dEle = document.getElementById('dinkar');
-var aEle = document.getElementById('anas');
-var mEle = document.getElementById("mike");
+var nameEle = document.getElementById('name');
 
 
 function bDayFunc(bDay){
@@ -16,21 +14,24 @@ function bDayFunc(bDay){
 
 	age = Math.floor(age/31556900000);
 
-	msg = "<p>My age is " + age + " </p>";
+	msg = "<p>I am " + age + " years old! </p>";
 	
 	return msg; 
 }
 
-//if ( dEle.innerHTML == 'dinkar'){
+
+if ( nameEle.innerHTML == 'dinkar'){
 	bDayFunc(dinkarBirthdate);
-	dEle.innerHTML = msg;
-//} else if ( aEle.innerHTML == 'anas') {
+	nameEle.innerHTML = msg;
+} else if ( nameEle.innerHTML == 'anas') {
 	bDayFunc(anasBirthdate);
-	aEle.innerHTML = msg;
-//} else if( mEle.innerHTML == 'mike'){
+	nameEle.innerHTML = msg;
+} else if( nameEle.innerHTML == 'mike'){
 	bDayFunc(mikeBirthdate);
-	mEle.innerHTML = msg;
-//}
+	nameEle.innerHTML = msg;
+} else {
+	nameEle.innerHTML = 'fail';
+}
 
 $(document).ready(function(){
   $("#week1").on("hide.bs.collapse", function(){
