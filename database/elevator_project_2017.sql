@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.7.19, for Linux (x86_64)
+-- MySQL dump 10.15  Distrib 10.0.29-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: 127.0.0.1    Database: elevator_project_2017
+-- Host: 127.0.0.1    Database: 127.0.0.1
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.25-MariaDB
+-- Server version	10.1.21-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -49,14 +49,16 @@ DROP TABLE IF EXISTS `elevator_network`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `elevator_network` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nodeID` int(10) unsigned NOT NULL,
   `requestedFloor` tinyint(3) unsigned NOT NULL,
   `controllerType` text NOT NULL,
   `doorState` text NOT NULL,
   `currentFloor` tinyint(4) NOT NULL,
   `dateID` date NOT NULL,
-  `timeID` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `timeID` time NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +67,7 @@ CREATE TABLE `elevator_network` (
 
 LOCK TABLES `elevator_network` WRITE;
 /*!40000 ALTER TABLE `elevator_network` DISABLE KEYS */;
-INSERT INTO `elevator_network` VALUES (100,3,'EC','',0,'2017-07-29','21:32:16'),(100,2,'EC','',0,'2017-07-29','21:32:16'),(100,1,'EC','',0,'2017-07-29','21:32:17'),(100,0,'EC','open',0,'2017-07-29','21:32:17'),(100,0,'EC','close',0,'2017-07-29','21:32:18'),(100,3,'FC','',0,'2017-07-29','21:32:19'),(100,2,'FC','',0,'2017-07-29','21:32:19'),(100,1,'FC','',0,'2017-07-29','21:32:20'),(100,1,'FC','',0,'2017-07-29','21:33:10'),(100,2,'FC','',0,'2017-07-29','21:33:11');
+INSERT INTO `elevator_network` VALUES (1,100,3,'EC','',0,'2017-07-29','21:32:16'),(2,100,2,'EC','',0,'2017-07-29','21:32:16'),(3,100,1,'EC','',0,'2017-07-29','21:32:17'),(4,100,0,'EC','open',0,'2017-07-29','21:32:17'),(5,100,0,'EC','close',0,'2017-07-29','21:32:18'),(6,100,3,'FC','',0,'2017-07-29','21:32:19'),(7,100,2,'FC','',0,'2017-07-29','21:32:19'),(8,100,1,'FC','',0,'2017-07-29','21:32:20'),(9,100,1,'FC','',0,'2017-07-29','21:33:10'),(10,100,2,'FC','',0,'2017-07-29','21:33:11');
 /*!40000 ALTER TABLE `elevator_network` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -78,4 +80,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-29 21:34:45
+-- Dump completed on 2017-07-29 21:54:26
