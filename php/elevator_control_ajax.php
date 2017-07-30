@@ -1,7 +1,7 @@
 <?php 
 	function elevator_network_display($dbConn)
 	{
-	    $query = 'SELECT * FROM (SELECT * FROM elevator_network ORDER BY ID DESC LIMIT 10) sub ORDER BY ID ASC';
+	    $query = 'SELECT (nodeID, requestedFloor, controllerType, doorState, currentFloor, dateID, timeID) FROM (SELECT * FROM elevator_network ORDER BY ID DESC LIMIT 10) sub ORDER BY ID ASC';
 	    $rows = $dbConn->query($query);
 	    foreach ($rows as $row) 
 	    {
