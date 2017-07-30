@@ -22,7 +22,6 @@
     </script><!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
     </script>
-    <script src="../js/elevator_control.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
     <link rel="stylesheet" type="text/css" href="../css/elevator_control.css">
 </head>
@@ -50,8 +49,7 @@
                                 <li><a href="../logbook/mike-logbook.html">Mike</a></li>
                             </ul>
                         </li>
-                        <li><a id="elevator-control" href="elevator_control.php">Elevator Control</a></li>
-						<li><a id="displayTime"></a></li>
+                        <li><a id="displayTime"></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
@@ -65,231 +63,93 @@
             </div>
         </nav>
     </header>
-    <form method="post" action="elevator_control.php">
-        <div id="elevator-controller" class="col-sm-6 bg-grey-light text-center">
-            <h2>Elevator Controller</h2>
-            <div id="controller-btn" class="btn-group-vertical">
-                <button name="car-3-req" class="btn btn-primary btn-lg" type="submit">3</button>
-                <button name="car-2-req" class="btn btn-primary btn-lg" type="submit">2</button>
-                <button name="car-1-req" class="btn btn-primary btn-lg" type="submit">1</button>
-                <div id="door-state-btn" class="btn-group btn-group-justified">
-                    <div class="btn-group">
-                        <button name="door-open" type="submit" class="btn btn-primary">Open</button>
-                    </div>
-                    <div class="btn-group">
-                        <button name="door-close" type="submit" class="btn btn-primary">Close</button>
-                    </div>
+    <div id="elevator-controller" class="col-sm-6 bg-grey-light text-center">
+        <h2>Elevator Controller</h2>
+        <div id="controller-btn" class="btn-group-vertical">
+            <button class="btn btn-primary btn-lg" type="button" onclick="send_elevator_request('car-3-req')">3</button>
+            <button class="btn btn-primary btn-lg" type="button" onclick="send_elevator_request('car-2-req')">2</button>
+            <button class="btn btn-primary btn-lg" type="button" onclick="send_elevator_request('car-1-req')">1</button>
+            <div id="door-state-btn" class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button value="door-open" class="btn btn-primary" type="button" onclick="send_elevator_request('open')">Open</button>
+                </div>
+                <div class="btn-group">
+                    <button value="door-close" class="btn btn-primary" type="button" onclick="send_elevator_request('close')">Close</button>
                 </div>
             </div>
-<!--             <div class="floor-req-light">
-                <span id="floor-3-light" class="floor-light"></span>
-                <span id="floor-2-light" class="floor-light"></span>
-                <span id="floor-1-light" class="floor-light"></span>
-                <span id="door-open-light" class="floor-light"></span>
-                <span id="door-close-light" class="floor-light"></span>
-            </div>   -->
         </div>
-        <div id="car-controller" class="col-sm-6 bg-grey-light text-center">
-            <h2>Floor Controller</h2>
-            <div id="controller-btn" class="btn-group-vertical">
-                <button name="floor-3-req" class="btn btn-primary btn-lg" type="submit">3</button>
-                <button name="floor-2-req" class="btn btn-primary btn-lg" type="submit">2</button>
-                <button name="floor-1-req" class="btn btn-primary btn-lg" type="submit">1</button>
-            </div>
 <!--             <div class="floor-req-light">
-                <span id="floor-3-light" class="floor-light"></span>
-                <span id="floor-2-light" class="floor-light"></span>
-                <span id="floor-1-light" class="floor-light"></span>
-                <span id="floor-1-light" class="floor-light"></span>
-                <span id="floor-1-light" class="floor-light"></span>
-            </div> -->
+            <span id="floor-3-light" class="floor-light"></span>
+            <span id="floor-2-light" class="floor-light"></span>
+            <span id="floor-1-light" class="floor-light"></span>
+            <span id="door-open-light" class="floor-light"></span>
+            <span id="door-close-light" class="floor-light"></span>
+        </div>   -->
+    </div>
+    <div id="car-controller" class="col-sm-6 bg-grey-light text-center">
+        <h2>Floor Controller</h2>
+        <div id="controller-btn" class="btn-group-vertical">
+            <button name="floor-3-req" class="btn btn-primary btn-lg" onclick="send_elevator_request('floor-3-req')">3</button>
+            <button name="floor-2-req" class="btn btn-primary btn-lg" onclick="send_elevator_request('floor-2-req')">2</button>
+            <button name="floor-1-req" class="btn btn-primary btn-lg" onclick="send_elevator_request('floor-1-req')">1</button>
         </div>
-        <script src="../js/elevator_control.js"></script>
-    </form>
+<!--             <div class="floor-req-light">
+            <span id="floor-3-light" class="floor-light"></span>
+            <span id="floor-2-light" class="floor-light"></span>
+            <span id="floor-1-light" class="floor-light"></span>
+            <span id="floor-1-light" class="floor-light"></span>
+            <span id="floor-1-light" class="floor-light"></span>
+        </div> -->
+    </div>
     <section class="bg-grey-dark">
-        <div id="debug-content" class="col-sm-12 bg-grey-dark text-center">
-          <!--   <h2>Debug-Panel</h2> -->
-            <div class=table-responsive>
-                <table id="elevator-network-table" class=table>
-                <thead>
-                <h2>Debug-Panel</h2>
-                    <tr>
-                        <th>Node ID</th>
-                        <th>Floor Request</th>
-                        <th>Controller Type</th>
-                        <th>Door State</th>
-                        <th>Current Floor</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        function elevator_network_display($dbConn)
-                        {
-                            $query = 'SELECT * FROM (SELECT * FROM elevator_network ORDER BY timeID DESC LIMIT 10) sub ORDER BY timeID ASC';
-                            $rows = $dbConn->query($query);
-                            foreach ($rows as $row) 
-                            {
-                                echo "<tr>";
-                                for ($i=0; $i < sizeof($row)/2 ; $i++) 
-                                { 
-                                    echo "<td>".$row[$i]."</td>";
-                                }
-                                echo "</tr>";
-                            }
-                        }
-
-                        function elevator_network_write($dbConn, $requestFloor, $doorState, $controllerType)
-                        {
-
-                            $query = 'INSERT INTO elevator_network(nodeID, requestedFloor, controllerType, doorState, currentFloor, dateID, timeID) VALUES (100, :requestedFloor, :controllerType, :doorState, :currentFloor, :dateID, :timeID)';
-
-                            $statement = $dbConn->prepare($query);
-                            $curr_date_query = $dbConn->query('SELECT CURRENT_DATE()');
-                            $curr_date = $curr_date_query->fetch(PDO::FETCH_ASSOC);
-                            $curr_time_query = $dbConn->query('SELECT CURRENT_TIME()');
-                            $curr_time = $curr_time_query->fetch(PDO::FETCH_ASSOC);
-                            $currentFloor = $_POST['currentFloor'] ?? '';
-
-                            $params = [
-                                'requestedFloor' => $requestFloor,
-                                'controllerType' => $controllerType,
-                                'doorState' => $doorState,
-                                'currentFloor' => $currentFloor,
-                                'dateID' => $curr_date['CURRENT_DATE()'],
-                                'timeID' => $curr_time['CURRENT_TIME()']
-                            ];
-
-                            $result = $statement->execute($params);
-
-                            if(!$result)
-                            {
-                                echo "Error executing statement";
-                            }
-                        }
-                        $doorState = "";
-                        $requestFloor = "";
-                        $controllerType = '';
-
-                        if (isset($_POST["floor-1-req"])) 
-                        {
-                            $requestFloor = 1;
-                            $controllerType = "FC";
-                        }
-                        else if (isset($_POST["floor-2-req"])) 
-                        {
-                            $requestFloor = 2;
-                            $controllerType = "FC";
-                        }
-                        else if (isset($_POST["floor-3-req"])) 
-                        {
-                            $requestFloor = 3;
-                            $controllerType = "FC";
-                        }
-
-                        else if (isset($_POST["car-1-req"])) 
-                        {
-                            $requestFloor = 1;
-                            $controllerType = "EC";
-                        }
-                        else if (isset($_POST["car-2-req"])) 
-                        {
-                            $requestFloor = 2;
-                            $controllerType = "EC";
-                        }
-                        else if (isset($_POST["car-3-req"])) 
-                        {
-                            $requestFloor = 3;
-                            $controllerType = "EC";
-                        }
-
-                        else if (isset($_POST["door-open"])) 
-                        {
-                            $doorState = "open";
-                        }
-                        else if (isset($_POST["door-close"])) 
-                        {
-                            $doorState = "close";
-                        }
-                        else
-                        {
-                            $doorState = "na";
-                            $requestFloor = "none";
-                            $controllerType = 'na';
-                        }
-
-                        try 
-                        {
-                            $db = new PDO(
-                            'mysql:host=127.0.0.1;dbname=elevator_project_2017',
-                            'root',
-                            '');
-                        } 
-                        catch (Exception $e) 
-                        {
-                            echo "Error connecting to database: " .$e->getMessage();
-                        }
-
-                        if($requestFloor != 'none')
-                        {
-                           elevator_network_write($db, $requestFloor, $doorState, $controllerType);
-                        }
-                        elevator_network_display($db);
-                    ?>
-               </tbody>
-            </table>
+        <div class="col-sm-12 bg-grey-dark text-center" id="debug-content">
+            <!--   <h2>Debug-Panel</h2> -->
             <div class="table-responsive">
-                <table id="members-table" class="table">
+                <h2>Debug-Panel</h2>
+                <table id="elevator-network-table" class="table">
                     <thead>
-                        <!-- <h2>Members</h2> -->
                         <tr>
-                            <th>User ID</th>
-                            <th>Username</th>
-                            <th>Password</th>
+                            <th>Node ID</th>
+                            <th>Floor Request</th>
+                            <th>Controller Type</th>
+                            <th>Door State</th>
+                            <th>Current Floor</th>
+                            <th>Date</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php 
-                            function authorized_users_display($dbConn)
-                            {
-                                $query = 'SELECT * FROM 
-                                        (SELECT * FROM authorized_users ORDER BY userID DESC LIMIT 10)
-                                        sub ORDER BY userID ASC';
-                                $rows = $dbConn->query($query);
-                                foreach ($rows as $row) 
-                                {
-                                    echo "<tr>";
-                                    for ($i=0; $i < sizeof($row)/2 ; $i++) 
-                                    { 
-                                        echo "<td>".$row[$i]."</td>";
-                                    }
-                                    echo "</tr>";
-                                }  
-                            }
-                            try 
-                            {
-                                $db = new PDO(
-                                'mysql:host=127.0.0.1;dbname=elevator_project_2017',
-                                'root',
-                                '');
-                            } 
-                            catch (Exception $e) 
-                            {
-                                echo "Error connecting to database: " .$e->getMessage();
-                            }
-
-                            authorized_users_display($db);
-                         ?>
-                    </tbody>
+                    <tbody id="elevator-network-content"></tbody>
                 </table>
+                <div class="table-responsive">
+                    <table class="table" id="members-table">
+                        <thead>
+                            <!-- <h2>Members</h2> -->
+                            <tr>
+                                <th>User ID</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody id="member-content"></tbody>
+                    </table>
+                </div>
+                <ul class="pagination">
+                    <li>
+                        <a href="#" id="elevator-network" onclick="display_database(this.id)">1</a>
+                    </li>
+                    <li>
+                        <a href="#" id="authorized-users" onclick="display_database(this.id)">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <ul class="pagination">
-            <li><a id="elevator-network" href="#" onclick="displayElevatorNetwork(); return false;">1</a></li>
-            <li><a id="members" href="#" onclick="displayMembers(); return false;">2</a></li>
-            <li><a href="#">3</a></li>
-        </ul>
+       <script src="../js/elevator_control.js"></script>
     </section>
-    <footer id="foot" class="col-sm-12 text-center"><script src="../js/common.js"></script></footer>
+    <footer id="foot" class="col-sm-12 text-center">
+        <script src="../js/common.js"></script>
+    </footer>
 </body>
 </html>

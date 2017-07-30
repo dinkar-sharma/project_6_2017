@@ -26,7 +26,7 @@ function displayTime()
 function send_elevator_request(elevatorRequest)
 {
     $.ajax({
-        url: 'php/elevator_control_ajax.php',
+        url: 'elevator_control_ajax.php',
         type: 'POST',
         data: {request: elevatorRequest},
         success: function(data)
@@ -60,9 +60,10 @@ function display_database(databaseName)
             
         }
     };
-    xhttp.open("GET", "php/display_database.php?q="+databaseName, true);
+    xhttp.open("GET", "display_database.php?q="+databaseName, true);
     xhttp.send();
 }
+
 
 display_database('elevator-network');
 displayTime();
