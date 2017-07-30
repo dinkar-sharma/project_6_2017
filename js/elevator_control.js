@@ -51,7 +51,7 @@ function display_database(databaseName)
               document.getElementById('elevator-network-table').style.display = 'inline-table';
               document.getElementById('members-table').style.display = 'none';
             }
-            else
+            else if(databaseName == 'authorized-users')
             {
                 document.getElementById('member-content').innerHTML = this.responseText;
                 document.getElementById('members-table').style.display = 'inline-table';
@@ -64,26 +64,5 @@ function display_database(databaseName)
     xhttp.send();
 }
 
-function getCookie(cname) 
-{
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) 
-    {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') 
-        {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) 
-        {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-document.getElementById('welcome').innerHTML = getCookie('username');
 display_database('elevator-network');
 displayTime();
