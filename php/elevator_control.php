@@ -2,7 +2,7 @@
     session_start();
     if(!isset($_SESSION['username']))
     {
-        header("Location: ../index.html"); 
+        echo "<p>You are not authorized users. Click <a href=../request_access.html> here to sign up.</p>"; 
         die();
     }
  ?>
@@ -50,7 +50,7 @@
                                 <li><a href="../logbook/mike-logbook.html">Mike</a></li>
                             </ul>
                         </li>
-                        <li><a href="elevator_control.php">Elevator Control</a></li>
+                        <li><a id="elevator-control" href="elevator_control.php">Elevator Control</a></li>
 						<li><a id="displayTime"></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

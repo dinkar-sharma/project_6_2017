@@ -14,56 +14,10 @@
     </script><!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
     </script>
-    <script src="js/elevator_control.js"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <link rel="stylesheet" type="text/css" href="css/elevator_control.css">
     <script>
-        function send_elevator_request(elevatorRequest)
-        {
-            $.ajax({
-                url: 'php/test.php',
-                type: 'POST',
-                data: {request: elevatorRequest},
-                success: function(data){alert(data);}
-            });
-        }
-
-        function display_database(databaseName)
-        {
-            var xhttp;
-
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function()
-            {
-                if (this.readyState == 4 && this.status == 200) 
-                {
-                    if(databaseName == 'elevator-network')
-                    {
-                      document.getElementById('elevator-network-content').innerHTML = this.responseText;
-                      // document.getElementById('elevator-network-table').style.display = 'inline-table';
-                      // document.getElementById('elevator-network-content').style.display = 'none';  
-                    }
-                    else if(databaseName == 'members')
-                    {
-                        document.getElementById('members-content').innerHTML = this.responseText;
-                        // document.getElementById('members-table').style.display = 'inline-table';
-                        // document.getElementById('elevator-network-table').style.display = 'none';  
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                    
-                }
-            };
-
-            xhttp.open("GET", "php/display_database.php", true);
-            xhttp.send();
-        }
-           $(document).ready(function()
-           {
-            display_database('elevator-network');
-           });
+        //display_database('elevator-network');
     </script>
 </head>
 <body>
@@ -144,44 +98,51 @@
         </div> -->
     </div>
     <section class="bg-grey-dark">
-        <div id="debug-content" class="col-sm-12 bg-grey-dark text-center">
-          <!--   <h2>Debug-Panel</h2> -->
-            <div class=table-responsive>
-                <table id="elevator-network-table" class=table>
-                <thead>
-                <h2>Debug-Panel</h2>
-                    <tr>
-                        <th>Node ID</th>
-                        <th>Floor Request</th>
-                        <th>Controller Type</th>
-                        <th>Door State</th>
-                        <th>Current Floor</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody id="elevator-network-content">
-               </tbody>
-            </table>
+        <div class="col-sm-12 bg-grey-dark text-center" id="debug-content">
+            <!--   <h2>Debug-Panel</h2> -->
             <div class="table-responsive">
-                <table id="members-table" class="table">
+                <h2>Debug-Panel</h2>
+                <table id="elevator-network-table" class="table">
                     <thead>
-                        <!-- <h2>Members</h2> -->
                         <tr>
-                            <th>User ID</th>
-                            <th>Username</th>
-                            <th>Password</th>
+                            <th>Node ID</th>
+                            <th>Floor Request</th>
+                            <th>Controller Type</th>
+                            <th>Door State</th>
+                            <th>Current Floor</th>
+                            <th>Date</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
-                    <tbody id="member-content">
-                    </tbody>
+                    <tbody id="elevator-network-content"></tbody>
                 </table>
+                <div class="table-responsive">
+                    <table class="table" id="members-table">
+                        <thead>
+                            <!-- <h2>Members</h2> -->
+                            <tr>
+                                <th>User ID</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody id="member-content"></tbody>
+                    </table>
+                </div>
+                <ul class="pagination">
+                    <li>
+                        <a href="#" id="elevator-network" onclick="display_database(this.id)">1</a>
+                    </li>
+                    <li>
+                        <a href="#" id="authorized-users" onclick="display_database(this.id)">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <ul class="pagination">
-            <li><a id="elevator-network" href="#" onclick="display_database('elevator-network')">1</a></li>
-            <li><a id="members" href="#" onclick="display_database('members')">2</a></li>
-            <li><a href="#">3</a></li>
-        </ul>
+       <script src="js/elevator_control.js"></script>
     </section>
     <footer id="foot" class="col-sm-12 text-center"><!-- <script src="js/common.js"></script> --></footer>
 </body>

@@ -29,7 +29,7 @@
 	if ($authenticated == TRUE)
 	{
 		$_SESSION['username']=$usernameSubmit;
-		header("Location: elevator_control.php");
+		header("Location: ../elevator_control.html");
 	}
 	else
 	{

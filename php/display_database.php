@@ -1,5 +1,4 @@
 <?php 
-
 	function authorized_users_display($dbConn)
 	{
 	    $query = 'SELECT * FROM authorized_users ORDER BY userID LIMIT 10';
@@ -47,8 +46,18 @@
 		return $db;
 	}
 
+	$tableName = $_GET['q'];
 
 	$dbConn = connect_to_database();
-	elevator_network_display($dbConn);
-	authorized_users_display($dbConn);
+
+	switch ($tableName) 
+	{
+		case 'authorized-users':
+			authorized_users_display($dbConn);
+			break;
+		default:
+			elevator_network_display($dbConn);
+			break;
+	}
+
  ?>
