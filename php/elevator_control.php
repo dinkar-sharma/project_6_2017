@@ -63,7 +63,7 @@
             </div>
         </nav>
     </header>
-    <div id="elevator-controller" class="col-sm-6 bg-grey-light text-center">
+    <div id="elevator-controller" class="col-sm-4 bg-grey-light text-center">
         <h2>Elevator Controller</h2>
         <div id="controller-btn" class="btn-group-vertical">
             <button class="btn btn-primary btn-lg" type="button" onclick="send_elevator_request('car-3-req')">3</button>
@@ -86,7 +86,7 @@
             <span id="door-close-light" class="floor-light"></span>
         </div>   -->
     </div>
-    <div id="car-controller" class="col-sm-6 bg-grey-light text-center">
+    <div id="car-controller" class="col-sm-4 bg-grey-light text-center">
         <h2>Floor Controller</h2>
         <div id="controller-btn" class="btn-group-vertical">
             <button name="floor-3-req" class="btn btn-primary btn-lg" onclick="send_elevator_request('floor-3-req')">3</button>
@@ -100,6 +100,31 @@
             <span id="floor-1-light" class="floor-light"></span>
             <span id="floor-1-light" class="floor-light"></span>
         </div> -->
+    </div>
+    <div id="car-controller" class="col-sm-4 bg-grey-light text-center">
+        <h2>Modify Member</h2>
+        <form method="POST" action="members.php">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input class="form-control" name="username" placeholder="Enter Username"
+                type="text" required="">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input class="form-control" name="password" placeholder="Enter New Password"
+                type="password" required="">
+            </div>
+            <div class="input-group">
+                <button name="modify" value="true" class="btn btn-default login-btn" type="submit">
+                    <span class="glyphicon glyphicon-log-in"></span> Modify
+                </button>
+            </div>
+            <div class="input-group">
+                <button name="delete" value="true" class="btn btn-default login-btn" type="submit">
+                    <span class="glyphicon glyphicon-log-in"></span> Delete
+                </button>
+            </div>
+        </form>
     </div>
     <section class="bg-grey-dark">
         <div class="col-sm-12 bg-grey-dark text-center" id="debug-content">

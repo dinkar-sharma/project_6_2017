@@ -16,7 +16,7 @@
 
 	function elevator_network_display($dbConn)
 	{
-	    $query = 'SELECT * FROM (SELECT * FROM elevator_network ORDER BY timeID DESC LIMIT 10) sub ORDER BY timeID ASC';
+	    $query = 'SELECT nodeID, requestedFloor, controllerType, doorState, currentFloor, dateID, timeID FROM (SELECT * FROM elevator_network ORDER BY timeID DESC LIMIT 10) sub ORDER BY timeID ASC';
 	    $rows = $dbConn->query($query);
 	    foreach ($rows as $row) 
 	    {

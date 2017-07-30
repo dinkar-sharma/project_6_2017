@@ -1,7 +1,7 @@
 h2
 {
 	margin-top: 0px;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
 
 fieldset
@@ -88,7 +88,7 @@ th
 
 	#elevator-controller
 	{
-		height: 70vh;
+		/*height: 70vh;*/
 	}
 }
 
