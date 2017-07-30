@@ -28,7 +28,7 @@ CREATE TABLE `authorized_users` (
   `password` varchar(30) NOT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `authorized_users` (
 
 LOCK TABLES `authorized_users` WRITE;
 /*!40000 ALTER TABLE `authorized_users` DISABLE KEYS */;
-INSERT INTO `authorized_users` VALUES (1,'dinkar','sharma'),(3,'anas','yassin'),(4,'hello','2');
+INSERT INTO `authorized_users` VALUES (1,'dinkar','sharma'),(3,'anas','yassin'),(4,'hello','2'),(5,'mike','galle'),(7,'mikel','akl');
 /*!40000 ALTER TABLE `authorized_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +65,7 @@ CREATE TABLE `elevator_network` (
 
 LOCK TABLES `elevator_network` WRITE;
 /*!40000 ALTER TABLE `elevator_network` DISABLE KEYS */;
-INSERT INTO `elevator_network` VALUES (100,0,'none','open',0,'2017-07-24','16:13:00'),(100,0,'none','open',0,'2017-07-24','16:13:04'),(100,0,'none','open',0,'2017-07-24','16:13:05'),(100,0,'none','open',0,'2017-07-24','16:13:06'),(100,0,'none','open',0,'2017-07-24','16:13:08'),(100,0,'none','open',0,'2017-07-24','16:13:11'),(100,0,'none','open',0,'2017-07-24','16:13:13'),(100,0,'none','open',0,'2017-07-24','16:13:33'),(100,1,'EC','open',0,'2017-07-24','16:13:35'),(100,3,'FC','open',0,'2017-07-24','16:13:40'),(100,1,'FC','open',0,'2017-07-24','16:13:43'),(100,2,'EC','open',0,'2017-07-24','16:13:49'),(100,0,'','open',0,'2017-07-24','16:15:43'),(100,0,'','open',0,'2017-07-24','16:15:48'),(100,0,'','open',0,'2017-07-24','16:15:52'),(100,3,'EC','open',0,'2017-07-24','16:16:16'),(100,0,'','close',0,'2017-07-24','16:16:20'),(100,0,'','open',0,'2017-07-24','16:16:26'),(100,3,'EC','open',0,'2017-07-24','16:16:28'),(100,3,'EC','na',0,'2017-07-24','16:18:17'),(100,2,'FC','na',0,'2017-07-24','16:18:20'),(100,2,'FC','na',0,'2017-07-24','16:18:41'),(100,2,'EC','na',0,'2017-07-24','16:18:45'),(100,0,'','open',0,'2017-07-24','16:19:25'),(100,0,'','close',0,'2017-07-24','16:19:29'),(100,1,'EC','',0,'2017-07-24','16:19:32'),(100,2,'EC','',0,'2017-07-24','16:19:36');
+INSERT INTO `elevator_network` VALUES (100,3,'EC','',0,'2017-07-29','21:32:16'),(100,2,'EC','',0,'2017-07-29','21:32:16'),(100,1,'EC','',0,'2017-07-29','21:32:17'),(100,0,'EC','open',0,'2017-07-29','21:32:17'),(100,0,'EC','close',0,'2017-07-29','21:32:18'),(100,3,'FC','',0,'2017-07-29','21:32:19'),(100,2,'FC','',0,'2017-07-29','21:32:19'),(100,1,'FC','',0,'2017-07-29','21:32:20'),(100,1,'FC','',0,'2017-07-29','21:33:10'),(100,2,'FC','',0,'2017-07-29','21:33:11');
 /*!40000 ALTER TABLE `elevator_network` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -78,4 +78,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-24 16:29:01
+-- Dump completed on 2017-07-29 21:34:45
