@@ -1,4 +1,13 @@
 <?php 
+    session_start();
+    if(!isset($_SESSION['username']))
+    {
+        echo "<p>You are not authorized users. Click <a href=../request_access.html> here to sign up.</p>"; 
+        die();
+    }
+ ?>
+ 
+<?php 
 	function elevator_network_display($dbConn)
 	{
 	    $query = 'SELECT (nodeID, requestedFloor, controllerType, doorState, currentFloor, dateID, timeID) FROM (SELECT * FROM elevator_network ORDER BY ID DESC LIMIT 10) sub ORDER BY ID ASC';
