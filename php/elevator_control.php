@@ -145,6 +145,7 @@
                     </thead>
                     <tbody id="elevator-network-content"></tbody>
                 </table>
+				</div>
                 <div class="table-responsive">
                     <table class="table" id="members-table">
                         <thead>
@@ -157,6 +158,21 @@
                         </thead>
                         <tbody id="member-content"></tbody>
                     </table>
+					</div>
+					<div class="table-responsive">
+						<table id="can-network-table" class="table">
+						<thead>
+							<tr>
+								<th>CAN ID</th>
+								<th>Floor Request</th>
+								<th>Door State</th>
+								<th>Current Floor</th>
+								<th>Date</th>
+								<th>Time</th>
+							</tr>
+						</thead>
+						<tbody id="can-network-content"></tbody>
+						</table>
                 </div>
                 <ul class="pagination">
                     <li>
@@ -165,8 +181,8 @@
                     <li>
                         <a href="#" id="authorized-users" onclick="display_database(this.id)">2</a>
                     </li>
-                    <li>
-                        <a href="#">3</a>
+					<li>
+                        <a href="#" id="can-network" onclick="display_database(this.id)">3</a>
                     </li>
                 </ul>
             </div>

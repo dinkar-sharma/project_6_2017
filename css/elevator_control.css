@@ -72,6 +72,11 @@ th
 	display: none;
 }
 
+#can-network-table
+{
+	display: none;
+}
+
 @media only screen and (max-width: 767px)
 {
 	.floor-req-light

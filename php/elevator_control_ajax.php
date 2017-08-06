@@ -8,29 +8,17 @@
 	
 	function read_current_floor($dbConn)
 	{
-		echo "HELLO";
+		//echo "HELLO";
 		//$dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$test = $dbConn->query('SELECT currentFloor FROM cFloor_table');
-	    var_dump($test);
-		//echo $test;
-		return 0; //$test; //$rows;
-	}
+		$query = 'SELECT currentFloor FROM cFloor_table';
+		foreach ($dbConn->query($query) as $row)
+		{
+			//var_dump($test);
+			//echo $test;
+			return $row['currentFloor'];
+		}
 
-	function elevator_network_display($dbConn)
-	{
-	    $query = 'SELECT nodeID, requestedFloor, controllerType, doorState, currentFloor, dateID, timeID FROM (SELECT * FROM elevator_network ORDER BY ID DESC LIMIT 10) sub ORDER BY ID ASC';
-	    $rows = $dbConn->query($query);
-	    foreach ($rows as $row) 
-	    {
-	        echo "<tr>";
-	        for ($i=0; $i < sizeof($row)/2 ; $i++) 
-	        { 
-	            echo "<td>".$row[$i]."</td>";
-	        }
-	        echo "</tr>";
-	    }
 	}
-
 
 	function elevator_network_write($dbConn, $requestedFloor, $doorState, $controllerType)
 	{	
@@ -43,7 +31,7 @@
 		    $curr_date = $curr_date_query->fetch(PDO::FETCH_ASSOC);
 		    $curr_time_query = $dbConn->query('SELECT CURRENT_TIME()');
 		    $curr_time = $curr_time_query->fetch(PDO::FETCH_ASSOC);
-			$currentFloor = read_current_floor($dbConn);
+			$cFloor = read_current_floor($dbConn);
 		    //$curr_floor_query = $dbConn->query('SELECT requestedFloor FROM cFloor_table');
 		    //$currentFloor = $curr_floor_query->fetch(PDO::FETCH_ASSOC);
 			
@@ -53,7 +41,7 @@
 		        'requestedFloor' => $requestedFloor,
 		        'controllerType' => $controllerType,
 		        'doorState' => $doorState,
-		        'currentFloor' => $currentFloor,
+		        'currentFloor' => $cFloor,
 		        'dateID' => $curr_date['CURRENT_DATE()'],
 		        'timeID' => $curr_time['CURRENT_TIME()']
 		    ];
@@ -84,13 +72,13 @@
 		    $curr_time_query = $dbConn->query('SELECT CURRENT_TIME()');
 		    $curr_time = $curr_time_query->fetch(PDO::FETCH_ASSOC);
 			//$curr_floor_query = $dbConn->query('SELECT requestedFloor FROM cFloor_table');
-		    $currentFloor = read_current_floor($dbConn);
-			echo $currentFloor;
+		    $cFloor = read_current_floor($dbConn);
+			//echo $currentFloor;
 			
 		    $params = [
 		        'requestedFloor' => $requestedFloor,
 		        'doorState' => $doorState,
-		        'currentFloor' => $currentFloor,
+		        'currentFloor' => $cFloor,
 		        'dateID' => $curr_date['CURRENT_DATE()'],
 		        'timeID' => $curr_time['CURRENT_TIME()']
 		    ];
@@ -119,12 +107,12 @@
 	    	$dbConn->beginTransaction();
 		    $statement = $dbConn->prepare($query);
 		    //$curr_floor_query = $dbConn->query('SELECT requestedFloor FROM cFloor_table');
-		    $currentFloor = read_current_floor($dbConn);
+		    $cFloor = read_current_floor($dbConn);
 
 		    $params = [
 		        'requestedFloor' => $requestedFloor,
 		        'doorState' => $doorState,
-		        'currentFloor' => $currrentFloor
+		        'currentFloor' => $cFloor
 		    ];
 		   
 		    if(!$statement->execute($params)) 

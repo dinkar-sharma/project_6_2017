@@ -16,7 +16,22 @@
 
 	function elevator_network_display($dbConn)
 	{
-	    $query = 'SELECT nodeID, requestedFloor, controllerType, doorState, currentFloor, dateID, timeID FROM (SELECT * FROM elevator_network ORDER BY timeID DESC LIMIT 10) sub ORDER BY timeID ASC';
+	    $query = 'SELECT nodeID, requestedFloor, controllerType, doorState, currentFloor, dateID, timeID FROM (SELECT * FROM elevator_network ORDER BY ID DESC LIMIT 10) sub ORDER BY ID ASC';
+	    $rows = $dbConn->query($query);
+	    foreach ($rows as $row) 
+	    {
+	        echo "<tr>";
+	        for ($i=0; $i < sizeof($row)/2 ; $i++) 
+	        { 
+	            echo "<td>".$row[$i]."</td>";
+	        }
+	        echo "</tr>";
+	    }
+	}
+	
+	function can_network_display($dbConn)
+	{
+	    $query = 'SELECT CAN_ID, requestedFloor, doorState, currentFloor, dateID, timeID FROM (SELECT * FROM CAN_network ORDER BY ID DESC LIMIT 10) sub ORDER BY ID ASC';
 	    $rows = $dbConn->query($query);
 	    foreach ($rows as $row) 
 	    {
@@ -52,6 +67,9 @@
 
 	switch ($tableName) 
 	{
+		case 'can-network':
+			can_network_display($dbConn);
+			break;
 		case 'authorized-users':
 			authorized_users_display($dbConn);
 			break;

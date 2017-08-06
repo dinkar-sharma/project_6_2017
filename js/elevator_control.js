@@ -50,12 +50,21 @@ function display_database(databaseName)
               document.getElementById('elevator-network-content').innerHTML = this.responseText;
               document.getElementById('elevator-network-table').style.display = 'inline-table';
               document.getElementById('members-table').style.display = 'none';
+			  document.getElementById('can-network-table').style.display = 'none';
             }
             else if(databaseName == 'authorized-users')
             {
                 document.getElementById('member-content').innerHTML = this.responseText;
                 document.getElementById('members-table').style.display = 'inline-table';
                 document.getElementById('elevator-network-table').style.display = 'none';
+				document.getElementById('can-network-table').style.display = 'none';
+            }
+			else if (databaseName == 'can-network')
+            {
+                document.getElementById('can-network-content').innerHTML = this.responseText;
+                document.getElementById('can-network-table').style.display = 'inline-table';
+                document.getElementById('elevator-network-table').style.display = 'none';
+				document.getElementById('members-table').style.display = 'none';
             }
             
         }
