@@ -34,6 +34,8 @@
 #include <cppconn/statement.h>
 #include <cppconn/prepared_statement.h>
 
+#define ENABLE_MC   4
+
 using namespace std; 
 
 typedef struct MMessage{
@@ -77,6 +79,35 @@ int read_current_floor(void){
     delete con;
     
     return cFVal;
+}
+
+string read_door_state(void){
+    
+    string dState = "closed";
+    sql::Driver *driver;	// Pointer to MySQL driver object
+    sql::Connection *con;	// Pointer to database connection object
+    sql::Statement *stmt;	// Pointer to statement object
+    sql::ResultSet *res;	// Pointer to ResultSet object
+
+    /* Create a connection */
+    driver = get_driver_instance();
+    con = driver->connect("tcp://127.0.0.1:3306", "root", ""); // IP and password of MySQL server database 
+    con->setSchema("elevator_project_2017");	// Connect to the MySQL "test" database - replace with your database
+    
+    /* Execute a query and wait for result */ 
+    stmt = con->createStatement(); 
+    res = stmt->executeQuery("SELECT doorState FROM dState_table");  // Query (see previous lectures)
+    //cout << "TEST DOOR_STATE " << endl;
+    while (res->next()) {
+        dState = res->getString(1);
+    }
+    
+    /* Clean up pointers */
+    delete res;
+    delete stmt;
+    delete con;
+    
+    return dState;
 }
 
 int table_query(MMsg_t *CANMsg){
@@ -144,9 +175,9 @@ void table_delete_query(void){
     prep_stmt->execute();
     //cout << "TEST DELETE_QUERY 3" << endl;
     cout << "TEST DELETE_QUERY 3" << endl;
+    
     /* Clean up pointers */
     delete res;
-    //delete stmt;
     delete prep_stmt;
     delete con;
     
@@ -160,71 +191,56 @@ int main(void)
     TPCANStatus TXStatus;
     //unsigned long ulIndex = 0;
     int x = 0;
+    int y = 0;
     int cF = 0;
-    int count = 0;
+    string dS = "closed";
+    int moveFlag = 0;
    
     TXStatus = CAN_Initialize(PCAN_DEVICE, PCAN_BAUD_125K, 0, 0, 0);
     printf("Initialize CAN: %x\n",(int)TXStatus);
     //printf("test %2x\n\n", message);
-
+    
+    TXMessage.ID = 0x100;
+    TXMessage.LEN = 8;
+    TXMessage.MSGTYPE = PCAN_MESSAGE_STANDARD;
+        
     while(1){ 
-        TXMessage.ID = 0x100;
-        TXMessage.LEN = 8;
-        TXMessage.MSGTYPE = PCAN_MESSAGE_STANDARD;
-
+        
         for (x = 0; x<8; x++){
             TXMessage.DATA[x]= 0x00;
         }
-        
-//        sql::Driver *driver;	// Pointer to MySQL driver object
-//        sql::Connection *con;	// Pointer to database connection object
-//        sql::Statement *stmt;	// Pointer to statement object
-//        sql::ResultSet *res;	// Pointer to ResultSet object
-//
-//
-//        /* Create a connection */
-//        driver = get_driver_instance();
-//        con = driver->connect("tcp://127.0.0.1:3306", "root", ""); // IP and password of MySQL server database 
-//        con->setSchema("elevator_project_2017");	// Connect to the MySQL "test" database - replace with your database
-//
-//        /* Execute a query and wait for result */  
-//
-//        stmt = con->createStatement(); 
-//    
-//        res = stmt->executeQuery("SELECT * FROM queue_table");  // Query (see previous lectures)
-//        
-//        count = res->rowsCount();
-        
-        //cout << count << endl;
-        
+        //count = 999;        
         count = table_query(&CANMsg);
-        //printf("TEST1");
         
         while(count != 0){
         
             table_query(&CANMsg);
 
             //if (tempMsg == cF){
-                message = CANMsg.requestedFloor + 4;
-                //tempMsg = (CANMsg.requestedFloor + 4);
-                TXMessage.DATA[0] = message;
+            message = (CANMsg.requestedFloor + ENABLE_MC);
+            TXMessage.DATA[0] = message;
+            printf("TXMessage: %d", TXMessage.DATA[0]);
+            cout << ", door state: " << dS << endl;
 
-                cF = read_current_floor();               
-                if (cF != CANMsg.requestedFloor){
-                    while(TXStatus == PCAN_ERROR_OK) {
-                        TXStatus = CAN_Write(PCAN_DEVICE,&TXMessage);
-                        if (TXStatus != PCAN_ERROR_OK){
-                            break;
-                        }
+            cF = read_current_floor(); 
+            dS = read_door_state(); 
+
+            if (cF != CANMsg.requestedFloor){
+                printf("%d\n", CANMsg.requestedFloor);
+                if (moveFlag == 0)
+                while((TXStatus = CAN_Write(PCAN_DEVICE,&TXMessage)) == PCAN_ERROR_OK) {
+                        //TXStatus = CAN_Write(PCAN_DEVICE,&TXMessage);
+                        printf("Writing to CAN\n");
                         //TXMessage.DATA[0];
-                        //ulIndex++;
+                        //ulIndex+;
                         //if ((ulIndex % 1000) == 0)
                               //  printf("  - T Message %i\n", (int)ulIndex);
 
                         //break;
-
-                    }
+                        moveFlag = 1;
+                      
                 }
+            }
 
 
             cF = read_current_floor();
@@ -232,10 +248,11 @@ int main(void)
             if (cF == CANMsg.requestedFloor)
             {
                table_delete_query();
-               sleep(3);
+               //sleep(3);
+               moveFlag=0;
             }          
             
-            break;
+            //break;
 
         }    
         //printf("STATUS %i\n", (int)Status);

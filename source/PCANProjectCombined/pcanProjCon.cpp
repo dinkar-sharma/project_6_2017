@@ -44,6 +44,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <asm/types.h>
+#include <string>
 
 /*
 #define DWORD  __u32
@@ -69,7 +70,7 @@ using namespace std;
 
 /*********PROTOTYPES*********************/
 //int pcanWrite(int ID, int message, int cF);
-void queueTable(int ID, int msg, int cF);
+void queueTable(int ID, int msg, string doorState, int cF);
 /****************************************/	
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,7 +88,8 @@ int main(void) {
     TPCANMsg Message;
     TPCANStatus Status;
     //unsigned long ulIndex = 0;
-    int curFloor;
+    int curFloor = 0;
+    string doorState = "";
     
     Status = CAN_Initialize(PCAN_DEVICE, PCAN_BAUD_125K, 0, 0, 0);
     printf("Initialize CAN: %i\n",(int)Status);
@@ -112,7 +114,7 @@ int main(void) {
         printf("Test: %d %4d\n", i, Message.ID);
         
         if ((int)Message.ID == 0x101){
-            printf("Received ID 0X101\n %x\n", Message.DATA[0]);
+            printf("Received ID 0x101: %x\n", Message.DATA[0]);
             if (Message.DATA[0] == 5 || Message.DATA[0] == 1){ 
                 curFloor = 1; // F1
                 printf("Current floor is 1\n");
@@ -149,7 +151,40 @@ int main(void) {
             delete res;
             delete con;
         }
+        
+        if ((int)Message.ID == 0x200){
+            printf("Received ID 0x200: %x\n", Message.DATA[0]);
+            if (Message.DATA[7] == 4 || Message.DATA[7] == 5 || Message.DATA[7] == 6 || Message.DATA[7] == 7){ 
+                doorState = "closed"; // closed
+                printf("Door is closed\n");
+            }
+            else if(Message.DATA[7] == 1 || Message.DATA[7] == 2 || Message.DATA[7] == 3){
+                doorState = "open"; //open
+                printf("Door is open\n");
+            }
+            else {
+                printf("Something is wrong with door state\n");
+            }
+                        // add current floor into table
+            sql::Driver *driver;	// Pointer to MySQL driver object
+            sql::Connection *con;	// Pointer to database connection object
+            sql::PreparedStatement *prep_stmt;
+            sql::ResultSet *res;	// Pointer to ResultSet object
 
+            /* Create a connection */
+            driver = get_driver_instance();
+            con = driver->connect("tcp://127.0.0.1:3306", "root", ""); // IP and password of MySQL server database 
+            con->setSchema("elevator_project_2017");	// Connect to the MySQL "test" database - replace with your database
+
+            prep_stmt = con->prepareStatement("UPDATE dState_table SET doorState = ? WHERE ID = 1");
+            prep_stmt->setString(1, doorState);
+            prep_stmt->execute();
+
+            /* Clean up pointers */
+            delete prep_stmt;
+            delete res;
+            delete con;
+        }
         
         if ((int)Message.ID == 0x200 || (int)Message.ID == 0x201 || (int)Message.ID == 0x202 || (int)Message.ID == 0x203)
         {
@@ -158,33 +193,32 @@ int main(void) {
             // LSByte contains data
             switch(Message.DATA[7]){
                 case 1 :
-                        printf("Door OPEN Floor 1\n");
+                        //printf("Door OPEN Floor 1\n");
                         //pcanWrite(0x05);
                         break;
                 case 2 :
-                        printf("Door OPEN Floor 2\n");
+                        //printf("Door OPEN Floor 2\n");
                         //pcanWrite(0x06);
                         break;
                 case 3 :
-                        printf("Door OPEN Floor 3\n");
+                        //printf("Door OPEN Floor 3\n");
                         //pcanWrite(0x07);
                         break;
                 case 5 :
                         printf("Requested Floor 1\n");
-                        queueTable(Message.ID,0x05, curFloor);
+                        queueTable(Message.ID,0x05, doorState, curFloor);
                         break;
                 case 6 :
                         printf("Request Floor 2\n");
-                        queueTable(Message.ID,0x06, curFloor);
+                        queueTable(Message.ID,0x06, doorState, curFloor);
                         break;
                 case 7 :
                         printf("Requested Floor 3\n");
-                        queueTable(Message.ID,0x07, curFloor);
+                        queueTable(Message.ID,0x07, doorState, curFloor);
                         break;					
                 default:
                         break;
             }
-            //break;
 
         }
     }
@@ -194,38 +228,8 @@ int main(void) {
 }
 
 
-void queueTable(int ID, int message, int cF)
+void queueTable(int ID, int message, string doorState, int cF)
 {
-//    TPCANMsg TXMessage;
-//    TPCANStatus TXStatus;
-//    //unsigned long ulIndex = 0;
-//    int x = 0;
-//
-//    //Status = CAN_Initialize(PCAN_DEVICE, PCAN_BAUD_125K, 0, 0, 0);
-//    //printf("Initialize CAN: %x\n",(int)Status);
-//    printf("test %2x\n\n", message);
-//
-//    TXMessage.ID = 0x100;
-//    TXMessage.LEN = 8;
-//    TXMessage.MSGTYPE = PCAN_MESSAGE_STANDARD;
-//    
-//    for (x = 0; x<8; x++){
-//        TXMessage.DATA[x]= 0x00;
-//    }
-//    
-//    TXMessage.DATA[0]= message;
-//    printf("%2x", TXMessage.DATA[0]);
-//
-//    //while(1)
-//    while ((TXStatus=CAN_Write(PCAN_DEVICE,&TXMessage)) == PCAN_ERROR_OK) {
-//        TXMessage.DATA[0];
-//        //ulIndex++;
-//        //if ((ulIndex % 1000) == 0)
-//              //  printf("  - T Message %i\n", (int)ulIndex);
-//    }
-//
-//    //printf("STATUS %i\n", (int)Status);
-
     int nID = ID;
     int rF = 0;
     string dS;
@@ -249,24 +253,25 @@ void queueTable(int ID, int message, int cF)
     
     if (message == 0x05){
             rF = 1;
-            dS = "close";
+            dS = doorState;
             //cF = 0
-            //printf("I'm going to floor 1\n");
+            printf("I'm going to floor 1\n");
     } else if (message == 0x06) {
             rF = 2;
-            dS = "close";
+            dS = doorState;
             //cF = 0;
+            printf("I'm going to floor 2\n");
     } else if (message == 0x07) {
             rF = 3;
-            dS = "close";
+            dS = doorState;
             //cF = 0;
+            printf("I'm going to floor 3\n");
     } else {
             printf("Something went wrong\n");
     }
 
     sql::Driver *driver;	// Pointer to MySQL driver object
     sql::Connection *con;	// Pointer to database connection object
-    //sql::Statement *stmt;	// Pointer to statement object
     sql::PreparedStatement *prep_stmt;
     sql::ResultSet *res;	// Pointer to ResultSet object
 
@@ -291,19 +296,6 @@ void queueTable(int ID, int message, int cF)
     prep_stmt->setString(3, dS);
     prep_stmt->setInt(4,cF);
     prep_stmt->execute();
-    
-//    prep_stmt = con->prepareStatement("UPDATE cFloor_table SET currentFloor = ? WHERE ID = 1");
-//    prep_stmt->setInt(1, cF);
-//    prep_stmt->execute();
-    
-    //stmt = con->createStatement(); 
-    //res = stmt->executeQuery("INSERT INTO CAN_network (requestedFloor, doorState, currentFloor, dateID, timeID) VALUES (:rF, :dS, :cF, CURRENT_DATE(), CURRENT_TIME())");  // Query (see previous lectures)
-//	while (res->next()) {
-//		cout << "\t.. MySQL replies:: ";
-//		cout << res->getString(1) << endl;
-//                cout << res->getString(2) << endl;
-//                cout << res->getString(3) << endl;
-//	}
 
     /* Clean up pointers */
     delete prep_stmt;
