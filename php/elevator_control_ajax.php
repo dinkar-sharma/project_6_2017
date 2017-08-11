@@ -19,7 +19,20 @@
 		}
 
 	}
+	
+		function read_door_state($dbConn)
+	{
+		//echo "HELLO";
+		//$dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$query = 'SELECT doorState FROM dState_table';
+		foreach ($dbConn->query($query) as $row)
+		{
+			//var_dump($test);
+			//echo $test;
+			return $row['doorState'];
+		}
 
+	}
 	function elevator_network_write($dbConn, $requestedFloor, $doorState, $controllerType)
 	{	
 	    try
@@ -32,6 +45,7 @@
 		    $curr_time_query = $dbConn->query('SELECT CURRENT_TIME()');
 		    $curr_time = $curr_time_query->fetch(PDO::FETCH_ASSOC);
 			$cFloor = read_current_floor($dbConn);
+			$dState = read_door_state($dbConn);
 		    //$curr_floor_query = $dbConn->query('SELECT requestedFloor FROM cFloor_table');
 		    //$currentFloor = $curr_floor_query->fetch(PDO::FETCH_ASSOC);
 			
@@ -73,6 +87,7 @@
 		    $curr_time = $curr_time_query->fetch(PDO::FETCH_ASSOC);
 			//$curr_floor_query = $dbConn->query('SELECT requestedFloor FROM cFloor_table');
 		    $cFloor = read_current_floor($dbConn);
+			$dState = read_door_state($dbConn);			
 			//echo $currentFloor;
 			
 		    $params = [
@@ -108,10 +123,11 @@
 		    $statement = $dbConn->prepare($query);
 		    //$curr_floor_query = $dbConn->query('SELECT requestedFloor FROM cFloor_table');
 		    $cFloor = read_current_floor($dbConn);
+			$dState = read_door_state($dbConn);
 
 		    $params = [
 		        'requestedFloor' => $requestedFloor,
-		        'doorState' => $doorState,
+		        'doorState' => $dState,
 		        'currentFloor' => $cFloor
 		    ];
 		   
