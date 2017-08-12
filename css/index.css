@@ -5,7 +5,13 @@
   height: 500px;
 }
 
-video 
+#demo-vid
+{ 
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+video #bg-vid
 { 
   position: absolute;
   right: 0;
