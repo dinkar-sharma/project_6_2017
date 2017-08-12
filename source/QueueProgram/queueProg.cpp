@@ -191,9 +191,9 @@ int main(void)
     TPCANStatus TXStatus;
     //unsigned long ulIndex = 0;
     int x = 0;
-    int y = 0;
     int cF = 0;
-    string dS = "closed";
+    string dS = "open";
+    int count = 999;
     int moveFlag = 0;
    
     TXStatus = CAN_Initialize(PCAN_DEVICE, PCAN_BAUD_125K, 0, 0, 0);
@@ -215,6 +215,7 @@ int main(void)
         while(count != 0){
         
             table_query(&CANMsg);
+            dS = read_door_state();
 
             //if (tempMsg == cF){
             message = (CANMsg.requestedFloor + ENABLE_MC);
@@ -225,20 +226,25 @@ int main(void)
             cF = read_current_floor(); 
             dS = read_door_state(); 
 
-            if (cF != CANMsg.requestedFloor){
+            if (cF != CANMsg.requestedFloor && dS == "closed"){
                 printf("%d\n", CANMsg.requestedFloor);
-                if (moveFlag == 0)
-                while((TXStatus = CAN_Write(PCAN_DEVICE,&TXMessage)) == PCAN_ERROR_OK) {
+                if (moveFlag == 0){
+                    moveFlag=1;
+                    //while(
+                    TXStatus = CAN_Write(PCAN_DEVICE,&TXMessage); 
+                    if (TXStatus == PCAN_ERROR_OK){
                         //TXStatus = CAN_Write(PCAN_DEVICE,&TXMessage);
-                        printf("Writing to CAN\n");
+                        printf("Error\n");    
+                        //printf("Writing to CAN\n");
                         //TXMessage.DATA[0];
                         //ulIndex+;
                         //if ((ulIndex % 1000) == 0)
-                              //  printf("  - T Message %i\n", (int)ulIndex);
+                        //  printf("  - T Message %i\n", (int)ulIndex);
 
-                        //break;
-                        moveFlag = 1;
-                      
+                        break;
+                        //moveFlag = 1;
+
+                    }
                 }
             }
 
@@ -247,12 +253,13 @@ int main(void)
             
             if (cF == CANMsg.requestedFloor)
             {
+               cout << "test Delete" << endl;
                table_delete_query();
                //sleep(3);
                moveFlag=0;
             }          
             
-            //break;
+            break;
 
         }    
         //printf("STATUS %i\n", (int)Status);
