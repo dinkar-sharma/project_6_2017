@@ -5,13 +5,13 @@
   height: 500px;
 }
 
-#demo-vid video
+#demo-vid
 { 
   padding-top: 40px;
   padding-bottom: 40px;
 }
 
-video
+.bg-video video
 { 
   position: absolute;
   right: 0;
@@ -54,27 +54,6 @@ video
   width: 100%;
   margin-bottom: 40px;
 }
-
-#pause-btn button 
-{ 
-  position: absolute;
-  width: 10%;
-  padding: .4rem;
-  border: none; 
-  margin: 1rem auto; 
-  font-size: 1.3rem;
-  background: rgba(255,255,255,0.23);
-  color: #fff;
-  border-radius: 3px; 
-  cursor: pointer;
-  transition: .3s background;
-}
-
-#pause-btn button:hover 
-{ 
-   background: rgba(0,0,0,0.5);
-}
-
 
 @media only screen and (max-width: 767px)
 {
